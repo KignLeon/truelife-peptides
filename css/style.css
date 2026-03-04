@@ -53,34 +53,27 @@ body {
     background: var(--pp-bg);
     line-height: 1.5;
     overflow-x: hidden;
+    padding-top: 80px;
+    /* Clearance for fixed navbar */
 }
 
 /* ===========================
    MOLECULE OVERLAY — Fixed background layer
-   Uses Cloudinary-hosted molecule image
-   Center fades out so molecules emphasize edges
+   Cloudinary molecule image, visible on page edges
    =========================== */
 .pp-molecule-overlay {
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     pointer-events: none;
     z-index: 0;
-    background: url('https://res.cloudinary.com/ddnhp0hzd/image/upload/v1772664582/molecule-overlay_gxycuc.png') center / cover no-repeat;
-    opacity: 0.18;
-    -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.6) 50%, black 75%);
-    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.6) 50%, black 75%);
-}
-
-/* Ensure all site content sits above the overlay */
-.pp-site-wrapper {
-    position: relative;
-    z-index: 1;
-}
-
-/* Fallback: if no wrapper, all direct body children sit above */
-body>*:not(.pp-molecule-overlay) {
-    position: relative;
-    z-index: 1;
+    background-image: url('https://res.cloudinary.com/ddnhp0hzd/image/upload/v1772664582/molecule-overlay_gxycuc.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.22;
 }
 
 a {
@@ -307,31 +300,32 @@ ol {
 }
 
 /* ===========================
-   NAVBAR — Blueprint Match
+   NAVBAR — Fixed Glass Bar
    =========================== */
 .navbar {
-    position: sticky;
-    top: 8px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     z-index: 100;
-    width: 100%;
-    max-width: var(--pp-max-w);
-    margin: 0 auto;
-    padding: 0 8px;
+    padding: 10px 16px;
 }
 
 .navbar-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    min-height: 56px;
-    background: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(14px) saturate(160%);
-    -webkit-backdrop-filter: blur(14px) saturate(160%);
-    border: 1px solid rgba(255, 255, 255, 0.45);
+    min-height: 60px;
+    max-width: var(--pp-max-w);
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     border-radius: var(--pp-radius-lg);
-    padding: 6px 20px 6px 20px;
+    padding: 8px 24px;
     transition: box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease;
-    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06), 0 0 1px rgba(0, 0, 0, 0.08);
 }
 
 .navbar-inner:hover {
@@ -339,10 +333,10 @@ ol {
     border-color: rgba(0, 126, 255, 0.12);
 }
 
-/* Logo: nav-logo class, 64px desktop, crisp, no distortion */
+/* Logo: 72px desktop, crisp, no distortion */
 .navbar-logo img,
 .nav-logo {
-    height: 64px;
+    height: 72px;
     width: auto;
     object-fit: contain;
     image-rendering: -webkit-optimize-contrast;
@@ -1241,7 +1235,7 @@ ol {
 }
 
 .footer-brand img {
-    height: 72px;
+    height: 80px;
     margin-bottom: 16px;
     filter: brightness(10);
     image-rendering: -webkit-optimize-contrast;
@@ -1343,7 +1337,7 @@ ol {
 
     .navbar-logo img,
     .nav-logo {
-        height: 42px;
+        height: 48px;
     }
 
     .hero-content h1 {
