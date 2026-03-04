@@ -66,9 +66,9 @@ body {
     pointer-events: none;
     z-index: 0;
     background: url('https://res.cloudinary.com/ddnhp0hzd/image/upload/v1772664582/molecule-overlay_gxycuc.png') center / cover no-repeat;
-    opacity: 0.09;
-    -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, transparent 30%, black 80%);
-    mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, transparent 30%, black 80%);
+    opacity: 0.18;
+    -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.6) 50%, black 75%);
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.6) 50%, black 75%);
 }
 
 /* Ensure all site content sits above the overlay */
@@ -339,10 +339,10 @@ ol {
     border-color: rgba(0, 126, 255, 0.12);
 }
 
-/* Logo: nav-logo class, 48px desktop, crisp, no distortion */
+/* Logo: nav-logo class, 64px desktop, crisp, no distortion */
 .navbar-logo img,
 .nav-logo {
-    height: 48px;
+    height: 64px;
     width: auto;
     object-fit: contain;
     image-rendering: -webkit-optimize-contrast;
@@ -1241,7 +1241,7 @@ ol {
 }
 
 .footer-brand img {
-    height: 48px;
+    height: 72px;
     margin-bottom: 16px;
     filter: brightness(10);
     image-rendering: -webkit-optimize-contrast;
@@ -1343,7 +1343,7 @@ ol {
 
     .navbar-logo img,
     .nav-logo {
-        height: 34px;
+        height: 42px;
     }
 
     .hero-content h1 {
