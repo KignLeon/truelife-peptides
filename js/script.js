@@ -123,11 +123,13 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('scroll', () => {
             const scroll = window.scrollY;
             if (scroll > 50) {
-                navbar.style.boxShadow = '0 4px 24px rgba(0,0,0,0.08)';
-                navbar.style.background = 'rgba(255,255,255,0.92)';
+                navbar.style.boxShadow = '0 4px 32px rgba(0,0,0,0.08), 0 0 20px rgba(0,126,255,0.06), inset 0 1px 0 rgba(255,255,255,0.6)';
+                navbar.style.background = 'rgba(255,255,255,0.85)';
+                navbar.style.borderColor = 'rgba(0,126,255,0.1)';
             } else {
                 navbar.style.boxShadow = '';
                 navbar.style.background = '';
+                navbar.style.borderColor = '';
             }
             lastScroll = scroll;
         }, { passive: true });
