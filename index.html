@@ -7,15 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="index, follow">
     <script>
-        // GitHub Pages subpath fix: rewrite root-relative /vendor/ paths to /direct-peptides/vendor/
+        // GitHub Pages subpath fix: rewrite root-relative /vendor/ and /images/ paths to /direct-peptides/...
         (function () {
             var gh = location.hostname.indexOf('.github.io') !== -1;
             if (!gh) return;
             var prefix = '/direct-peptides';
 
-            // Helper: rewrite a single URL string if it starts with /vendor/
+            // Helper: rewrite a single URL string if it starts with /vendor/ or /images/
             function rewriteUrl(url) {
-                if (typeof url === 'string' && url.indexOf('/vendor/') === 0) {
+                if (typeof url === 'string' && (url.indexOf('/vendor/') === 0 || url.indexOf('/images/') === 0)) {
                     return prefix + url;
                 }
                 return url;
@@ -39,7 +39,7 @@
                     value = rewriteUrl(value);
                 }
                 if (name === 'srcset' && typeof value === 'string') {
-                    value = value.replace(/(^|,\s*)(\/vendor\/)/g, '$1' + prefix + '$2');
+                    value = value.replace(/(^|,\s*)(\/vendor\/|\/images\/)/g, '$1' + prefix + '$2');
                 }
                 return origSetAttribute.call(this, name, value);
             };
@@ -47,15 +47,15 @@
             // 3. MutationObserver as safety net for elements already in DOM
             function fix(el) {
                 var src = el.getAttribute('src');
-                if (src && src.indexOf('/vendor/') === 0) {
+                if (src && (src.indexOf('/vendor/') === 0 || src.indexOf('/images/') === 0)) {
                     origSetAttribute.call(el, 'src', prefix + src);
                 }
                 var srcset = el.getAttribute('srcset');
-                if (srcset && srcset.indexOf('/vendor/') > -1) {
-                    origSetAttribute.call(el, 'srcset', srcset.replace(/(^|,\s*)(\/vendor\/)/g, '$1' + prefix + '$2'));
+                if (srcset && (srcset.indexOf('/vendor/') > -1 || srcset.indexOf('/images/') > -1)) {
+                    origSetAttribute.call(el, 'srcset', srcset.replace(/(^|,\s*)(\/vendor\/|\/images\/)/g, '$1' + prefix + '$2'));
                 }
                 var poster = el.getAttribute('poster');
-                if (poster && poster.indexOf('/vendor/') === 0) {
+                if (poster && (poster.indexOf('/vendor/') === 0 || poster.indexOf('/images/') === 0)) {
                     origSetAttribute.call(el, 'poster', prefix + poster);
                 }
             }
@@ -83,7 +83,7 @@
             });
         })();
     </script>
-    <link rel="preload" as="image" href="./vendor/framer/images/h7ancXrnReqPyNm0wUo1ySiLpo.png">
+    <link rel="preload" as="image" href="./images/pure-peptides-og.png">
 
     <meta charset="utf-8">
 
@@ -310,28 +310,28 @@
     <!-- End of headStart -->
     <meta name="viewport" content="width=device-width">
     <meta name="generator" content="Framer 0f6ce29">
-    <title>Direct Peptides | Buy Research Peptides Online</title>
+    <title>Pure Peptides | Buy Research Peptides Online</title>
     <meta name="description"
-        content="Direct Peptides offers a wide range of research-grade peptides optimal for vitro studies. Order lab-verified peptides, shipped in the USA.">
+        content="Pure Peptides offers a wide range of research-grade peptides optimal for vitro studies. Order lab-verified peptides, shipped in the USA.">
     <meta name="framer-search-index"
         content="./vendor/framer/sites/7Hk9CQUKuI2v8knL6mP6og/searchIndex-tgNwYUgUYsr7.json">
     <meta name="framer-search-index-fallback"
         content="./vendor/framer/sites/7Hk9CQUKuI2v8knL6mP6og/searchIndex-ZAS6ZoKEUsuZ.json">
-    <link href="./vendor/framer/images/g1m21iDWdRqYBd14QnIIfyyz8.png" rel="icon" media="(prefers-color-scheme: light)">
-    <link href="./vendor/framer/images/hcAkDgj2pUBlzrrfxYkdBcOn2jY.png" rel="icon" media="(prefers-color-scheme: dark)">
-    <link rel="apple-touch-icon" href="./vendor/framer/images/QYa004vkxmsSevw5MZN8ZpTGEk.png">
+    <link href="./images/pure-peptides-favicon-32.png" rel="icon" media="(prefers-color-scheme: light)">
+    <link href="./images/pure-peptides-favicon-32.png" rel="icon" media="(prefers-color-scheme: dark)">
+    <link rel="apple-touch-icon" href="./images/pure-peptides-apple-touch-icon.png">
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Direct Peptides | Buy Research Peptides Online">
+    <meta property="og:title" content="Pure Peptides | Buy Research Peptides Online">
     <meta property="og:description"
-        content="Direct Peptides offers a wide range of research-grade peptides optimal for vitro studies. Order lab-verified peptides, shipped in the USA.">
-    <meta property="og:image" content="./vendor/framer/images/h7ancXrnReqPyNm0wUo1ySiLpo.png">
+        content="Pure Peptides offers a wide range of research-grade peptides optimal for vitro studies. Order lab-verified peptides, shipped in the USA.">
+    <meta property="og:image" content="./images/pure-peptides-og.png">
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Direct Peptides | Buy Research Peptides Online">
+    <meta name="twitter:title" content="Pure Peptides | Buy Research Peptides Online">
     <meta name="twitter:description"
-        content="Direct Peptides offers a wide range of research-grade peptides optimal for vitro studies. Order lab-verified peptides, shipped in the USA.">
-    <meta name="twitter:image" content="./vendor/framer/images/h7ancXrnReqPyNm0wUo1ySiLpo.png">
+        content="Pure Peptides offers a wide range of research-grade peptides optimal for vitro studies. Order lab-verified peptides, shipped in the USA.">
+    <meta name="twitter:image" content="./images/pure-peptides-og.png">
 
     <style data-framer-font-css>
         /* latin-ext */
@@ -1062,10 +1062,38 @@
             size-adjust: 107.89%
         }
     </style>
+    <!-- Pure Peptides Color System & Overrides -->
+    <style>
+        :root {
+            --pp-primary: #2a3050;
+            --pp-secondary: #4ecdc4;
+            --pp-accent: #c9a96e;
+            --pp-background: #f3f3f3;
+            --pp-text: #292e4c;
+            --pp-glow: #00e5ff;
+            --pp-dark-bg: #1a1d2e;
+        }
+
+        /* Navbar logo sizing override - ensure PNG logo displays properly */
+        .framer-1ugx3j5.framer-1xa9tgv {
+            min-width: 140px !important;
+            min-height: 40px !important;
+        }
+
+        .framer-1ugx3j5.framer-1xa9tgv img {
+            object-fit: contain !important;
+        }
+
+        /* Apply brand accent to primary CTA buttons */
+        [data-framer-name="Button"],
+        .framer-styles-preset-dxoa8s {
+            --framer-text-color: var(--pp-secondary) !important;
+        }
+    </style>
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
     <meta name="robots" content="max-image-preview:large">
-    <link rel="canonical" href="https://directpeptides.com/">
-    <meta property="og:url" content="https://directpeptides.com/">
+    <link rel="canonical" href="https://truepeptides.com/">
+    <meta property="og:url" content="https://truepeptides.com/">
     <style data-framer-breakpoint-css>
         @media(min-width: 1440px) {
             .hidden-1wjmemk {
@@ -7885,11 +7913,9 @@
                                 <a class="framer-1ugx3j5 framer-1xa9tgv" data-framer-name="Logo" href="./"
                                     data-framer-page-link-current="true">
                                     <div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0"
-                                        data-framer-background-image-wrapper="true"><img decoding="async" width="197"
-                                            height="28"
-                                            src="./vendor/framer/images/Quu7jNUwfMYHDVnHrj0m4QMVlo4.svg?width=197&amp;height=28"
-                                            alt
-                                            style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:cover">
+                                        data-framer-background-image-wrapper="true"><img decoding="async" width="180"
+                                            height="120" src="./images/pure-peptides-logo.png" alt="Pure Peptides"
+                                            style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:contain">
                                     </div>
                                 </a>
                                 <!--/$-->
@@ -7974,9 +8000,7 @@
                                     data-framer-page-link-current="true">
                                     <div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0"
                                         data-framer-background-image-wrapper="true"><img decoding="async" width="197"
-                                            height="28"
-                                            src="./vendor/framer/images/Quu7jNUwfMYHDVnHrj0m4QMVlo4.svg?width=197&amp;height=28"
-                                            alt
+                                            height="28" src="./images/pure-peptides-logo.png" alt
                                             style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:cover">
                                     </div>
                                 </a>
@@ -8462,10 +8486,10 @@
                     </div>
                     <div class="ssr-variant hidden-19sohyx hidden-jh3fsx">
                         <div class="framer-1y0p841"
-                            data-framer-name="At Direct Peptides, we eliminate the middleman by supplying products directly from the lab. This ensures you receive the highest quality product with full transparency and competitive pricing."
+                            data-framer-name="At Pure Peptides, we eliminate the middleman by supplying products directly from the lab. This ensures you receive the highest quality product with full transparency and competitive pricing."
                             style="transform:none" data-framer-component-type="RichTextContainer">
                             <p class="framer-text framer-styles-preset-j5fk55" data-styles-preset="EyWjGxfgM">All
-                                products from Direct Peptides are intended solely for laboratory research purposes and
+                                products from Pure Peptides are intended solely for laboratory research purposes and
                                 are not for human or animal consumption. These materials are for in vitro research only
                                 and must be handled by qualified professionals
                                 in controlled lab environments. By purchasing, the buyer agrees to use these products in
@@ -8474,10 +8498,10 @@
                     </div>
                     <div class="ssr-variant hidden-jh3fsx hidden-lqbrsv hidden-1wjmemk">
                         <div class="framer-1y0p841"
-                            data-framer-name="At Direct Peptides, we eliminate the middleman by supplying products directly from the lab. This ensures you receive the highest quality product with full transparency and competitive pricing."
+                            data-framer-name="At Pure Peptides, we eliminate the middleman by supplying products directly from the lab. This ensures you receive the highest quality product with full transparency and competitive pricing."
                             style="transform:none" data-framer-component-type="RichTextContainer">
                             <p class="framer-text framer-styles-preset-1xqturm" data-styles-preset="Z24JEmfGn">All
-                                products from Direct Peptides are intended solely for laboratory research purposes and
+                                products from Pure Peptides are intended solely for laboratory research purposes and
                                 are not for human or animal consumption. These materials are for in vitro research only
                                 and must be handled by qualified professionals
                                 in controlled lab environments. By purchasing, the buyer agrees to use these products in
@@ -8486,10 +8510,10 @@
                     </div>
                     <div class="ssr-variant hidden-19sohyx hidden-lqbrsv hidden-1wjmemk">
                         <div class="framer-1y0p841"
-                            data-framer-name="At Direct Peptides, we eliminate the middleman by supplying products directly from the lab. This ensures you receive the highest quality product with full transparency and competitive pricing."
+                            data-framer-name="At Pure Peptides, we eliminate the middleman by supplying products directly from the lab. This ensures you receive the highest quality product with full transparency and competitive pricing."
                             style="transform:none" data-framer-component-type="RichTextContainer">
                             <p class="framer-text framer-styles-preset-2if8ww" data-styles-preset="WhnBTMplr">All
-                                products from Direct Peptides are intended solely for laboratory research purposes and
+                                products from Pure Peptides are intended solely for laboratory research purposes and
                                 are not for human or animal consumption. These materials are for in vitro research only
                                 and must be handled by qualified professionals
                                 in controlled lab environments. By purchasing, the buyer agrees to use these products in
@@ -11544,7 +11568,7 @@
                                 style="will-change:transform;opacity:0;transform:none">
                                 <div class="framer-16aq2ov" data-framer-name="Frame 427321939">
                                     <div class="ssr-variant hidden-jh3fsx">
-                                        <div class="framer-14tj1zl" data-framer-name="Why choose Direct Peptides?"
+                                        <div class="framer-14tj1zl" data-framer-name="Why choose Pure Peptides?"
                                             style="transform:none" data-framer-component-type="RichTextContainer">
                                             <h2 class="framer-text framer-styles-preset-15wubr4"
                                                 data-styles-preset="oKaTC847I" style="--framer-text-alignment:left">COA
@@ -11552,7 +11576,7 @@
                                         </div>
                                     </div>
                                     <div class="ssr-variant hidden-19sohyx hidden-lqbrsv hidden-1wjmemk">
-                                        <div class="framer-14tj1zl" data-framer-name="Why choose Direct Peptides?"
+                                        <div class="framer-14tj1zl" data-framer-name="Why choose Pure Peptides?"
                                             style="transform:none" data-framer-component-type="RichTextContainer">
                                             <h3 class="framer-text framer-styles-preset-r1yyrm"
                                                 data-styles-preset="Gd__YKWlG" style="--framer-text-alignment:left">COA
@@ -11561,7 +11585,7 @@
                                     </div>
                                     <div class="ssr-variant hidden-jh3fsx">
                                         <div class="framer-12acqu0"
-                                            data-framer-name="At Direct Peptides, we eliminate the middleman by supplying products directly from the lab. This ensures you receive the highest quality product with full transparency and competitive pricing."
+                                            data-framer-name="At Pure Peptides, we eliminate the middleman by supplying products directly from the lab. This ensures you receive the highest quality product with full transparency and competitive pricing."
                                             style="transform:none" data-framer-component-type="RichTextContainer">
                                             <p class="framer-text framer-styles-preset-j5fk55"
                                                 data-styles-preset="EyWjGxfgM">Manufactured in U.S. laboratories through
@@ -11572,7 +11596,7 @@
                                     </div>
                                     <div class="ssr-variant hidden-19sohyx hidden-lqbrsv hidden-1wjmemk">
                                         <div class="framer-12acqu0"
-                                            data-framer-name="At Direct Peptides, we eliminate the middleman by supplying products directly from the lab. This ensures you receive the highest quality product with full transparency and competitive pricing."
+                                            data-framer-name="At Pure Peptides, we eliminate the middleman by supplying products directly from the lab. This ensures you receive the highest quality product with full transparency and competitive pricing."
                                             style="transform:none" data-framer-component-type="RichTextContainer">
                                             <p class="framer-text framer-styles-preset-2if8ww"
                                                 data-styles-preset="WhnBTMplr">Manufactured in U.S. laboratories through
@@ -11587,8 +11611,7 @@
                                         <div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0"
                                             data-framer-background-image-wrapper="true"><img decoding="async"
                                                 loading="lazy" width="494" height="370"
-                                                src="./vendor/framer/images/9clPMCZNzJ6NZO4m6bAxXYfD3c.png?width=494&amp;height=370"
-                                                alt
+                                                src="./images/pure-peptides-logo.png" alt
                                                 style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:cover">
                                         </div>
                                     </div>
@@ -11598,8 +11621,7 @@
                                         <div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0"
                                             data-framer-background-image-wrapper="true"><img decoding="async"
                                                 loading="lazy" width="494" height="370"
-                                                src="./vendor/framer/images/9clPMCZNzJ6NZO4m6bAxXYfD3c.png?width=494&amp;height=370"
-                                                alt
+                                                src="./images/pure-peptides-logo.png" alt
                                                 style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:cover">
                                         </div>
                                     </div>
@@ -12803,9 +12825,8 @@
                                             data-framer-background-image-wrapper="true"><img decoding="async"
                                                 loading="lazy" width="1799" height="2063"
                                                 sizes="(min-width: 1440px) 50px, (min-width: 744px) and (max-width: 1023.98px) 50px, (max-width: 743.98px) 38px, (min-width: 1024px) and (max-width: 1439.98px) 50px"
-                                                srcset="./vendor/framer/images/FU2XOfjCkf6Kq1IlaYWG4ug5nY.png?scale-down-to=1024&amp;width=1799&amp;height=2063 892w,./vendor/framer/images/FU2XOfjCkf6Kq1IlaYWG4ug5nY.png?scale-down-to=2048&amp;width=1799&amp;height=2063 1785w,./vendor/framer/images/FU2XOfjCkf6Kq1IlaYWG4ug5nY.png?width=1799&amp;height=2063 1799w"
-                                                src="./vendor/framer/images/FU2XOfjCkf6Kq1IlaYWG4ug5nY.png?width=1799&amp;height=2063"
-                                                alt
+                                                srcset="./images/pure-peptides-favicon.png?scale-down-to=1024&amp;width=1799&amp;height=2063 892w,./images/pure-peptides-favicon.png?scale-down-to=2048&amp;width=1799&amp;height=2063 1785w,./images/pure-peptides-favicon.png?width=1799&amp;height=2063 1799w"
+                                                src="./images/pure-peptides-favicon.png?width=1799&amp;height=2063" alt
                                                 style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:cover"
                                                 data-framer-original-sizes="50px"></div>
                                     </div>
@@ -12848,12 +12869,12 @@
                             </div>
                             <div class="framer-tj605f" data-framer-name="Footer"
                                 style="background-color:rgb(255, 255, 255)">
-                                <div class="framer-dtylsa" data-framer-name="© DirectPeptides 2025. All rights reserved"
+                                <div class="framer-dtylsa" data-framer-name="© TruePeptides 2025. All rights reserved"
                                     style="justify-content:center;--extracted-r6o4lv:rgba(41, 46, 76, 0.5);--framer-paragraph-spacing:0px;transform:none"
                                     data-framer-component-type="RichTextContainer">
                                     <p class="framer-text framer-styles-preset-1m0rx25" data-styles-preset="Y27nVy1YM"
                                         style="--framer-text-color:var(--extracted-r6o4lv, rgba(41, 46, 76, 0.5))">©
-                                        DirectPeptides 2025. All rights reserved</p>
+                                        TruePeptides 2025. All rights reserved</p>
                                 </div>
                                 <div class="framer-1goffi5" data-framer-name="Legals">
                                     <div class="framer-mb3w8c" data-framer-name="Privacy Policy"
@@ -12884,14 +12905,14 @@
                             </div>
                             <div class="framer-msi0cj" data-framer-name="Footer"
                                 style="background-color:rgb(255, 255, 255)">
-                                <div class="framer-91e8py" data-framer-name="© DirectPeptides 2025. All rights reserved"
+                                <div class="framer-91e8py" data-framer-name="© TruePeptides 2025. All rights reserved"
                                     style="justify-content:center;--extracted-r6o4lv:rgba(41, 46, 76, 0.5);--framer-paragraph-spacing:0px;transform:none"
                                     data-framer-component-type="RichTextContainer">
                                     <p class="framer-text framer-styles-preset-1prytni" data-styles-preset="iIMvPsL9M"
                                         style="--framer-text-alignment:left;--framer-text-color:var(--extracted-r6o4lv, rgba(41, 46, 76, 0.5))">
                                         The statements made on this website have not been evaluated by the U.S. Food and
                                         Drug Administration, the products offered are not intended to diagnose, treat,
-                                        cure, or prevent any disease, Direct Peptides is not a
+                                        cure, or prevent any disease, Pure Peptides is not a
                                         compounding pharmacy or chemical compounding facility as defined under Section
                                         503A of the Federal Food, Drug, and Cosmetic Act, and all products are sold
                                         strictly for research purposes only and are not for human
@@ -12921,9 +12942,8 @@
                                             data-framer-background-image-wrapper="true"><img decoding="async"
                                                 loading="lazy" width="1799" height="2063"
                                                 sizes="(min-width: 1440px) 50px, (min-width: 744px) and (max-width: 1023.98px) 50px, (max-width: 743.98px) 38px, (min-width: 1024px) and (max-width: 1439.98px) 50px"
-                                                srcset="./vendor/framer/images/FU2XOfjCkf6Kq1IlaYWG4ug5nY.png?scale-down-to=1024&amp;width=1799&amp;height=2063 892w,./vendor/framer/images/FU2XOfjCkf6Kq1IlaYWG4ug5nY.png?scale-down-to=2048&amp;width=1799&amp;height=2063 1785w,./vendor/framer/images/FU2XOfjCkf6Kq1IlaYWG4ug5nY.png?width=1799&amp;height=2063 1799w"
-                                                src="./vendor/framer/images/FU2XOfjCkf6Kq1IlaYWG4ug5nY.png?width=1799&amp;height=2063"
-                                                alt
+                                                srcset="./images/pure-peptides-favicon.png?scale-down-to=1024&amp;width=1799&amp;height=2063 892w,./images/pure-peptides-favicon.png?scale-down-to=2048&amp;width=1799&amp;height=2063 1785w,./images/pure-peptides-favicon.png?width=1799&amp;height=2063 1799w"
+                                                src="./images/pure-peptides-favicon.png?width=1799&amp;height=2063" alt
                                                 style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:cover"
                                                 data-framer-original-sizes="50px"></div>
                                     </div>
@@ -12966,12 +12986,12 @@
                             </div>
                             <div class="framer-tj605f" data-framer-name="Footer"
                                 style="background-color:rgb(255, 255, 255)">
-                                <div class="framer-dtylsa" data-framer-name="© DirectPeptides 2025. All rights reserved"
+                                <div class="framer-dtylsa" data-framer-name="© TruePeptides 2025. All rights reserved"
                                     style="justify-content:center;--extracted-r6o4lv:rgba(41, 46, 76, 0.5);--framer-paragraph-spacing:0px;transform:none"
                                     data-framer-component-type="RichTextContainer">
                                     <p class="framer-text framer-styles-preset-1m0rx25" data-styles-preset="Y27nVy1YM"
                                         style="--framer-text-color:var(--extracted-r6o4lv, rgba(41, 46, 76, 0.5))">©
-                                        DirectPeptides 2025. All rights reserved</p>
+                                        TruePeptides 2025. All rights reserved</p>
                                 </div>
                                 <div class="framer-1goffi5" data-framer-name="Legals">
                                     <div class="framer-mb3w8c" data-framer-name="Privacy Policy"
@@ -13002,14 +13022,14 @@
                             </div>
                             <div class="framer-msi0cj" data-framer-name="Footer"
                                 style="background-color:rgb(255, 255, 255)">
-                                <div class="framer-91e8py" data-framer-name="© DirectPeptides 2025. All rights reserved"
+                                <div class="framer-91e8py" data-framer-name="© TruePeptides 2025. All rights reserved"
                                     style="justify-content:center;--extracted-r6o4lv:rgba(41, 46, 76, 0.5);--framer-paragraph-spacing:0px;transform:none"
                                     data-framer-component-type="RichTextContainer">
                                     <p class="framer-text framer-styles-preset-1prytni" data-styles-preset="iIMvPsL9M"
                                         style="--framer-text-alignment:left;--framer-text-color:var(--extracted-r6o4lv, rgba(41, 46, 76, 0.5))">
                                         The statements made on this website have not been evaluated by the U.S. Food and
                                         Drug Administration, the products offered are not intended to diagnose, treat,
-                                        cure, or prevent any disease, Direct Peptides is not a
+                                        cure, or prevent any disease, Pure Peptides is not a
                                         compounding pharmacy or chemical compounding facility as defined under Section
                                         503A of the Federal Food, Drug, and Cosmetic Act, and all products are sold
                                         strictly for research purposes only and are not for human
@@ -13039,9 +13059,8 @@
                                             data-framer-background-image-wrapper="true"><img decoding="async"
                                                 loading="lazy" width="1799" height="2063"
                                                 sizes="(min-width: 1440px) 50px, (min-width: 744px) and (max-width: 1023.98px) 50px, (max-width: 743.98px) 38px, (min-width: 1024px) and (max-width: 1439.98px) 50px"
-                                                srcset="./vendor/framer/images/FU2XOfjCkf6Kq1IlaYWG4ug5nY.png?scale-down-to=1024&amp;width=1799&amp;height=2063 892w,./vendor/framer/images/FU2XOfjCkf6Kq1IlaYWG4ug5nY.png?scale-down-to=2048&amp;width=1799&amp;height=2063 1785w,./vendor/framer/images/FU2XOfjCkf6Kq1IlaYWG4ug5nY.png?width=1799&amp;height=2063 1799w"
-                                                src="./vendor/framer/images/FU2XOfjCkf6Kq1IlaYWG4ug5nY.png?width=1799&amp;height=2063"
-                                                alt
+                                                srcset="./images/pure-peptides-favicon.png?scale-down-to=1024&amp;width=1799&amp;height=2063 892w,./images/pure-peptides-favicon.png?scale-down-to=2048&amp;width=1799&amp;height=2063 1785w,./images/pure-peptides-favicon.png?width=1799&amp;height=2063 1799w"
+                                                src="./images/pure-peptides-favicon.png?width=1799&amp;height=2063" alt
                                                 style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:cover"
                                                 data-framer-original-sizes="38px"></div>
                                     </div>
@@ -13084,11 +13103,11 @@
                             </div>
                             <div class="framer-tj605f" data-framer-name="Footer"
                                 style="background-color:rgb(255, 255, 255)">
-                                <div class="framer-dtylsa" data-framer-name="© DirectPeptides 2025. All rights reserved"
+                                <div class="framer-dtylsa" data-framer-name="© TruePeptides 2025. All rights reserved"
                                     style="justify-content:center;--extracted-r6o4lv:rgba(41, 46, 76, 0.5);--framer-paragraph-spacing:0px;transform:none"
                                     data-framer-component-type="RichTextContainer">
                                     <p style="--font-selector:X19TRi1VSS1UZXh0LU1lZGl1bV9f;--framer-font-family:&quot;.SFNSText-Medium&quot;, &quot;SFProText-Medium&quot;, &quot;SFUIText-Medium&quot;, &quot;.SFUIText-Medium&quot;, &quot;SF Pro Text&quot;, &quot;-apple-system&quot;, &quot;BlinkMacSystemFont&quot;, sans-serif;--framer-font-size:12px;--framer-font-weight:499;--framer-letter-spacing:-0.02em;--framer-line-height:1.3em;--framer-text-color:var(--extracted-r6o4lv, rgba(41, 46, 76, 0.5))"
-                                        class="framer-text">© DirectPeptides 2025. All rights reserved</p>
+                                        class="framer-text">© TruePeptides 2025. All rights reserved</p>
                                 </div>
                                 <div class="framer-1goffi5" data-framer-name="Legals">
                                     <div class="framer-mb3w8c" data-framer-name="Privacy Policy"
@@ -13117,13 +13136,13 @@
                             </div>
                             <div class="framer-msi0cj" data-framer-name="Footer"
                                 style="background-color:rgb(255, 255, 255)">
-                                <div class="framer-91e8py" data-framer-name="© DirectPeptides 2025. All rights reserved"
+                                <div class="framer-91e8py" data-framer-name="© TruePeptides 2025. All rights reserved"
                                     style="justify-content:center;--extracted-r6o4lv:rgba(41, 46, 76, 0.5);--framer-paragraph-spacing:0px;transform:none"
                                     data-framer-component-type="RichTextContainer">
                                     <p style="--font-selector:X19TRi1VSS1UZXh0LU1lZGl1bV9f;--framer-font-family:&quot;.SFNSText-Medium&quot;, &quot;SFProText-Medium&quot;, &quot;SFUIText-Medium&quot;, &quot;.SFUIText-Medium&quot;, &quot;SF Pro Text&quot;, sans-serif;--framer-font-size:9px;--framer-font-weight:500;--framer-letter-spacing:-0.02em;--framer-line-height:1.3em;--framer-text-alignment:left;--framer-text-color:var(--extracted-r6o4lv, rgba(41, 46, 76, 0.5))"
                                         class="framer-text">The statements made on this website have not been evaluated
                                         by the U.S. Food and Drug Administration, the products offered are not intended
-                                        to diagnose, treat, cure, or prevent any disease, Direct Peptides is not a
+                                        to diagnose, treat, cure, or prevent any disease, Pure Peptides is not a
                                         compounding pharmacy or chemical compounding facility as defined under Section
                                         503A of the Federal Food, Drug, and Cosmetic Act, and all products are sold
                                         strictly for research purposes only and are not for human
@@ -13153,9 +13172,8 @@
                                             data-framer-background-image-wrapper="true"><img decoding="async"
                                                 loading="lazy" width="1799" height="2063"
                                                 sizes="(min-width: 1440px) 50px, (min-width: 744px) and (max-width: 1023.98px) 50px, (max-width: 743.98px) 38px, (min-width: 1024px) and (max-width: 1439.98px) 50px"
-                                                srcset="./vendor/framer/images/FU2XOfjCkf6Kq1IlaYWG4ug5nY.png?scale-down-to=1024&amp;width=1799&amp;height=2063 892w,./vendor/framer/images/FU2XOfjCkf6Kq1IlaYWG4ug5nY.png?scale-down-to=2048&amp;width=1799&amp;height=2063 1785w,./vendor/framer/images/FU2XOfjCkf6Kq1IlaYWG4ug5nY.png?width=1799&amp;height=2063 1799w"
-                                                src="./vendor/framer/images/FU2XOfjCkf6Kq1IlaYWG4ug5nY.png?width=1799&amp;height=2063"
-                                                alt
+                                                srcset="./images/pure-peptides-favicon.png?scale-down-to=1024&amp;width=1799&amp;height=2063 892w,./images/pure-peptides-favicon.png?scale-down-to=2048&amp;width=1799&amp;height=2063 1785w,./images/pure-peptides-favicon.png?width=1799&amp;height=2063 1799w"
+                                                src="./images/pure-peptides-favicon.png?width=1799&amp;height=2063" alt
                                                 style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:cover"
                                                 data-framer-original-sizes="50px"></div>
                                     </div>
@@ -13198,12 +13216,12 @@
                             </div>
                             <div class="framer-tj605f" data-framer-name="Footer"
                                 style="background-color:rgb(255, 255, 255)">
-                                <div class="framer-dtylsa" data-framer-name="© DirectPeptides 2025. All rights reserved"
+                                <div class="framer-dtylsa" data-framer-name="© TruePeptides 2025. All rights reserved"
                                     style="justify-content:center;--extracted-r6o4lv:rgba(41, 46, 76, 0.5);--framer-paragraph-spacing:0px;transform:none"
                                     data-framer-component-type="RichTextContainer">
                                     <p class="framer-text framer-styles-preset-1m0rx25" data-styles-preset="Y27nVy1YM"
                                         style="--framer-text-color:var(--extracted-r6o4lv, rgba(41, 46, 76, 0.5))">©
-                                        DirectPeptides 2025. All rights reserved</p>
+                                        TruePeptides 2025. All rights reserved</p>
                                 </div>
                                 <div class="framer-1goffi5" data-framer-name="Legals">
                                     <div class="framer-mb3w8c" data-framer-name="Privacy Policy"
@@ -13234,14 +13252,14 @@
                             </div>
                             <div class="framer-msi0cj" data-framer-name="Footer"
                                 style="background-color:rgb(255, 255, 255)">
-                                <div class="framer-91e8py" data-framer-name="© DirectPeptides 2025. All rights reserved"
+                                <div class="framer-91e8py" data-framer-name="© TruePeptides 2025. All rights reserved"
                                     style="justify-content:center;--extracted-r6o4lv:rgba(41, 46, 76, 0.5);--framer-paragraph-spacing:0px;transform:none"
                                     data-framer-component-type="RichTextContainer">
                                     <p class="framer-text framer-styles-preset-1prytni" data-styles-preset="iIMvPsL9M"
                                         style="--framer-text-alignment:left;--framer-text-color:var(--extracted-r6o4lv, rgba(41, 46, 76, 0.5))">
                                         The statements made on this website have not been evaluated by the U.S. Food and
                                         Drug Administration, the products offered are not intended to diagnose, treat,
-                                        cure, or prevent any disease, Direct Peptides is not a
+                                        cure, or prevent any disease, Pure Peptides is not a
                                         compounding pharmacy or chemical compounding facility as defined under Section
                                         503A of the Federal Food, Drug, and Cosmetic Act, and all products are sold
                                         strictly for research purposes only and are not for human
