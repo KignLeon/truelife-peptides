@@ -1,2 +1,5 @@
-Site: https://kignleon.github.io/direct-peptides/
-Sitemap: https://kignleon.github.io/direct-peptides/sitemap.xml
+User-agent: *
+Allow: /
+
+Site: https://kignleon.github.io/truelife-peptides/
+Sitemap: https://kignleon.github.io/truelife-peptides/sitemap.xml

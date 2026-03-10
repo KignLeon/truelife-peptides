@@ -3,6 +3,13 @@
 .vscode
 node_modules
 *.log
-.DS_Store
 ._*
 *.bak
+
+# Legacy Framer exports (not part of live site)
+directpeptides_com.html
+directpeptides_com-2.html
+directpeptides_com-3.html
+
+# Skills (dev tooling only)
+skills/

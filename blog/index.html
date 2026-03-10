@@ -4,16 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog | Pure Peptides</title>
+    <title>Blog | True Life Peptides</title>
     <meta name="description"
         content="Breaking down the science behind peptide research. Explore articles on peptide synthesis, HPLC, amino acids, and more.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Blog | True Life Peptides">
+    <meta property="og:description"
+        content="Breaking down the science behind peptide research. Explore articles on peptide synthesis, HPLC, amino acids, and more.">
+    <meta property="og:image"
+        content="https://res.cloudinary.com/ddnhp0hzd/image/upload/v1773092087/image_copy_a5anwg.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700;900&family=Fragment+Mono&display=swap"
         rel="stylesheet">
-    <link rel="icon" href="../assets/logo.png">
+    <link rel="icon" href="https://res.cloudinary.com/ddnhp0hzd/image/upload/v1773091965/image_copy_2_zsjsyn.png">
     <link rel="stylesheet" href="../css/style.css">
+    <!-- GA4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('consent', 'default', { analytics_storage: 'denied' });
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX', { send_page_view: true });
+    </script>
 </head>
 
 <body>
@@ -23,8 +38,10 @@
     <!-- ======================== NAVBAR ======================== -->
     <header class="navbar" id="navbar">
         <div class="navbar-inner">
-            <a href="../" class="navbar-logo"><img src="../assets/logo.png" alt="Pure Peptides" class="nav-logo"><span
-                    class="navbar-brand-text">Pure Peptides</span></a>
+            <a href="../" class="navbar-logo"><img
+                    src="https://res.cloudinary.com/ddnhp0hzd/image/upload/v1773092087/image_copy_a5anwg.png"
+                    alt="True Life Peptides" class="nav-logo"><span class="navbar-brand-text">True Life
+                    Peptides</span></a>
             <nav class="navbar-links">
                 <a href="../">Home</a>
                 <a href="../products/">Products</a>
@@ -33,6 +50,7 @@
                 <a href="../#contact">Need help?</a>
             </nav>
             <div style="display:flex;align-items:center;gap:12px;">
+                <a href="../products/" class="navbar-cta">View Products</a>
                 <a href="#" class="navbar-cart" aria-label="Cart"><svg xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                         <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0" />
@@ -226,8 +244,10 @@
     <footer class="footer">
         <div class="footer-inner">
             <div class="footer-brand">
-                <img src="../assets/logo.png" alt="Pure Peptides">
-                <p>Pure Peptides offers research-grade peptides manufactured and batch tested in the USA. All products
+                <img src="https://res.cloudinary.com/ddnhp0hzd/image/upload/v1773092087/image_copy_a5anwg.png"
+                    alt="True Life Peptides">
+                <p>True Life Peptides offers premium research-grade peptides manufactured and batch tested in the USA.
+                    All products
                     are for laboratory research use only.</p>
             </div>
             <div class="footer-links">
@@ -236,19 +256,21 @@
                         href="#">CJC-1295</a><a href="#">Reta</a><a href="#">Tirz</a>
                 </div>
                 <div class="footer-col">
-                    <h4>Company</h4><a href="../#intro">About</a><a href="./">Blog</a><a href="../#coa">COA</a><a
+                    <h4>Company</h4><a href="../#faq">About</a><a href="./">Blog</a><a href="../#faq">COA</a><a
                         href="../#contact">Contact</a>
                 </div>
                 <div class="footer-col">
-                    <h4>Support</h4><a href="../#faq">FAQ</a><a href="../#contact">Need Help?</a><a href="#">Shipping
-                        Policy</a><a href="#">Returns</a>
+                    <h4>Support</h4><a href="../#faq">FAQ</a><a href="../#contact">Need Help?</a><a
+                        href="../#faq">Shipping
+                        Policy</a><a href="../#faq">Returns</a>
                 </div>
             </div>
         </div>
-        <div class="footer-bottom">&copy; 2025 Pure Peptides. All rights reserved. For research use only.</div>
+        <div class="footer-bottom">&copy; 2025 True Life Peptides. All rights reserved. For research use only.</div>
     </footer>
 
     <script src="../js/script.js"></script>
+    <script src="../js/analytics.js"></script>
 </body>
 
 </html>

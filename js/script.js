@@ -1,9 +1,26 @@
 /* ================================================
-   PURE PEPTIDES — JS Interactions
-   Mobile menu, scroll reveal, FAQ, product search/filter
+   TRUE LIFE PEPTIDES — JS Interactions
+   Mobile menu, scroll reveal, FAQ, product search/filter,
+   upgrade banner, welcome popup
    ================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
+
+    /* ========================
+       UPGRADE BANNER CLOSE
+       ======================== */
+    const bannerClose = document.getElementById('bannerClose');
+    const upgradeBanner = document.getElementById('upgradeBanner');
+    if (bannerClose && upgradeBanner) {
+        // Check if already dismissed this session
+        if (sessionStorage.getItem('tlp_banner_dismissed')) {
+            upgradeBanner.classList.add('hidden');
+        }
+        bannerClose.addEventListener('click', () => {
+            upgradeBanner.classList.add('hidden');
+            sessionStorage.setItem('tlp_banner_dismissed', '1');
+        });
+    }
 
     /* ========================
        MOBILE MENU
