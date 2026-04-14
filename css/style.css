@@ -3961,3 +3961,74 @@ a:focus-visible {
     #hero > div:first-child > div:first-child h1 { font-size: 28px !important; }
     #hero > div:first-child > div:last-child { display: none !important; }
 }
+
+/* ===========================
+   HOMEPAGE — Hero image section
+   =========================== */
+.hero-image-wrap {
+    position: relative;
+    border-radius: 24px;
+    overflow: visible;
+}
+
+.hero-vials-img {
+    width: 100%;
+    height: 520px;
+    object-fit: cover;
+    object-position: center 30%;
+    border-radius: 24px;
+    display: block;
+    box-shadow:
+        0 24px 80px rgba(21,101,192,0.15),
+        0 8px 32px rgba(0,0,0,0.08);
+}
+
+/* Floating trust badge — bottom left of image */
+.hero-trust-badge {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #1565C0;
+    color: white;
+    border-radius: 14px;
+    padding: 12px 16px;
+    box-shadow: 0 8px 28px rgba(21,101,192,0.35);
+    backdrop-filter: blur(4px);
+    animation: badge-float 3s ease-in-out infinite;
+}
+
+/* Floating purity badge — top right of image */
+.hero-purity-badge {
+    position: absolute;
+    top: 24px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 14px;
+    padding: 12px 16px;
+    box-shadow: 0 4px 20px rgba(21,101,192,0.12);
+    animation: badge-float 3.4s ease-in-out infinite 0.6s;
+}
+
+@keyframes badge-float {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-5px); }
+}
+
+/* Responsive */
+@media (max-width: 860px) {
+    .hero-vials-img { height: 380px; }
+}
+
+@media (max-width: 640px) {
+    .hero-image-wrap { display: none; }
+}
