@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Research Peptide Catalog | True Life Peptides</title>
-    <meta name="description" content="Browse our complete catalog of premium USA-manufactured research peptides. BPC-157, Tirzepatide, NAD+, CJC-1295, MOTS-C and more. Every batch third-party tested.">
+    <meta name="description" content="Browse our complete catalog of USA-manufactured research peptides. BPC-157, MOTS-C, NAD+, CJC-1295, Tirzepatide and more — every batch third-party tested with full COA documentation.">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Research Peptide Catalog | True Life Peptides">
-    <meta property="og:description" content="Premium research-grade peptides. Manufactured and batch tested in the USA. Full COA documentation on every order.">
+    <meta property="og:description" content="Premium research-grade peptides manufactured and batch tested in the USA.">
     <meta property="og:image" content="https://res.cloudinary.com/ddnhp0hzd/image/upload/v1773092087/image_copy_a5anwg.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +18,7 @@
 </head>
 
 <body>
-    <!-- DNA Strand Background Asset -->
+    <!-- DNA Strand Background -->
     <div class="pp-molecule-overlay" aria-hidden="true"></div>
 
     <!-- ======================== NAVBAR ======================== -->
@@ -34,20 +34,20 @@
                 <div class="navbar-dropdown-wrap">
                     <a href="./">Categories</a>
                     <div class="navbar-dropdown">
-                        <a href="#Recovery Compound">Recovery</a>
-                        <a href="#Growth Compound">Growth</a>
-                        <a href="#Metabolic Compound">Metabolic</a>
-                        <a href="#Longevity Compound">Longevity</a>
-                        <a href="#Antioxidant Compound">Antioxidant</a>
-                        <a href="#Nootropic Compound">Nootropic</a>
-                        <a href="#Reconstitution Solution">Reconstitution</a>
+                        <a href="#" data-filter="Recovery Compound">Recovery</a>
+                        <a href="#" data-filter="Growth Compound">Growth</a>
+                        <a href="#" data-filter="Metabolic Compound">Metabolic</a>
+                        <a href="#" data-filter="Longevity Compound">Longevity</a>
+                        <a href="#" data-filter="Antioxidant Compound">Antioxidant</a>
+                        <a href="#" data-filter="Nootropic Compound">Nootropic</a>
+                        <a href="#" data-filter="Reconstitution Solution">Reconstitution</a>
                     </div>
                 </div>
                 <a href="../about/">About</a>
                 <a href="../contact/">Contact</a>
             </nav>
-            <div class="navbar-actions">
-                <a href="./" class="navbar-cta">Shop Now</a>
+            <div style="display:flex;align-items:center;gap:12px;">
+                <a href="../contact/" class="navbar-cta">Inquire Now</a>
                 <button class="menu-toggle" id="menuToggle" aria-label="Menu"><span></span><span></span><span></span></button>
             </div>
         </div>
@@ -73,280 +73,293 @@
         </div>
     </div>
 
-    <!-- ======================== PAGE HERO ======================== -->
-    <section style="position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:56px 32px 40px;">
-        <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:20px;">
-            <div>
-                <span class="pharma-section-label">Research Compounds</span>
-                <h1 style="font-size:40px;font-weight:700;letter-spacing:-1.2px;color:#0f1d3a;margin-top:14px;margin-bottom:10px;line-height:1.1;">Full product catalog</h1>
-                <p style="font-size:15px;color:rgba(15,29,58,0.55);max-width:480px;line-height:1.6;">All compounds manufactured in the USA and independently batch tested. COA documentation available on every order.</p>
-            </div>
-            <div style="display:flex;align-items:center;gap:12px;">
-                <input type="text" id="productSearch" placeholder="Search products…" style="padding:10px 16px;border-radius:10px;border:1px solid rgba(21,101,192,0.2);background:rgba(255,255,255,0.8);backdrop-filter:blur(8px);font-size:13px;font-family:inherit;color:#0f1d3a;outline:none;width:220px;">
-            </div>
-        </div>
-    </section>
-
-    <!-- ======================== PRODUCTS LAYOUT ======================== -->
-    <div style="position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 32px 80px;display:flex;gap:32px;align-items:flex-start;">
-
+    <!-- ======================== PAGE LAYOUT ======================== -->
+    <div class="page-layout">
         <!-- Sidebar -->
-        <aside style="width:190px;flex-shrink:0;position:sticky;top:96px;">
-            <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:#1565C0;margin-bottom:10px;">Categories</div>
-            <div style="height:1px;background:rgba(21,101,192,0.12);margin-bottom:12px;"></div>
-            <nav id="categoryNav" style="display:flex;flex-direction:column;gap:2px;">
-                <a href="#" class="cat-nav-link active" data-filter="all">All Products <span class="cat-count" id="count-all"></span></a>
-                <a href="#" class="cat-nav-link" data-filter="Recovery Compound">Recovery <span class="cat-count" id="count-rec"></span></a>
-                <a href="#" class="cat-nav-link" data-filter="Growth Compound">Growth <span class="cat-count" id="count-gr"></span></a>
-                <a href="#" class="cat-nav-link" data-filter="Metabolic Compound">Metabolic <span class="cat-count" id="count-met"></span></a>
-                <a href="#" class="cat-nav-link" data-filter="Longevity Compound">Longevity <span class="cat-count" id="count-lon"></span></a>
-                <a href="#" class="cat-nav-link" data-filter="Antioxidant Compound">Antioxidant <span class="cat-count" id="count-anti"></span></a>
-                <a href="#" class="cat-nav-link" data-filter="Nootropic Compound">Nootropic <span class="cat-count" id="count-noot"></span></a>
-                <a href="#" class="cat-nav-link" data-filter="Reconstitution Solution">Reconstitution <span class="cat-count" id="count-recon"></span></a>
-            </nav>
-
-            <div style="margin-top:28px;padding-top:20px;border-top:1px solid rgba(21,101,192,0.08);">
-                <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.07em;color:rgba(15,29,58,0.4);font-weight:600;margin-bottom:6px;">Documentation</div>
-                <a href="../about/#coa" style="font-size:12px;font-weight:600;color:#1565C0;display:flex;align-items:center;gap:5px;">
-                    <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 2h8a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V3a1 1 0 011-1z"/><path d="M5 5h6M5 8h6M5 11h3"/></svg>
-                    COA Reports →
-                </a>
+        <aside class="page-sidebar">
+            <h3>Product Catalog</h3>
+            <div class="page-sidebar-divider"></div>
+            <div class="page-sidebar-links">
+                <a href="#" class="active" data-filter="all">All Products</a>
+                <a href="#" data-filter="Recovery Compound">Recovery</a>
+                <a href="#" data-filter="Growth Compound">Growth</a>
+                <a href="#" data-filter="Metabolic Compound">Metabolic</a>
+                <a href="#" data-filter="Longevity Compound">Longevity</a>
+                <a href="#" data-filter="Antioxidant Compound">Antioxidant</a>
+                <a href="#" data-filter="Nootropic Compound">Nootropic</a>
+                <a href="#" data-filter="Reconstitution Solution">Reconstitution</a>
             </div>
-
-            <div style="margin-top:20px;padding:14px;background:rgba(21,101,192,0.06);border-radius:12px;border:1px solid rgba(21,101,192,0.1);">
+            <div style="margin-top:24px;padding:14px;background:rgba(21,101,192,0.06);border-radius:12px;border:1px solid rgba(21,101,192,0.1);">
                 <div style="font-size:11px;font-weight:700;color:#1565C0;margin-bottom:4px;">Need help?</div>
-                <div style="font-size:11px;color:rgba(15,29,58,0.55);line-height:1.5;">Text us directly at<br><a href="tel:+19729190219" style="font-weight:600;color:#1565C0;">+1 (972) 919-0219</a></div>
+                <div style="font-size:11px;color:rgba(15,29,58,0.55);line-height:1.5;">Text or call us<br><a href="tel:+19729190219" style="font-weight:600;color:#1565C0;">+1 (972) 919-0219</a></div>
             </div>
         </aside>
 
         <!-- Main Product Area -->
-        <main style="flex:1;min-width:0;">
-            <!-- Result count -->
-            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
-                <span id="resultCount" style="font-size:13px;color:rgba(15,29,58,0.5);"></span>
-                <span class="pharma-tag" style="font-size:10px;">COA verified on all products</span>
-            </div>
+        <main class="page-main">
+            <h2>Explore our products</h2>
+            <p class="subtitle">All orders ship same day from our US facility. COA documentation on every order.</p>
+            <input type="text" class="search-bar" placeholder="Search by product name or category" id="productSearch">
 
-            <!-- Products Grid — NO IMAGES -->
-            <div class="products-catalog-grid" id="productsGrid">
+            <div class="products-grid-3 reveal-stagger" id="productsGrid">
 
                 <!-- BAC Water -->
-                <div class="product-card-clean" data-name="BAC Water" data-category="Reconstitution Solution">
-                    <span class="pc-cat">Reconstitution Solution</span>
-                    <span class="pc-name">BAC Water</span>
-                    <span class="pc-dose">10mL / vial</span>
-                    <div class="pc-footer">
-                        <span class="pc-badge">✓ COA Available</span>
-                        <a href="../contact/" class="pc-cta">Inquire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                <div class="product-card-full" data-name="BAC Water" data-category="Reconstitution Solution">
+                    <span class="product-card-category">Reconstitution Solution</span>
+                    <span class="product-card-name" style="font-size:18px;margin:4px 0;">BAC Water</span>
+                    <span class="product-card-price" style="font-size:13px;color:rgba(15,29,58,0.5);">10mL / vial</span>
+                    <a href="../contact/" class="btn-primary" style="font-size:12px;padding:8px 16px;margin:8px 0;">Inquire
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                    <div class="product-img-soon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                        <span>Image Coming Soon</span>
                     </div>
                 </div>
 
                 <!-- GLP3-R -->
-                <div class="product-card-clean" data-name="GLP3-R" data-category="Metabolic Compound">
-                    <span class="pc-cat">Metabolic Compound</span>
-                    <span class="pc-name">GLP3-R</span>
-                    <span class="pc-dose">10mg / 30mg / 50mg per vial</span>
-                    <div class="pc-footer">
-                        <span class="pc-badge">✓ COA Available</span>
-                        <a href="../contact/" class="pc-cta">Inquire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                <div class="product-card-full" data-name="GLP3-R" data-category="Metabolic Compound">
+                    <span class="product-card-category">Metabolic Compound</span>
+                    <span class="product-card-name" style="font-size:18px;margin:4px 0;">GLP3-R</span>
+                    <span class="product-card-price" style="font-size:13px;color:rgba(15,29,58,0.5);">10mg / 30mg / 50mg per vial</span>
+                    <a href="../contact/" class="btn-primary" style="font-size:12px;padding:8px 16px;margin:8px 0;">Inquire
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                    <div class="product-img-soon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                        <span>Image Coming Soon</span>
                     </div>
                 </div>
 
                 <!-- BPC 157 -->
-                <div class="product-card-clean" data-name="BPC 157" data-category="Recovery Compound">
-                    <span class="pc-cat">Recovery Compound</span>
-                    <span class="pc-name">BPC 157</span>
-                    <span class="pc-dose">5mg / 10mg per vial</span>
-                    <div class="pc-footer">
-                        <span class="pc-badge">✓ COA Available</span>
-                        <a href="../contact/" class="pc-cta">Inquire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                <div class="product-card-full" data-name="BPC 157" data-category="Recovery Compound">
+                    <span class="product-card-category">Recovery Compound</span>
+                    <span class="product-card-name" style="font-size:18px;margin:4px 0;">BPC 157</span>
+                    <span class="product-card-price" style="font-size:13px;color:rgba(15,29,58,0.5);">5mg / 10mg per vial</span>
+                    <a href="../contact/" class="btn-primary" style="font-size:12px;padding:8px 16px;margin:8px 0;">Inquire
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                    <div class="product-img-soon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                        <span>Image Coming Soon</span>
                     </div>
                 </div>
 
                 <!-- TB 500 -->
-                <div class="product-card-clean" data-name="TB 500" data-category="Growth Compound">
-                    <span class="pc-cat">Growth Compound</span>
-                    <span class="pc-name">TB 500</span>
-                    <span class="pc-dose">5mg / 10mg per vial</span>
-                    <div class="pc-footer">
-                        <span class="pc-badge">✓ COA Available</span>
-                        <a href="../contact/" class="pc-cta">Inquire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                <div class="product-card-full" data-name="TB 500" data-category="Growth Compound">
+                    <span class="product-card-category">Growth Compound</span>
+                    <span class="product-card-name" style="font-size:18px;margin:4px 0;">TB 500</span>
+                    <span class="product-card-price" style="font-size:13px;color:rgba(15,29,58,0.5);">5mg / 10mg per vial</span>
+                    <a href="../contact/" class="btn-primary" style="font-size:12px;padding:8px 16px;margin:8px 0;">Inquire
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                    <div class="product-img-soon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                        <span>Image Coming Soon</span>
                     </div>
                 </div>
 
                 <!-- CJC-1295 w/o DAC -->
-                <div class="product-card-clean" data-name="CJC-1295 w/o DAC" data-category="Growth Compound">
-                    <span class="pc-cat">Growth Compound</span>
-                    <span class="pc-name">CJC-1295 w/o DAC</span>
-                    <span class="pc-dose">5mg / vial</span>
-                    <div class="pc-footer">
-                        <span class="pc-badge">✓ COA Available</span>
-                        <a href="../contact/" class="pc-cta">Inquire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                <div class="product-card-full" data-name="CJC-1295 w/o DAC" data-category="Growth Compound">
+                    <span class="product-card-category">Growth Compound</span>
+                    <span class="product-card-name" style="font-size:18px;margin:4px 0;">CJC-1295 w/o DAC</span>
+                    <span class="product-card-price" style="font-size:13px;color:rgba(15,29,58,0.5);">5mg / vial</span>
+                    <a href="../contact/" class="btn-primary" style="font-size:12px;padding:8px 16px;margin:8px 0;">Inquire
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                    <div class="product-img-soon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                        <span>Image Coming Soon</span>
                     </div>
                 </div>
 
                 <!-- CJC-1295 w DAC -->
-                <div class="product-card-clean" data-name="CJC-1295 w DAC" data-category="Growth Compound">
-                    <span class="pc-cat">Growth Compound</span>
-                    <span class="pc-name">CJC-1295 w DAC</span>
-                    <span class="pc-dose">5mg / vial</span>
-                    <div class="pc-footer">
-                        <span class="pc-badge">✓ COA Available</span>
-                        <a href="../contact/" class="pc-cta">Inquire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                <div class="product-card-full" data-name="CJC-1295 w DAC" data-category="Growth Compound">
+                    <span class="product-card-category">Growth Compound</span>
+                    <span class="product-card-name" style="font-size:18px;margin:4px 0;">CJC-1295 w DAC</span>
+                    <span class="product-card-price" style="font-size:13px;color:rgba(15,29,58,0.5);">5mg / vial</span>
+                    <a href="../contact/" class="btn-primary" style="font-size:12px;padding:8px 16px;margin:8px 0;">Inquire
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                    <div class="product-img-soon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                        <span>Image Coming Soon</span>
                     </div>
                 </div>
 
-                <!-- CJC-1295 w/o DAC + IPA -->
-                <div class="product-card-clean" data-name="CJC-1295 w/o DAC + IPA" data-category="Growth Compound">
-                    <span class="pc-cat">Growth Compound</span>
-                    <span class="pc-name">CJC-1295 w/o DAC + Ipamorelin</span>
-                    <span class="pc-dose">5mg / 5mg per vial — Blend</span>
-                    <div class="pc-footer">
-                        <span class="pc-badge">✓ COA Available</span>
-                        <a href="../contact/" class="pc-cta">Inquire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                <!-- CJC-1295 w/o DAC + Ipamorelin Blend -->
+                <div class="product-card-full" data-name="CJC-1295 Ipamorelin Blend" data-category="Growth Compound">
+                    <span class="product-card-category">Growth Compound</span>
+                    <span class="product-card-name" style="font-size:16px;margin:4px 0;">CJC-1295 w/o DAC + Ipamorelin</span>
+                    <span class="product-card-price" style="font-size:13px;color:rgba(15,29,58,0.5);">5mg+5mg / vial — Blend</span>
+                    <a href="../contact/" class="btn-primary" style="font-size:12px;padding:8px 16px;margin:8px 0;">Inquire
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                    <div class="product-img-soon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                        <span>Image Coming Soon</span>
                     </div>
                 </div>
 
-                <!-- CJC-1295 w DAC + IPA -->
-                <div class="product-card-clean" data-name="CJC-1295 w DAC + IPA" data-category="Growth Compound">
-                    <span class="pc-cat">Growth Compound</span>
-                    <span class="pc-name">CJC-1295 w DAC + Ipamorelin</span>
-                    <span class="pc-dose">5mg / 5mg per vial — Blend</span>
-                    <div class="pc-footer">
-                        <span class="pc-badge">✓ COA Available</span>
-                        <a href="../contact/" class="pc-cta">Inquire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                <!-- CJC-1295 w DAC + Ipamorelin Blend -->
+                <div class="product-card-full" data-name="CJC-1295 DAC Ipamorelin Blend" data-category="Growth Compound">
+                    <span class="product-card-category">Growth Compound</span>
+                    <span class="product-card-name" style="font-size:16px;margin:4px 0;">CJC-1295 w DAC + Ipamorelin</span>
+                    <span class="product-card-price" style="font-size:13px;color:rgba(15,29,58,0.5);">5mg+5mg / vial — Blend</span>
+                    <a href="../contact/" class="btn-primary" style="font-size:12px;padding:8px 16px;margin:8px 0;">Inquire
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                    <div class="product-img-soon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                        <span>Image Coming Soon</span>
                     </div>
                 </div>
 
                 <!-- Ipamorelin -->
-                <div class="product-card-clean" data-name="Ipamorelin" data-category="Metabolic Compound">
-                    <span class="pc-cat">Metabolic Compound</span>
-                    <span class="pc-name">Ipamorelin</span>
-                    <span class="pc-dose">5mg / 10mg per vial</span>
-                    <div class="pc-footer">
-                        <span class="pc-badge">✓ COA Available</span>
-                        <a href="../contact/" class="pc-cta">Inquire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                <div class="product-card-full" data-name="Ipamorelin" data-category="Metabolic Compound">
+                    <span class="product-card-category">Metabolic Compound</span>
+                    <span class="product-card-name" style="font-size:18px;margin:4px 0;">Ipamorelin</span>
+                    <span class="product-card-price" style="font-size:13px;color:rgba(15,29,58,0.5);">5mg / 10mg per vial</span>
+                    <a href="../contact/" class="btn-primary" style="font-size:12px;padding:8px 16px;margin:8px 0;">Inquire
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                    <div class="product-img-soon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                        <span>Image Coming Soon</span>
                     </div>
                 </div>
 
                 <!-- Tesamorelin -->
-                <div class="product-card-clean" data-name="Tesamorelin" data-category="Growth Compound">
-                    <span class="pc-cat">Growth Compound</span>
-                    <span class="pc-name">Tesamorelin</span>
-                    <span class="pc-dose">5mg / 10mg / 20mg per vial</span>
-                    <div class="pc-footer">
-                        <span class="pc-badge">✓ COA Available</span>
-                        <a href="../contact/" class="pc-cta">Inquire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                <div class="product-card-full" data-name="Tesamorelin" data-category="Growth Compound">
+                    <span class="product-card-category">Growth Compound</span>
+                    <span class="product-card-name" style="font-size:18px;margin:4px 0;">Tesamorelin</span>
+                    <span class="product-card-price" style="font-size:13px;color:rgba(15,29,58,0.5);">5mg / 10mg / 20mg per vial</span>
+                    <a href="../contact/" class="btn-primary" style="font-size:12px;padding:8px 16px;margin:8px 0;">Inquire
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                    <div class="product-img-soon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                        <span>Image Coming Soon</span>
                     </div>
                 </div>
 
                 <!-- MOTS-C -->
-                <div class="product-card-clean" data-name="MOTS-C" data-category="Longevity Compound">
-                    <span class="pc-cat">Longevity Compound</span>
-                    <span class="pc-name">MOTS-C</span>
-                    <span class="pc-dose">10mg / 20mg / 30mg per vial</span>
-                    <div class="pc-footer">
-                        <span class="pc-badge">✓ COA Available</span>
-                        <a href="../contact/" class="pc-cta">Inquire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                <div class="product-card-full" data-name="MOTS-C" data-category="Longevity Compound">
+                    <span class="product-card-category">Longevity Compound</span>
+                    <span class="product-card-name" style="font-size:18px;margin:4px 0;">MOTS-C</span>
+                    <span class="product-card-price" style="font-size:13px;color:rgba(15,29,58,0.5);">10mg / 20mg / 30mg per vial</span>
+                    <a href="../contact/" class="btn-primary" style="font-size:12px;padding:8px 16px;margin:8px 0;">Inquire
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                    <div class="product-img-soon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                        <span>Image Coming Soon</span>
                     </div>
                 </div>
 
                 <!-- GHK-CU -->
-                <div class="product-card-clean" data-name="GHK-CU" data-category="Recovery Compound">
-                    <span class="pc-cat">Recovery Compound</span>
-                    <span class="pc-name">GHK-CU</span>
-                    <span class="pc-dose">50mg / 100mg per vial</span>
-                    <div class="pc-footer">
-                        <span class="pc-badge">✓ COA Available</span>
-                        <a href="../contact/" class="pc-cta">Inquire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                <div class="product-card-full" data-name="GHK-CU" data-category="Recovery Compound">
+                    <span class="product-card-category">Recovery Compound</span>
+                    <span class="product-card-name" style="font-size:18px;margin:4px 0;">GHK-CU</span>
+                    <span class="product-card-price" style="font-size:13px;color:rgba(15,29,58,0.5);">50mg / 100mg per vial</span>
+                    <a href="../contact/" class="btn-primary" style="font-size:12px;padding:8px 16px;margin:8px 0;">Inquire
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                    <div class="product-img-soon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                        <span>Image Coming Soon</span>
                     </div>
                 </div>
 
                 <!-- Sermorelin Acetate -->
-                <div class="product-card-clean" data-name="Sermorelin Acetate" data-category="Growth Compound">
-                    <span class="pc-cat">Growth Compound</span>
-                    <span class="pc-name">Sermorelin Acetate</span>
-                    <span class="pc-dose">5mg / 10mg per vial</span>
-                    <div class="pc-footer">
-                        <span class="pc-badge">✓ COA Available</span>
-                        <a href="../contact/" class="pc-cta">Inquire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                <div class="product-card-full" data-name="Sermorelin Acetate" data-category="Growth Compound">
+                    <span class="product-card-category">Growth Compound</span>
+                    <span class="product-card-name" style="font-size:18px;margin:4px 0;">Sermorelin Acetate</span>
+                    <span class="product-card-price" style="font-size:13px;color:rgba(15,29,58,0.5);">5mg / 10mg per vial</span>
+                    <a href="../contact/" class="btn-primary" style="font-size:12px;padding:8px 16px;margin:8px 0;">Inquire
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                    <div class="product-img-soon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                        <span>Image Coming Soon</span>
                     </div>
                 </div>
 
                 <!-- NAD+ -->
-                <div class="product-card-clean" data-name="NAD+" data-category="Antioxidant Compound">
-                    <span class="pc-cat">Antioxidant Compound</span>
-                    <span class="pc-name">NAD+</span>
-                    <span class="pc-dose">100mg / 500mg per vial</span>
-                    <div class="pc-footer">
-                        <span class="pc-badge">✓ COA Available</span>
-                        <a href="../contact/" class="pc-cta">Inquire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                <div class="product-card-full" data-name="NAD+" data-category="Antioxidant Compound">
+                    <span class="product-card-category">Antioxidant Compound</span>
+                    <span class="product-card-name" style="font-size:18px;margin:4px 0;">NAD+</span>
+                    <span class="product-card-price" style="font-size:13px;color:rgba(15,29,58,0.5);">100mg / 500mg per vial</span>
+                    <a href="../contact/" class="btn-primary" style="font-size:12px;padding:8px 16px;margin:8px 0;">Inquire
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                    <div class="product-img-soon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                        <span>Image Coming Soon</span>
                     </div>
                 </div>
 
-                <!-- Tirz -->
-                <div class="product-card-clean" data-name="Tirzepatide (Tirz)" data-category="Recovery Compound">
-                    <span class="pc-cat">Recovery Compound</span>
-                    <span class="pc-name">Tirzepatide (Tirz)</span>
-                    <span class="pc-dose">10mg / 20mg per vial</span>
-                    <div class="pc-footer">
-                        <span class="pc-badge">✓ COA Available</span>
-                        <a href="../contact/" class="pc-cta">Inquire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                <!-- Tirzepatide (Tirz) -->
+                <div class="product-card-full" data-name="Tirzepatide Tirz" data-category="Recovery Compound">
+                    <span class="product-card-category">Recovery Compound</span>
+                    <span class="product-card-name" style="font-size:18px;margin:4px 0;">Tirzepatide (Tirz)</span>
+                    <span class="product-card-price" style="font-size:13px;color:rgba(15,29,58,0.5);">10mg / 20mg per vial</span>
+                    <a href="../contact/" class="btn-primary" style="font-size:12px;padding:8px 16px;margin:8px 0;">Inquire
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                    <div class="product-img-soon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                        <span>Image Coming Soon</span>
                     </div>
                 </div>
 
                 <!-- IGF-1 LR3 -->
-                <div class="product-card-clean" data-name="IGF-1 LR3" data-category="Growth Compound">
-                    <span class="pc-cat">Growth Compound</span>
-                    <span class="pc-name">IGF-1 LR3</span>
-                    <span class="pc-dose">1mg / vial</span>
-                    <div class="pc-footer">
-                        <span class="pc-badge">✓ COA Available</span>
-                        <a href="../contact/" class="pc-cta">Inquire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                <div class="product-card-full" data-name="IGF-1 LR3" data-category="Growth Compound">
+                    <span class="product-card-category">Growth Compound</span>
+                    <span class="product-card-name" style="font-size:18px;margin:4px 0;">IGF-1 LR3</span>
+                    <span class="product-card-price" style="font-size:13px;color:rgba(15,29,58,0.5);">1mg / vial</span>
+                    <a href="../contact/" class="btn-primary" style="font-size:12px;padding:8px 16px;margin:8px 0;">Inquire
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                    <div class="product-img-soon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                        <span>Image Coming Soon</span>
                     </div>
                 </div>
 
                 <!-- Selank -->
-                <div class="product-card-clean" data-name="Selank" data-category="Nootropic Compound">
-                    <span class="pc-cat">Nootropic Compound</span>
-                    <span class="pc-name">Selank</span>
-                    <span class="pc-dose">10mg / vial</span>
-                    <div class="pc-footer">
-                        <span class="pc-badge">✓ COA Available</span>
-                        <a href="../contact/" class="pc-cta">Inquire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                <div class="product-card-full" data-name="Selank" data-category="Nootropic Compound">
+                    <span class="product-card-category">Nootropic Compound</span>
+                    <span class="product-card-name" style="font-size:18px;margin:4px 0;">Selank</span>
+                    <span class="product-card-price" style="font-size:13px;color:rgba(15,29,58,0.5);">10mg / vial</span>
+                    <a href="../contact/" class="btn-primary" style="font-size:12px;padding:8px 16px;margin:8px 0;">Inquire
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                    <div class="product-img-soon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                        <span>Image Coming Soon</span>
                     </div>
                 </div>
 
                 <!-- Semax -->
-                <div class="product-card-clean" data-name="Semax" data-category="Nootropic Compound">
-                    <span class="pc-cat">Nootropic Compound</span>
-                    <span class="pc-name">Semax</span>
-                    <span class="pc-dose">10mg / vial</span>
-                    <div class="pc-footer">
-                        <span class="pc-badge">✓ COA Available</span>
-                        <a href="../contact/" class="pc-cta">Inquire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                <div class="product-card-full" data-name="Semax" data-category="Nootropic Compound">
+                    <span class="product-card-category">Nootropic Compound</span>
+                    <span class="product-card-name" style="font-size:18px;margin:4px 0;">Semax</span>
+                    <span class="product-card-price" style="font-size:13px;color:rgba(15,29,58,0.5);">10mg / vial</span>
+                    <a href="../contact/" class="btn-primary" style="font-size:12px;padding:8px 16px;margin:8px 0;">Inquire
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                    <div class="product-img-soon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                        <span>Image Coming Soon</span>
                     </div>
                 </div>
 
                 <!-- GLOW -->
-                <div class="product-card-clean" data-name="GLOW" data-category="Recovery Compound">
-                    <span class="pc-cat">Recovery Compound</span>
-                    <span class="pc-name">GLOW</span>
-                    <span class="pc-dose">70mg / vial — Skin &amp; Collagen Blend</span>
-                    <div class="pc-footer">
-                        <span class="pc-badge">✓ COA Available</span>
-                        <a href="../contact/" class="pc-cta">Inquire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                <div class="product-card-full" data-name="GLOW" data-category="Recovery Compound">
+                    <span class="product-card-category">Recovery Compound</span>
+                    <span class="product-card-name" style="font-size:18px;margin:4px 0;">GLOW</span>
+                    <span class="product-card-price" style="font-size:13px;color:rgba(15,29,58,0.5);">70mg / vial — Skin &amp; Collagen Blend</span>
+                    <a href="../contact/" class="btn-primary" style="font-size:12px;padding:8px 16px;margin:8px 0;">Inquire
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                    <div class="product-img-soon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                        <span>Image Coming Soon</span>
                     </div>
                 </div>
 
                 <!-- KLOW -->
-                <div class="product-card-clean" data-name="KLOW" data-category="Recovery Compound">
-                    <span class="pc-cat">Recovery Compound</span>
-                    <span class="pc-name">KLOW</span>
-                    <span class="pc-dose">80mg / vial — Keratin Blend</span>
-                    <div class="pc-footer">
-                        <span class="pc-badge">✓ COA Available</span>
-                        <a href="../contact/" class="pc-cta">Inquire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                <div class="product-card-full" data-name="KLOW" data-category="Recovery Compound">
+                    <span class="product-card-category">Recovery Compound</span>
+                    <span class="product-card-name" style="font-size:18px;margin:4px 0;">KLOW</span>
+                    <span class="product-card-price" style="font-size:13px;color:rgba(15,29,58,0.5);">80mg / vial — Keratin Blend</span>
+                    <a href="../contact/" class="btn-primary" style="font-size:12px;padding:8px 16px;margin:8px 0;">Inquire
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                    <div class="product-img-soon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                        <span>Image Coming Soon</span>
                     </div>
                 </div>
 
@@ -373,10 +386,9 @@
                 <div class="footer-col">
                     <h4>Products</h4>
                     <a href="./">All Products</a>
-                    <a href="#Recovery Compound">Recovery</a>
-                    <a href="#Growth Compound">Growth</a>
-                    <a href="#Metabolic Compound">Metabolic</a>
-                    <a href="#Longevity Compound">Longevity</a>
+                    <a href="#" data-filter="Recovery Compound">Recovery</a>
+                    <a href="#" data-filter="Growth Compound">Growth</a>
+                    <a href="#" data-filter="Metabolic Compound">Metabolic</a>
                 </div>
                 <div class="footer-col">
                     <h4>Company</h4>
@@ -386,9 +398,8 @@
                 </div>
                 <div class="footer-col">
                     <h4>Support</h4>
-                    <a href="../contact/">Get Help</a>
                     <a href="../#faq">FAQ</a>
-                    <a href="../contact/">Shipping Info</a>
+                    <a href="../contact/">Get Help</a>
                     <a href="tel:+19729190219">Text Us</a>
                 </div>
             </div>
@@ -399,7 +410,7 @@
                 <span class="footer-payments-label">Accepted</span>
                 <span class="payment-icon" title="Visa"><img src="../assets/payment-icons/visa.svg" alt="Visa"></span>
                 <span class="payment-icon" title="Mastercard"><img src="../assets/payment-icons/mastercard.svg" alt="Mastercard"></span>
-                <span class="payment-icon" title="American Express"><img src="../assets/payment-icons/amex.svg" alt="AmEx"></span>
+                <span class="payment-icon" title="AmEx"><img src="../assets/payment-icons/amex.svg" alt="AmEx"></span>
                 <span class="payment-icon" title="PayPal"><img src="../assets/payment-icons/paypal.svg" alt="PayPal"></span>
                 <span class="payment-icon" title="Apple Pay"><img src="../assets/payment-icons/apple-pay.svg" alt="Apple Pay"></span>
                 <span class="payment-icon" title="Shop Pay"><img src="../assets/payment-icons/shop-pay.svg" alt="Shop Pay"></span>
@@ -409,12 +420,13 @@
     </footer>
 
     <script src="../js/auth.js"></script>
+    <script src="../js/script.js"></script>
     <script>
-    // === CATEGORY SIDEBAR NAV ===
-    const catLinks = document.querySelectorAll('.cat-nav-link');
-    const cards = document.querySelectorAll('#productsGrid .product-card-clean');
+    // === FILTER + SEARCH ===
+    const sidebarLinks = document.querySelectorAll('.page-sidebar-links a');
+    const dropdownFilterLinks = document.querySelectorAll('.navbar-dropdown a[data-filter]');
+    const cards = document.querySelectorAll('#productsGrid .product-card-full');
     const searchInput = document.getElementById('productSearch');
-    const resultCount = document.getElementById('resultCount');
     const emptyState = document.getElementById('emptyState');
     let activeFilter = 'all';
 
@@ -433,35 +445,30 @@
                 card.style.display = 'none';
             }
         });
-        resultCount.textContent = visible + ' product' + (visible !== 1 ? 's' : '');
         emptyState.style.display = visible === 0 ? 'block' : 'none';
         document.getElementById('productsGrid').style.display = visible === 0 ? 'none' : '';
     }
 
-    catLinks.forEach(link => {
-        link.addEventListener('click', e => {
-            e.preventDefault();
-            catLinks.forEach(l => l.classList.remove('active'));
-            link.classList.add('active');
-            activeFilter = link.dataset.filter;
-            filterProducts();
-        });
+    function setFilter(filter) {
+        activeFilter = filter;
+        sidebarLinks.forEach(l => l.classList.toggle('active', l.dataset.filter === filter || (filter==='all' && l.dataset.filter==='all')));
+        filterProducts();
+    }
+
+    sidebarLinks.forEach(link => {
+        link.addEventListener('click', e => { e.preventDefault(); setFilter(link.dataset.filter); });
+    });
+
+    dropdownFilterLinks.forEach(link => {
+        link.addEventListener('click', e => { e.preventDefault(); setFilter(link.dataset.filter); window.scrollTo({top: 0, behavior: 'smooth'}); });
     });
 
     searchInput.addEventListener('input', filterProducts);
 
-    // Hash-based filter on load
-    const hash = window.location.hash.replace('#','');
-    if (hash) {
-        const matchLink = [...catLinks].find(l => l.dataset.filter === hash);
-        if (matchLink) {
-            catLinks.forEach(l => l.classList.remove('active'));
-            matchLink.classList.add('active');
-            activeFilter = hash;
-        }
-    }
-
-    filterProducts();
+    // Check URL hash for pre-filter
+    const hash = decodeURIComponent(window.location.hash.replace('#',''));
+    if (hash) setFilter(hash);
+    else filterProducts();
 
     // Mobile menu
     const menuToggle = document.getElementById('menuToggle');
@@ -472,12 +479,9 @@
             menuToggle.classList.toggle('open');
         });
     }
-
-    // Navbar scroll shadow
+    // Navbar scroll
     const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-        navbar.classList.toggle('scrolled', window.scrollY > 20);
-    });
+    window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 20); });
     </script>
 </body>
 </html>
