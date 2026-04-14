@@ -98,7 +98,7 @@ body {
     pointer-events: none;
     z-index: 0;
     background-image: url('https://res.cloudinary.com/ddnhp0hzd/image/upload/v1773092310/backgrounf_trulife_wbvsx5.png');
-    background-size: 100% 100%;
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
