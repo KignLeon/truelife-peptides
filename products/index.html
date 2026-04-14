@@ -45,9 +45,20 @@
             <nav class="navbar-links">
                 <a href="../">Home</a>
                 <a href="./" class="active">Products</a>
-                <a href="../blog/">Blog</a>
-                <a href="../#coa">COA</a>
-                <a href="../#contact">Need help?</a>
+                <div class="navbar-dropdown-wrap">
+                    <a href="./">Categories</a>
+                    <div class="navbar-dropdown">
+                        <a href="#recovery">Recovery</a>
+                        <a href="#growth">Growth</a>
+                        <a href="#weight-management">Weight Management</a>
+                        <a href="#skin-hair">Skin & Hair</a>
+                        <a href="#immune">Immune</a>
+                        <a href="#cognitive">Cognitive</a>
+                        <a href="#cellular-health">Cellular Health</a>
+                    </div>
+                </div>
+                <a href="../about/">About</a>
+                <a href="../contact/">Contact</a>
             </nav>
             <div style="display:flex;align-items:center;gap:12px;">
                 <a href="./" class="navbar-cta">View Products</a>
@@ -61,8 +72,10 @@
         </div>
     </header>
     <div class="mobile-nav" id="mobileNav">
-        <a href="../">Home</a><a href="./" class="active">Products</a><a href="../blog/">Blog</a><a
-            href="../#coa">COA</a><a href="../#contact">Need help?</a>
+        <a href="../">Home</a>
+        <a href="./" class="active">Products</a>
+        <a href="../about/">About</a>
+        <a href="../contact/">Contact</a>
     </div>
 
     <!-- ======================== UPGRADE BANNER ======================== -->
@@ -134,27 +147,16 @@
             <div class="page-sidebar-divider"></div>
             <div class="page-sidebar-links">
                 <a href="#" class="active" data-filter="all">All Products</a>
-                <a href="#" data-filter="BPC-157">BPC-157</a>
-                <a href="#" data-filter="BPC-157 + TB-500">BPC-157 + TB-500</a>
-                <a href="#" data-filter="CJC-1295 + Ipamorelin">CJC-1295 + Ipamorelin</a>
-                <a href="#" data-filter="Reta">Reta</a>
-                <a href="#" data-filter="Tirz">Tirz</a>
-                <a href="#" data-filter="TB-500">TB-500</a>
-                <a href="#" data-filter="Tesamorelin">Tesamorelin</a>
-                <a href="#" data-filter="Sermorelin">Sermorelin</a>
-                <a href="#" data-filter="Ipamorelin">Ipamorelin</a>
-                <a href="#" data-filter="NAD+">NAD+</a>
-                <a href="#" data-filter="AOD-9604">AOD-9604</a>
-                <a href="#" data-filter="Sema">Sema</a>
-                <a href="#" data-filter="GHK-Cu">GHK-Cu</a>
-                <a href="#" data-filter="GLOW">GLOW</a>
-                <a href="#" data-filter="KLOW">KLOW</a>
-                <a href="#" data-filter="Thymosin Alpha 1">Thymosin Alpha 1</a>
-                <a href="#" data-filter="Hexarelin">Hexarelin</a>
-                <a href="#" data-filter="Melanotan II">Melanotan II</a>
-                <a href="#" data-filter="Kisspeptin">Kisspeptin</a>
-                <a href="#" data-filter="MOTS-c">MOTS-c</a>
-                <a href="#" data-filter="Selank">Selank</a>
+                <a href="#" data-filter="Recovery Compound">Recovery</a>
+                <a href="#" data-filter="Growth Compound">Growth</a>
+                <a href="#" data-filter="Weight Management">Weight Management</a>
+                <a href="#" data-filter="Skin/Hair">Skin & Hair</a>
+                <a href="#" data-filter="Immune">Immune</a>
+                <a href="#" data-filter="Cognitive">Cognitive</a>
+                <a href="#" data-filter="Tanning">Tanning</a>
+                <a href="#" data-filter="Reproductive">Reproductive</a>
+                <a href="#" data-filter="Metabolic">Metabolic</a>
+                <a href="#" data-filter="Cellular Health">Cellular Health</a>
             </div>
         </aside>
 
@@ -208,8 +210,8 @@
                             alt="CJC-1295 + Ipamorelin"></div>
                 </div>
                 <!-- Reta -->
-                <div class="product-card-full" data-name="Reta" data-category="CAS #: 2381089-83-2">
-                    <span class="product-card-category">CAS #: 2381089-83-2</span>
+                <div class="product-card-full" data-name="Reta" data-category="Weight Management">
+                    <span class="product-card-category">Weight Management</span>
                     <span class="product-card-name" style="font-size:18px;margin:4px 0;">Reta</span>
                     <span class="product-card-price">from $139</span>
                     <a href="#" class="btn-primary" style="font-size:12px;padding:8px 16px;margin:8px 0;">Learn More
@@ -222,8 +224,8 @@
                             alt="Reta"></div>
                 </div>
                 <!-- Tirz -->
-                <div class="product-card-full" data-name="Tirz" data-category="CAS #: 2023788-19-2">
-                    <span class="product-card-category">CAS #: 2023788-19-2</span>
+                <div class="product-card-full" data-name="Tirz" data-category="Weight Management">
+                    <span class="product-card-category">Weight Management</span>
                     <span class="product-card-name" style="font-size:18px;margin:4px 0;">Tirz</span>
                     <span class="product-card-price">from $99</span>
                     <a href="#" class="btn-primary" style="font-size:12px;padding:8px 16px;margin:8px 0;">Learn More
@@ -307,7 +309,7 @@
                 </div>
                 <!-- AOD-9604 -->
                 <div class="product-card-full" data-name="AOD-9604" data-category="Weight Management">
-                    <span class="product-card-category">Compounded HGH Fragment</span>
+                    <span class="product-card-category">Weight Management</span>
                     <span class="product-card-name" style="font-size:18px;margin:4px 0;">AOD-9604</span>
                     <span class="product-card-price">from $49</span>
                     <a href="#" class="btn-primary" style="font-size:12px;padding:8px 16px;margin:8px 0;">Learn More
@@ -531,9 +533,10 @@
                 </div>
             </div>
         </div>
-        <div class="footer-bottom">&copy; 2025 True Life Peptides. All rights reserved. For research use only.</div>
+        <div class="footer-bottom">&copy; 2026 True Life Peptides. All rights reserved. For research use only.</div>
     </footer>
 
+    <script src="../js/auth.js"></script>
     <script src="../js/script.js"></script>
     <script src="../js/analytics.js"></script>
 </body>

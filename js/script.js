@@ -100,35 +100,66 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ========================
-       SIDEBAR FILTER (Products page)
+       SIDEBAR FILTER (Products page — Category-based)
        ======================== */
     const sidebarLinks = document.querySelectorAll('.page-sidebar-links a[data-filter]');
     if (sidebarLinks.length > 0 && productsGrid) {
         const cards = productsGrid.querySelectorAll('.product-card-full');
 
+        function filterByCategory(filter) {
+            // Update active state
+            sidebarLinks.forEach(l => l.classList.remove('active'));
+            const activeLink = document.querySelector(`.page-sidebar-links a[data-filter="${filter}"]`);
+            if (activeLink) activeLink.classList.add('active');
+
+            // Filter cards
+            cards.forEach(card => {
+                if (filter === 'all') {
+                    card.style.display = '';
+                } else {
+                    const category = card.dataset.category || '';
+                    card.style.display = category === filter ? '' : 'none';
+                }
+            });
+
+            // Clear search
+            if (searchInput) searchInput.value = '';
+        }
+
         sidebarLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
                 const filter = link.dataset.filter;
-
-                // Update active state
-                sidebarLinks.forEach(l => l.classList.remove('active'));
-                link.classList.add('active');
-
-                // Filter cards
-                cards.forEach(card => {
-                    if (filter === 'all') {
-                        card.style.display = '';
-                    } else {
-                        const name = card.dataset.name || '';
-                        card.style.display = name === filter ? '' : 'none';
-                    }
-                });
-
-                // Clear search
-                if (searchInput) searchInput.value = '';
+                filterByCategory(filter);
+                // Update URL hash
+                if (filter !== 'all') {
+                    const slug = filter.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+$/, '');
+                    history.replaceState(null, '', '#' + slug);
+                } else {
+                    history.replaceState(null, '', window.location.pathname);
+                }
             });
         });
+
+        // Check URL hash on load for deep-linking
+        const hash = window.location.hash.slice(1);
+        if (hash) {
+            const hashMap = {
+                'recovery': 'Recovery Compound',
+                'growth': 'Growth Compound',
+                'weight-management': 'Weight Management',
+                'skin-hair': 'Skin/Hair',
+                'immune': 'Immune',
+                'cognitive': 'Cognitive',
+                'tanning': 'Tanning',
+                'reproductive': 'Reproductive',
+                'metabolic': 'Metabolic',
+                'cellular-health': 'Cellular Health'
+            };
+            if (hashMap[hash]) {
+                filterByCategory(hashMap[hash]);
+            }
+        }
     }
 
     /* ========================

@@ -45,9 +45,20 @@
             <nav class="navbar-links">
                 <a href="../">Home</a>
                 <a href="../products/">Products</a>
-                <a href="./" class="active">Blog</a>
-                <a href="../#coa">COA</a>
-                <a href="../#contact">Need help?</a>
+                <div class="navbar-dropdown-wrap">
+                    <a href="../products/">Categories</a>
+                    <div class="navbar-dropdown">
+                        <a href="../products/#recovery">Recovery</a>
+                        <a href="../products/#growth">Growth</a>
+                        <a href="../products/#weight-management">Weight Management</a>
+                        <a href="../products/#skin-hair">Skin & Hair</a>
+                        <a href="../products/#immune">Immune</a>
+                        <a href="../products/#cognitive">Cognitive</a>
+                        <a href="../products/#cellular-health">Cellular Health</a>
+                    </div>
+                </div>
+                <a href="../about/">About</a>
+                <a href="../contact/">Contact</a>
             </nav>
             <div style="display:flex;align-items:center;gap:12px;">
                 <a href="../products/" class="navbar-cta">View Products</a>
@@ -61,8 +72,10 @@
         </div>
     </header>
     <div class="mobile-nav" id="mobileNav">
-        <a href="../">Home</a><a href="../products/">Products</a><a href="./" class="active">Blog</a><a
-            href="../#coa">COA</a><a href="../#contact">Need help?</a>
+        <a href="../">Home</a>
+        <a href="../products/">Products</a>
+        <a href="../about/">About</a>
+        <a href="../contact/">Contact</a>
     </div>
 
     <!-- ======================== TICKER ======================== -->
@@ -266,9 +279,10 @@
                 </div>
             </div>
         </div>
-        <div class="footer-bottom">&copy; 2025 True Life Peptides. All rights reserved. For research use only.</div>
+        <div class="footer-bottom">&copy; 2026 True Life Peptides. All rights reserved. For research use only.</div>
     </footer>
 
+    <script src="../js/auth.js"></script>
     <script src="../js/script.js"></script>
     <script src="../js/analytics.js"></script>
 </body>
