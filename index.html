@@ -12,13 +12,13 @@
     <meta property="og:image" content="https://res.cloudinary.com/ddnhp0hzd/image/upload/v1773092087/image_copy_a5anwg.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fragment+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
     <link rel="icon" href="https://res.cloudinary.com/ddnhp0hzd/image/upload/v1773091965/image_copy_2_zsjsyn.png">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <!-- DNA Strand Background -->
+    <!-- DNA Strand Background — fixed, low opacity, no stretch -->
     <div class="pp-molecule-overlay" aria-hidden="true"></div>
 
     <!-- ======================== NAVBAR ======================== -->
@@ -59,6 +59,93 @@
         <a href="./contact/">Contact</a>
     </div>
 
+    <!-- ======================== PHARMA HERO ======================== -->
+    <section class="pharma-hero">
+        <div class="pharma-hero-inner">
+            <!-- Left: Text content -->
+            <div class="pharma-hero-content">
+                <div class="pharma-hero-badge-row">
+                    <span class="pharma-pill">
+                        <svg viewBox="0 0 8 8" fill="currentColor"><circle cx="4" cy="4" r="4"/></svg>
+                        USA Manufactured
+                    </span>
+                    <span class="pharma-pill">Third-Party Tested</span>
+                    <span class="pharma-pill">Same-Day Shipping</span>
+                </div>
+
+                <h1 class="pharma-hero-h1">
+                    Premium research<br>
+                    peptides, <em>trusted</em><br>
+                    by scientists.
+                </h1>
+
+                <p class="pharma-hero-p">
+                    Manufactured &amp; independently batch tested in the USA.<br>
+                    Trusted by researchers nationwide for purity, potency, and precision.
+                </p>
+
+                <div class="pharma-hero-actions">
+                    <a href="./products/" class="btn-primary pharma-btn-lg">
+                        Browse Products
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                    <a href="./contact/" class="pharma-btn-outline">Request a Quote</a>
+                </div>
+
+                <!-- Stats row -->
+                <div class="pharma-stats">
+                    <div class="pharma-stat">
+                        <span class="pharma-stat-val">99.2%</span>
+                        <span class="pharma-stat-label">Avg. Purity</span>
+                    </div>
+                    <div class="pharma-stat-sep"></div>
+                    <div class="pharma-stat">
+                        <span class="pharma-stat-val">500+</span>
+                        <span class="pharma-stat-label">Batches Tested</span>
+                    </div>
+                    <div class="pharma-stat-sep"></div>
+                    <div class="pharma-stat">
+                        <span class="pharma-stat-val">24h</span>
+                        <span class="pharma-stat-label">Fulfilment</span>
+                    </div>
+                    <div class="pharma-stat-sep"></div>
+                    <div class="pharma-stat">
+                        <span class="pharma-stat-val">30+</span>
+                        <span class="pharma-stat-label">Compounds</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Featured product card -->
+            <div class="pharma-hero-card">
+                <div class="pharma-product-card">
+                    <span class="pharma-product-tag">Best Seller</span>
+                    <div class="pharma-product-img">
+                        <img src="https://framerusercontent.com/images/89F5G2gDefdF8XhUeT2ip0an4.png?scale-down-to=512" alt="BPC-157" loading="eager">
+                    </div>
+                    <div class="pharma-product-info">
+                        <span class="pharma-product-cat">Recovery Compound</span>
+                        <h3 class="pharma-product-name">BPC-157</h3>
+                        <p class="pharma-product-desc">Body Protection Compound — 5MG lyophilized powder</p>
+                        <div class="pharma-product-row">
+                            <span class="pharma-product-price">from $39</span>
+                            <a href="./products/" class="btn-primary" style="font-size:13px;padding:10px 20px;">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Floating trust badge -->
+                <div class="pharma-float-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    <div>
+                        <div class="pharma-float-title">Batch Verified</div>
+                        <div class="pharma-float-sub">COA available on request</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ======================== TICKER ======================== -->
     <div class="ticker">
         <div class="ticker-track">
@@ -70,7 +157,6 @@
             <div class="ticker-item"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 8l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg> Manufactured in the USA</div>
             <div class="ticker-item"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 8l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg> Batch Produced, Batch Tested</div>
             <div class="ticker-item"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 8l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg> Fast &amp; Discreet Shipping</div>
-            <div class="ticker-item"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 8l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg> Affordable Pricing</div>
         </div>
     </div>
 
@@ -78,65 +164,34 @@
     <section class="cat-tiles-section">
         <div class="cat-tiles-inner">
             <a href="./products/#recovery" class="cat-tile cat-tile--featured">
-                <div class="cat-tile-content">
-                    <span class="cat-tile-label">Popular Products</span>
-                    <div class="cat-tile-arrow">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </div>
-                </div>
+                <div class="cat-tile-content"><span class="cat-tile-label">Popular Products</span><div class="cat-tile-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
                 <img src="https://framerusercontent.com/images/89F5G2gDefdF8XhUeT2ip0an4.png?scale-down-to=256" alt="BPC-157" class="cat-tile-img">
             </a>
             <a href="./products/#weight-management" class="cat-tile">
-                <div class="cat-tile-content">
-                    <span class="cat-tile-label">Weight Management</span>
-                    <div class="cat-tile-arrow">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </div>
-                </div>
+                <div class="cat-tile-content"><span class="cat-tile-label">Weight Management</span><div class="cat-tile-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
                 <img src="https://framerusercontent.com/images/I0kdZoc0E61R0cbpetk05UuwGE.png?scale-down-to=256" alt="Reta" class="cat-tile-img">
             </a>
             <a href="./products/#growth" class="cat-tile">
-                <div class="cat-tile-content">
-                    <span class="cat-tile-label">Growth &amp; Peptide Blends</span>
-                    <div class="cat-tile-arrow">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </div>
-                </div>
+                <div class="cat-tile-content"><span class="cat-tile-label">Growth &amp; Peptide Blends</span><div class="cat-tile-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
                 <img src="https://framerusercontent.com/images/2pVAA3YKLgjyzN9MfvSQZ5FoE.png?scale-down-to=256" alt="CJC-1295" class="cat-tile-img">
             </a>
             <a href="./products/#skin-hair" class="cat-tile">
-                <div class="cat-tile-content">
-                    <span class="cat-tile-label">Skin &amp; Hair</span>
-                    <div class="cat-tile-arrow">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </div>
-                </div>
+                <div class="cat-tile-content"><span class="cat-tile-label">Skin &amp; Hair</span><div class="cat-tile-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
                 <img src="https://framerusercontent.com/images/xFpprXCHhpCmEhUt2PFQscmD8DE.png?scale-down-to=256" alt="GHK-Cu" class="cat-tile-img">
             </a>
             <a href="./products/#cognitive" class="cat-tile">
-                <div class="cat-tile-content">
-                    <span class="cat-tile-label">Cognitive</span>
-                    <div class="cat-tile-arrow">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </div>
-                </div>
+                <div class="cat-tile-content"><span class="cat-tile-label">Cognitive</span><div class="cat-tile-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
                 <img src="https://framerusercontent.com/images/xFpprXCHhpCmEhUt2PFQscmD8DE.png?scale-down-to=256" alt="Selank" class="cat-tile-img">
             </a>
             <a href="./products/#cellular-health" class="cat-tile">
-                <div class="cat-tile-content">
-                    <span class="cat-tile-label">Cellular Health</span>
-                    <div class="cat-tile-arrow">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </div>
-                </div>
+                <div class="cat-tile-content"><span class="cat-tile-label">Cellular Health</span><div class="cat-tile-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
                 <img src="https://framerusercontent.com/images/xFpprXCHhpCmEhUt2PFQscmD8DE.png?scale-down-to=256" alt="NAD+" class="cat-tile-img">
             </a>
         </div>
     </section>
 
-    <!-- ======================== MAIN SHOP LAYOUT ======================== -->
+    <!-- ======================== SHOP LAYOUT ======================== -->
     <div class="shop-layout">
-        <!-- Left Sidebar -->
         <aside class="shop-sidebar">
             <h3 class="shop-sidebar-title">Shop Peptides</h3>
             <div class="shop-sidebar-divider"></div>
@@ -157,32 +212,20 @@
                 <p>USA-made &amp; batch tested</p>
                 <a href="./about/#coa" class="shop-sidebar-coa-link">View COA Docs →</a>
             </div>
-            <!-- Trust badges -->
             <div class="shop-sidebar-badges">
-                <div class="shop-badge">
-                    <svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 8l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
-                    Same-day shipping
-                </div>
-                <div class="shop-badge">
-                    <svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 8l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
-                    3rd-party tested
-                </div>
+                <div class="shop-badge"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 8l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>Same-day shipping</div>
+                <div class="shop-badge"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 8l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>3rd-party tested</div>
             </div>
         </aside>
 
-        <!-- Main Product Area -->
         <main class="shop-main">
             <div class="shop-main-header">
                 <h2 class="shop-main-title">Popular <span class="shimmer-text">Products</span></h2>
                 <a href="./products/" class="shop-view-all">View all →</a>
             </div>
-
             <div class="pop-product-grid reveal-stagger">
-                <!-- BPC-157 -->
                 <a href="./products/" class="pop-card">
-                    <div class="pop-card-img">
-                        <img src="https://framerusercontent.com/images/89F5G2gDefdF8XhUeT2ip0an4.png?scale-down-to=512" alt="BPC-157" loading="lazy">
-                    </div>
+                    <div class="pop-card-img"><img src="https://framerusercontent.com/images/89F5G2gDefdF8XhUeT2ip0an4.png?scale-down-to=512" alt="BPC-157" loading="lazy"></div>
                     <div class="pop-card-body">
                         <span class="pop-card-cat">Recovery Compound</span>
                         <span class="pop-card-name">BPC-157</span>
@@ -190,20 +233,14 @@
                         <div class="pop-card-footer">
                             <span class="pop-card-price">from $39</span>
                             <div class="pop-card-actions">
-                                <button class="pop-btn-cart">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-                                    $39
-                                </button>
+                                <button class="pop-btn-cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18"/><path d="M16 10a4 4 0 01-8 0"/></svg>$39</button>
                                 <button class="pop-btn-more">Learn More</button>
                             </div>
                         </div>
                     </div>
                 </a>
-                <!-- Tirz -->
                 <a href="./products/" class="pop-card">
-                    <div class="pop-card-img">
-                        <img src="https://framerusercontent.com/images/CupYMgUmAmoSJlfyzSmLjSu8w4c.png?scale-down-to=512" alt="Tirzepatide" loading="lazy">
-                    </div>
+                    <div class="pop-card-img"><img src="https://framerusercontent.com/images/CupYMgUmAmoSJlfyzSmLjSu8w4c.png?scale-down-to=512" alt="Tirzepatide" loading="lazy"></div>
                     <div class="pop-card-body">
                         <span class="pop-card-cat">Weight Management</span>
                         <span class="pop-card-name">Tirzepatide (Tirz)</span>
@@ -211,20 +248,14 @@
                         <div class="pop-card-footer">
                             <span class="pop-card-price">from $99</span>
                             <div class="pop-card-actions">
-                                <button class="pop-btn-cart">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-                                    $99
-                                </button>
+                                <button class="pop-btn-cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18"/><path d="M16 10a4 4 0 01-8 0"/></svg>$99</button>
                                 <button class="pop-btn-more">Learn More</button>
                             </div>
                         </div>
                     </div>
                 </a>
-                <!-- NAD+ -->
                 <a href="./products/" class="pop-card">
-                    <div class="pop-card-img">
-                        <img src="https://framerusercontent.com/images/xFpprXCHhpCmEhUt2PFQscmD8DE.png?scale-down-to=512" alt="NAD+" loading="lazy">
-                    </div>
+                    <div class="pop-card-img"><img src="https://framerusercontent.com/images/xFpprXCHhpCmEhUt2PFQscmD8DE.png?scale-down-to=512" alt="NAD+" loading="lazy"></div>
                     <div class="pop-card-body">
                         <span class="pop-card-cat">Cellular Health</span>
                         <span class="pop-card-name">NAD+</span>
@@ -232,24 +263,16 @@
                         <div class="pop-card-footer">
                             <span class="pop-card-price">from $99</span>
                             <div class="pop-card-actions">
-                                <button class="pop-btn-cart">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-                                    $99
-                                </button>
+                                <button class="pop-btn-cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18"/><path d="M16 10a4 4 0 01-8 0"/></svg>$99</button>
                                 <button class="pop-btn-more">Learn More</button>
                             </div>
                         </div>
                     </div>
                 </a>
             </div>
-
-            <!-- Second row -->
-            <div class="pop-product-grid reveal-stagger" style="margin-top:16px;">
-                <!-- Reta -->
+            <div class="pop-product-grid reveal-stagger" style="margin-top:14px;">
                 <a href="./products/" class="pop-card">
-                    <div class="pop-card-img">
-                        <img src="https://framerusercontent.com/images/I0kdZoc0E61R0cbpetk05UuwGE.png?scale-down-to=512" alt="Retatrutide" loading="lazy">
-                    </div>
+                    <div class="pop-card-img"><img src="https://framerusercontent.com/images/I0kdZoc0E61R0cbpetk05UuwGE.png?scale-down-to=512" alt="Retatrutide" loading="lazy"></div>
                     <div class="pop-card-body">
                         <span class="pop-card-cat">Weight Management</span>
                         <span class="pop-card-name">Retatrutide (Reta)</span>
@@ -257,52 +280,37 @@
                         <div class="pop-card-footer">
                             <span class="pop-card-price">from $139</span>
                             <div class="pop-card-actions">
-                                <button class="pop-btn-cart">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-                                    $139
-                                </button>
+                                <button class="pop-btn-cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18"/><path d="M16 10a4 4 0 01-8 0"/></svg>$139</button>
                                 <button class="pop-btn-more">Learn More</button>
                             </div>
                         </div>
                     </div>
                 </a>
-                <!-- Melanotan II -->
                 <a href="./products/" class="pop-card">
-                    <div class="pop-card-img">
-                        <img src="https://framerusercontent.com/images/xFpprXCHhpCmEhUt2PFQscmD8DE.png?scale-down-to=512" alt="Melanotan II" loading="lazy">
-                    </div>
+                    <div class="pop-card-img"><img src="https://framerusercontent.com/images/p8XWJzDv71XniAB30olCFnw8tE.png?scale-down-to=512" alt="BPC-157 + TB-500" loading="lazy"></div>
                     <div class="pop-card-body">
-                        <span class="pop-card-cat">Tanning</span>
-                        <span class="pop-card-name">Melanotan II</span>
-                        <span class="pop-card-desc">Alpha-MSH Analogue — 10MG</span>
+                        <span class="pop-card-cat">Recovery Compound</span>
+                        <span class="pop-card-name">BPC-157 + TB-500</span>
+                        <span class="pop-card-desc">Recovery Blend — Dual Peptide Stack</span>
                         <div class="pop-card-footer">
-                            <span class="pop-card-price">from $39</span>
+                            <span class="pop-card-price">from $99</span>
                             <div class="pop-card-actions">
-                                <button class="pop-btn-cart">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-                                    $39
-                                </button>
+                                <button class="pop-btn-cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18"/><path d="M16 10a4 4 0 01-8 0"/></svg>$99</button>
                                 <button class="pop-btn-more">Learn More</button>
                             </div>
                         </div>
                     </div>
                 </a>
-                <!-- CJC-1295 + Ipamorelin -->
                 <a href="./products/" class="pop-card">
-                    <div class="pop-card-img">
-                        <img src="https://framerusercontent.com/images/2pVAA3YKLgjyzN9MfvSQZ5FoE.png?scale-down-to=512" alt="CJC-1295 + Ipamorelin" loading="lazy">
-                    </div>
+                    <div class="pop-card-img"><img src="https://framerusercontent.com/images/2pVAA3YKLgjyzN9MfvSQZ5FoE.png?scale-down-to=512" alt="CJC-1295 + Ipamorelin" loading="lazy"></div>
                     <div class="pop-card-body">
                         <span class="pop-card-cat">Growth Compound</span>
                         <span class="pop-card-name">CJC-1295 + Ipamorelin</span>
-                        <span class="pop-card-desc">Blend — GHRH + Secretagogue</span>
+                        <span class="pop-card-desc">GHRH + Secretagogue Blend</span>
                         <div class="pop-card-footer">
                             <span class="pop-card-price">from $89</span>
                             <div class="pop-card-actions">
-                                <button class="pop-btn-cart">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-                                    $89
-                                </button>
+                                <button class="pop-btn-cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18"/><path d="M16 10a4 4 0 01-8 0"/></svg>$89</button>
                                 <button class="pop-btn-more">Learn More</button>
                             </div>
                         </div>
@@ -311,43 +319,6 @@
             </div>
         </main>
     </div>
-
-    <!-- ======================== HERO ======================== -->
-    <section class="home-hero reveal">
-        <div class="home-hero-inner">
-            <div class="home-hero-text">
-                <p class="home-hero-overline">Precision. Purity. Performance.</p>
-                <h1>True Life Peptides is a leading<br>provider of <em>USA-manufactured,</em><br>research peptides.</h1>
-                <p class="home-hero-sub">Trusted by researchers and labs nationwide. Independently batch tested with COA documentation available for every order.</p>
-                <div class="home-hero-actions">
-                    <a href="./products/" class="btn-primary">
-                        Shop Research Peptides
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </a>
-                    <a href="./contact/" class="btn-ghost">Request a Quote</a>
-                </div>
-            </div>
-            <div class="home-hero-stats">
-                <div class="home-hero-stat">
-                    <span class="home-hero-stat-val">99.2%</span>
-                    <span class="home-hero-stat-label">Average Purity</span>
-                </div>
-                <div class="home-hero-stat">
-                    <span class="home-hero-stat-val">500+</span>
-                    <span class="home-hero-stat-label">Batches Tested</span>
-                </div>
-                <div class="home-hero-stat">
-                    <span class="home-hero-stat-val">24h</span>
-                    <span class="home-hero-stat-label">Same-Day Shipping</span>
-                </div>
-                <div class="home-hero-stat">
-                    <span class="home-hero-stat-val">USA</span>
-                    <span class="home-hero-stat-label">Made &amp; Tested</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
 
     <!-- ======================== TRUST FEATURES ======================== -->
     <section class="section reveal">
@@ -383,7 +354,7 @@
         </div>
     </section>
 
-    <!-- ======================== RESEARCH DISCLAIMER ======================== -->
+    <!-- ======================== DISCLAIMER ======================== -->
     <section class="section reveal">
         <div class="intro-section">
             <h3>Research Use Only</h3>
@@ -395,22 +366,10 @@
     <section class="section reveal" id="faq">
         <h2 class="section-heading" style="margin-bottom:32px;">Frequently Asked Questions</h2>
         <div class="faq-section">
-            <div class="faq-item">
-                <div class="faq-question">What are research peptides?</div>
-                <div class="faq-answer">Research peptides are short chains of amino acids synthesized for laboratory research. They are not for human or animal consumption and are used exclusively in controlled scientific environments.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">How are your products tested?</div>
-                <div class="faq-answer">Every batch is independently tested via HPLC and mass spectrometry by third-party laboratories. Certificates of Analysis (COA) are available for every product batch we produce.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">What is your shipping policy?</div>
-                <div class="faq-answer">Orders placed before 2PM EST ship the same business day. All shipments are discreet, insured, and temperature-protected. We ship within the continental United States.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">Can I get wholesale pricing?</div>
-                <div class="faq-answer">Yes. Contact our team directly for volume pricing and wholesale arrangements. We work with research institutions, labs, and qualified distributors.</div>
-            </div>
+            <div class="faq-item"><div class="faq-question">What are research peptides?</div><div class="faq-answer">Research peptides are short chains of amino acids synthesized for laboratory research. They are not for human or animal consumption and are used exclusively in controlled scientific environments.</div></div>
+            <div class="faq-item"><div class="faq-question">How are your products tested?</div><div class="faq-answer">Every batch is independently tested via HPLC and mass spectrometry by third-party laboratories. Certificates of Analysis (COA) are available for every product batch we produce.</div></div>
+            <div class="faq-item"><div class="faq-question">What is your shipping policy?</div><div class="faq-answer">Orders placed before 2PM EST ship the same business day. All shipments are discreet, insured, and temperature-protected. We ship within the continental United States.</div></div>
+            <div class="faq-item"><div class="faq-question">Can I get wholesale pricing?</div><div class="faq-answer">Yes. Contact our team directly for volume pricing and wholesale arrangements. We work with research institutions, labs, and qualified distributors.</div></div>
         </div>
     </section>
 
@@ -440,7 +399,7 @@
                 <div class="footer-col">
                     <h4>Support</h4>
                     <a href="./contact/">Need Help?</a>
-                    <a href="./contact/#faq">FAQ</a>
+                    <a href="#faq">FAQ</a>
                     <a href="./contact/">Shipping Policy</a>
                 </div>
             </div>
@@ -448,16 +407,12 @@
         <div class="footer-bottom">&copy; 2026 True Life Peptides. All rights reserved. For research use only.</div>
     </footer>
 
-    <!-- Floating Help Button -->
     <a href="tel:+19729190219" class="pp-popup-mini visible" id="helpPill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 015 11.91 19.79 19.79 0 011.92 3.28 2 2 0 013.9 1.11h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
-        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 015 11.91 19.79 19.79 0 011.92 3.28 2 2 0 013.9 1.11h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
         Need Help?
     </a>
 
     <script src="js/auth.js"></script>
     <script src="js/script.js"></script>
 </body>
-
 </html>
