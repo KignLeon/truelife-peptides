@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 471" role="img" aria-label="Apple Pay">
+  <rect width="750" height="471" rx="40" fill="#000000"/>
+  <text x="375" y="310" font-family="-apple-system,BlinkMacSystemFont,Arial,sans-serif" font-size="130" font-weight="500" fill="white" text-anchor="middle"> Pay</text>
+  <path d="M224 180 c0-24 20-44 44-44 24 0 40 18 38 44-2 24-20 44-44 44-24 0-40-18-38-44z" fill="white"/>
+</svg>
