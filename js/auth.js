@@ -1,37 +1,47 @@
 /* ================================================
-   TRUE LIFE PEPTIDES — Auth Gate v2
+   TRUE LIFE PEPTIDES — Auth Gate (Production)
    ================================================
-   CURRENT MODE: DEMO (client-side only)
-   OTP is simulated — no real SMS is sent.
+   Real phone OTP authentication via Supabase.
    
-   TO ENABLE REAL PHONE OTP:
-   Option A — Supabase (recommended, free tier available):
-     1. Create Supabase project at supabase.com
-     2. Enable Phone Auth in Auth > Providers > Phone
-     3. Connect Twilio or built-in Supabase SMS
-     4. Replace sendDemoOTP() with:
-          const { error } = await supabase.auth.signInWithOtp({ phone: phoneNumber })
-     5. Replace verifyDemoOTP() with:
-          const { data, error } = await supabase.auth.verifyOtp({ phone, token: code, type: 'sms' })
-     6. Add <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+   REQUIRES:
+   - Supabase SDK loaded via CDN (before this script)
+   - js/supabase-config.js loaded (before this script)
+   - Supabase project with Phone Auth + Twilio configured
    
-   Option B — Twilio Verify (direct):
-     Requires a serverless endpoint (Vercel function) to protect API keys.
-     Call POST /api/send-otp and POST /api/verify-otp from this file.
-   
-   DEMO CODE: 1234
-   Any phone number + OTP "1234" = access granted.
+   FLOW:
+   1. User enters phone number
+   2. Real SMS OTP is sent via Supabase → Twilio
+   3. User enters 6-digit code
+   4. Supabase verifies the OTP
+   5. Session is created and persisted
+   6. User gains access
    ================================================ */
 
 (function () {
     'use strict';
 
-    const AUTH_KEY = 'tlp_auth_verified';
-    const DEMO_OTP = '1234';         // Replace with real API verification
+    const AUTH_KEY = 'tlp_auth_session';
     const MAX_ATTEMPTS = 5;
-    const COOLDOWN_MS = 30000;       // 30s between sends
+    const COOLDOWN_MS = 30000;
+    const OTP_LENGTH = 6;
 
-    // Already verified this session → skip gate
+    // --- Check existing Supabase session ---
+    async function checkExistingSession() {
+        const sb = getSupabaseClient();
+        if (!sb) return false;
+        try {
+            const { data: { session } } = await sb.auth.getSession();
+            if (session && session.user) {
+                return true;
+            }
+        } catch (e) {
+            console.warn('[TLP Auth] Session check failed:', e.message);
+        }
+        return false;
+    }
+
+    // Quick check: if we have a local flag for this tab, skip the gate instantly
+    // (prevents flash on page navigation within the same session)
     if (sessionStorage.getItem(AUTH_KEY) === '1') return;
 
     // --- Build Gate DOM ---
@@ -45,7 +55,7 @@
                     onerror="this.src='https://res.cloudinary.com/ddnhp0hzd/image/upload/v1773092087/image_copy_a5anwg.png'">
             </div>
             <h2 class="auth-gate-title">Verify your identity</h2>
-            <p class="auth-gate-subtitle">Enter your phone number to access True Life Peptides. A verification code will be sent.</p>
+            <p class="auth-gate-subtitle">Enter your phone number to access True Life Peptides. A verification code will be sent via SMS.</p>
 
             <!-- Step 1: Phone -->
             <div class="auth-step" id="authStepPhone">
@@ -58,20 +68,18 @@
                     <span class="auth-btn-text">Send Verification Code</span>
                     <span class="auth-btn-spinner"></span>
                 </button>
-                <p class="auth-demo-notice">
-                    <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="7"/><path d="M8 5v4"/><circle cx="8" cy="11.5" r="0.5" fill="currentColor"/></svg>
-                    Demo mode active — enter any number and use code <strong>1234</strong>
-                </p>
             </div>
 
             <!-- Step 2: OTP -->
             <div class="auth-step auth-step-hidden" id="authStepOTP">
-                <p class="auth-otp-info">We sent a code to <span id="authPhoneDisplay"></span></p>
+                <p class="auth-otp-info">We sent a 6-digit code to <span id="authPhoneDisplay"></span></p>
                 <div class="auth-otp-inputs" id="authOtpInputs">
                     <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" class="auth-otp-digit" data-index="0" autocomplete="one-time-code">
                     <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" class="auth-otp-digit" data-index="1">
                     <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" class="auth-otp-digit" data-index="2">
                     <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" class="auth-otp-digit" data-index="3">
+                    <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" class="auth-otp-digit" data-index="4">
+                    <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" class="auth-otp-digit" data-index="5">
                 </div>
                 <div class="auth-error" id="authOtpError"></div>
                 <button class="auth-btn" id="authVerifyBtn">
@@ -93,6 +101,19 @@
                 <p class="auth-success-text">Verified. Welcome to True Life Peptides.</p>
             </div>
 
+            <!-- Step 4: Config Error -->
+            <div class="auth-step auth-step-hidden" id="authStepConfigError">
+                <div style="text-align:center;padding:20px 0;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="1.5" width="32" height="32" style="margin:0 auto 12px;display:block;">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+                        <line x1="12" y1="9" x2="12" y2="13"/>
+                        <line x1="12" y1="17" x2="12.01" y2="17"/>
+                    </svg>
+                    <p style="font-size:14px;color:#92400E;font-weight:600;margin-bottom:8px;">Authentication Not Configured</p>
+                    <p style="font-size:12px;color:rgba(120,53,15,0.7);line-height:1.6;">Supabase credentials are missing. Please configure <code>js/supabase-config.js</code> with your project URL and anon key.</p>
+                </div>
+            </div>
+
             <p class="auth-disclaimer">By continuing, you confirm you are a qualified researcher and agree to use these compounds for research purposes only.</p>
         </div>
     `;
@@ -102,7 +123,6 @@
 
     // --- Helpers ---
     function getAssetPath() {
-        // Determine correct relative path to root assets
         const depth = window.location.pathname.split('/').filter(Boolean).length;
         return depth > 0 ? '../'.repeat(depth) : './';
     }
@@ -117,6 +137,19 @@
 
     function getDigits(value) { return value.replace(/\D/g, ''); }
 
+    function unlockSite() {
+        sessionStorage.setItem(AUTH_KEY, '1');
+        stepOTP.classList.add('auth-step-hidden');
+        stepSuccess.classList.remove('auth-step-hidden');
+        setTimeout(() => {
+            gate.classList.add('auth-gate-exit');
+            setTimeout(() => {
+                gate.remove();
+                document.body.classList.remove('auth-locked');
+            }, 500);
+        }, 900);
+    }
+
     // --- State ---
     let phoneNumber = '';
     let attempts = 0;
@@ -124,21 +157,45 @@
     let resendInterval = null;
 
     // --- Elements ---
-    const phoneInput   = document.getElementById('authPhone');
-    const sendBtn      = document.getElementById('authSendBtn');
-    const stepPhone    = document.getElementById('authStepPhone');
-    const stepOTP      = document.getElementById('authStepOTP');
-    const stepSuccess  = document.getElementById('authStepSuccess');
-    const phoneError   = document.getElementById('authPhoneError');
-    const otpError     = document.getElementById('authOtpError');
-    const phoneDisplay = document.getElementById('authPhoneDisplay');
-    const verifyBtn    = document.getElementById('authVerifyBtn');
-    const resendBtn    = document.getElementById('authResendBtn');
-    const resendTimer  = document.getElementById('authResendTimer');
-    const backBtn      = document.getElementById('authBackBtn');
-    const otpDigits    = document.querySelectorAll('.auth-otp-digit');
+    const phoneInput     = document.getElementById('authPhone');
+    const sendBtn        = document.getElementById('authSendBtn');
+    const stepPhone      = document.getElementById('authStepPhone');
+    const stepOTP        = document.getElementById('authStepOTP');
+    const stepSuccess    = document.getElementById('authStepSuccess');
+    const stepConfigErr  = document.getElementById('authStepConfigError');
+    const phoneError     = document.getElementById('authPhoneError');
+    const otpError       = document.getElementById('authOtpError');
+    const phoneDisplay   = document.getElementById('authPhoneDisplay');
+    const verifyBtn      = document.getElementById('authVerifyBtn');
+    const resendBtn      = document.getElementById('authResendBtn');
+    const resendTimer    = document.getElementById('authResendTimer');
+    const backBtn        = document.getElementById('authBackBtn');
+    const otpDigits      = document.querySelectorAll('.auth-otp-digit');
 
-    // Phone formatting
+    // --- Init: Check for existing session, then show gate if needed ---
+    (async function init() {
+        const hasSession = await checkExistingSession();
+        if (hasSession) {
+            // Already authenticated — skip gate
+            sessionStorage.setItem(AUTH_KEY, '1');
+            gate.remove();
+            document.body.classList.remove('auth-locked');
+            return;
+        }
+
+        // Check if Supabase is configured
+        const sb = getSupabaseClient();
+        if (!sb) {
+            stepPhone.classList.add('auth-step-hidden');
+            stepConfigErr.classList.remove('auth-step-hidden');
+            return;
+        }
+
+        // Show phone input
+        setTimeout(() => phoneInput.focus(), 400);
+    })();
+
+    // --- Phone formatting ---
     phoneInput.addEventListener('input', () => {
         phoneInput.value = formatPhone(phoneInput.value);
         phoneError.textContent = '';
@@ -147,40 +204,51 @@
         if (e.key === 'Enter') sendBtn.click();
     });
 
-    // --- Send OTP ---
-    sendBtn.addEventListener('click', () => {
+    // --- Send OTP via Supabase ---
+    sendBtn.addEventListener('click', async () => {
         const digits = getDigits(phoneInput.value);
         if (digits.length !== 10) {
             phoneError.textContent = 'Please enter a valid 10-digit US phone number.';
             phoneInput.focus();
             return;
         }
+
         const now = Date.now();
         if (now - lastSendTime < COOLDOWN_MS) {
             const remaining = Math.ceil((COOLDOWN_MS - (now - lastSendTime)) / 1000);
             phoneError.textContent = `Please wait ${remaining}s before requesting another code.`;
             return;
         }
+
         phoneNumber = '+1' + digits;
         phoneError.textContent = '';
         sendBtn.classList.add('loading');
         sendBtn.disabled = true;
 
-        // ── REPLACE THIS BLOCK WITH REAL API CALL ──────────────────────
-        // Example (Supabase):
-        //   const { error } = await supabase.auth.signInWithOtp({ phone: phoneNumber });
-        //   if (error) { showError(error.message); return; }
-        // ── END REPLACE ────────────────────────────────────────────────
-        setTimeout(() => {
+        try {
+            const sb = getSupabaseClient();
+            const { error } = await sb.auth.signInWithOtp({ phone: phoneNumber });
+
             sendBtn.classList.remove('loading');
             sendBtn.disabled = false;
+
+            if (error) {
+                phoneError.textContent = error.message || 'Failed to send verification code. Please try again.';
+                return;
+            }
+
             lastSendTime = Date.now();
             phoneDisplay.textContent = formatPhone(digits);
             stepPhone.classList.add('auth-step-hidden');
             stepOTP.classList.remove('auth-step-hidden');
             otpDigits[0].focus();
             startResendTimer();
-        }, 1000);
+        } catch (err) {
+            sendBtn.classList.remove('loading');
+            sendBtn.disabled = false;
+            phoneError.textContent = 'Network error. Please check your connection and try again.';
+            console.error('[TLP Auth] Send OTP error:', err);
+        }
     });
 
     // --- OTP digit inputs ---
@@ -190,7 +258,7 @@
             e.target.value = val.slice(0, 1);
             otpError.textContent = '';
             if (val && i < otpDigits.length - 1) otpDigits[i + 1].focus();
-            if (getOTP().length === 4) setTimeout(() => verifyBtn.click(), 150);
+            if (getOTP().length === OTP_LENGTH) setTimeout(() => verifyBtn.click(), 150);
         });
         digit.addEventListener('keydown', (e) => {
             if (e.key === 'Backspace' && !e.target.value && i > 0) otpDigits[i - 1].focus();
@@ -198,58 +266,68 @@
         digit.addEventListener('paste', (e) => {
             e.preventDefault();
             const paste = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '');
-            for (let j = 0; j < Math.min(paste.length, 4); j++) {
+            for (let j = 0; j < Math.min(paste.length, OTP_LENGTH); j++) {
                 if (otpDigits[i + j]) otpDigits[i + j].value = paste[j];
             }
-            const lastFilled = Math.min(i + paste.length - 1, 3);
+            const lastFilled = Math.min(i + paste.length - 1, OTP_LENGTH - 1);
             otpDigits[lastFilled].focus();
-            if (paste.length >= 4 - i) setTimeout(() => verifyBtn.click(), 150);
+            if (paste.length >= OTP_LENGTH - i) setTimeout(() => verifyBtn.click(), 150);
         });
     });
 
     function getOTP() { return Array.from(otpDigits).map(d => d.value).join(''); }
     function clearOTP() { otpDigits.forEach(d => { d.value = ''; }); otpDigits[0].focus(); }
 
-    // --- Verify OTP ---
-    verifyBtn.addEventListener('click', () => {
+    // --- Verify OTP via Supabase ---
+    verifyBtn.addEventListener('click', async () => {
         const code = getOTP();
-        if (code.length !== 4) { otpError.textContent = 'Please enter the 4-digit code.'; return; }
-        if (attempts >= MAX_ATTEMPTS) { otpError.textContent = 'Too many attempts. Please refresh and try again.'; return; }
+        if (code.length !== OTP_LENGTH) {
+            otpError.textContent = `Please enter the ${OTP_LENGTH}-digit code.`;
+            return;
+        }
+        if (attempts >= MAX_ATTEMPTS) {
+            otpError.textContent = 'Too many attempts. Please refresh and try again.';
+            return;
+        }
         attempts++;
         verifyBtn.classList.add('loading');
         verifyBtn.disabled = true;
 
-        // ── REPLACE THIS BLOCK WITH REAL VERIFICATION ──────────────────
-        // Example (Supabase):
-        //   const { data, error } = await supabase.auth.verifyOtp({
-        //     phone: phoneNumber, token: code, type: 'sms'
-        //   });
-        //   if (error) { showOtpError(error.message); return; }
-        //   sessionStorage.setItem(AUTH_KEY, '1');
-        //   unlockSite();
-        // ── END REPLACE ────────────────────────────────────────────────
-        setTimeout(() => {
+        try {
+            const sb = getSupabaseClient();
+            const { data, error } = await sb.auth.verifyOtp({
+                phone: phoneNumber,
+                token: code,
+                type: 'sms'
+            });
+
             verifyBtn.classList.remove('loading');
             verifyBtn.disabled = false;
-            if (code === DEMO_OTP) {
-                sessionStorage.setItem(AUTH_KEY, '1');
-                stepOTP.classList.add('auth-step-hidden');
-                stepSuccess.classList.remove('auth-step-hidden');
-                setTimeout(() => {
-                    gate.classList.add('auth-gate-exit');
-                    setTimeout(() => {
-                        gate.remove();
-                        document.body.classList.remove('auth-locked');
-                    }, 500);
-                }, 900);
-            } else {
+
+            if (error) {
                 const left = MAX_ATTEMPTS - attempts;
-                otpError.textContent = left > 0
-                    ? `Incorrect code. ${left} attempt${left !== 1 ? 's' : ''} remaining.`
-                    : 'Too many failed attempts. Please refresh.';
+                if (left > 0) {
+                    otpError.textContent = error.message || `Incorrect code. ${left} attempt${left !== 1 ? 's' : ''} remaining.`;
+                } else {
+                    otpError.textContent = 'Too many failed attempts. Please refresh and try again.';
+                }
+                clearOTP();
+                return;
+            }
+
+            // Success — session is automatically persisted by Supabase
+            if (data && data.session) {
+                unlockSite();
+            } else {
+                otpError.textContent = 'Verification failed. Please try again.';
                 clearOTP();
             }
-        }, 700);
+        } catch (err) {
+            verifyBtn.classList.remove('loading');
+            verifyBtn.disabled = false;
+            otpError.textContent = 'Network error. Please check your connection and try again.';
+            console.error('[TLP Auth] Verify OTP error:', err);
+        }
     });
 
     // --- Resend timer ---
@@ -270,16 +348,30 @@
         }, 1000);
     }
 
-    resendBtn.addEventListener('click', () => {
+    resendBtn.addEventListener('click', async () => {
         if (resendBtn.disabled) return;
-        lastSendTime = Date.now();
-        startResendTimer();
         otpError.textContent = '';
         clearOTP();
-        resendBtn.textContent = 'Code sent!';
-        setTimeout(() => {
-            resendBtn.innerHTML = 'Resend code <span id="authResendTimer"></span>';
-        }, 1500);
+
+        try {
+            const sb = getSupabaseClient();
+            const { error } = await sb.auth.signInWithOtp({ phone: phoneNumber });
+
+            if (error) {
+                otpError.textContent = error.message || 'Failed to resend code.';
+                return;
+            }
+
+            lastSendTime = Date.now();
+            startResendTimer();
+            resendBtn.textContent = 'Code sent!';
+            setTimeout(() => {
+                resendBtn.innerHTML = 'Resend code <span id="authResendTimer"></span>';
+            }, 1500);
+        } catch (err) {
+            otpError.textContent = 'Network error. Could not resend code.';
+            console.error('[TLP Auth] Resend error:', err);
+        }
     });
 
     backBtn.addEventListener('click', () => {
@@ -289,6 +381,4 @@
         clearOTP();
         otpError.textContent = '';
     });
-
-    setTimeout(() => phoneInput.focus(), 400);
 })();
