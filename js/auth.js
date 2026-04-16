@@ -21,9 +21,38 @@
     'use strict';
 
     const AUTH_KEY = 'tlp_auth_session';
+    const AUTH_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
     const MAX_ATTEMPTS = 5;
     const COOLDOWN_MS = 30000;
     const OTP_LENGTH = 6;
+
+    // --- Persistent session helpers (localStorage + TTL) ---
+    // Using localStorage instead of sessionStorage so authentication survives
+    // page refreshes and new tabs. sessionStorage was causing users to get
+    // re-challenged on every refresh, exhausting Supabase's OTP rate limit
+    // (3 OTPs/hour default) and triggering Supabase's bot-protection CAPTCHA.
+    function isLocalAuthValid() {
+        try {
+            const raw = localStorage.getItem(AUTH_KEY);
+            if (!raw) return false;
+            const { ts } = JSON.parse(raw);
+            return Date.now() - ts < AUTH_TTL_MS;
+        } catch (e) {
+            return false;
+        }
+    }
+
+    function setLocalAuth() {
+        try {
+            localStorage.setItem(AUTH_KEY, JSON.stringify({ ts: Date.now() }));
+        } catch (e) { /* private/incognito mode may block writes */ }
+    }
+
+    function clearLocalAuth() {
+        try {
+            localStorage.removeItem(AUTH_KEY);
+        } catch (e) { /* ignore */ }
+    }
 
     // --- Check existing Supabase session ---
     async function checkExistingSession() {
@@ -40,9 +69,10 @@
         return false;
     }
 
-    // Quick check: if we have a local flag for this tab, skip the gate instantly
-    // (prevents flash on page navigation within the same session)
-    if (sessionStorage.getItem(AUTH_KEY) === '1') return;
+    // Fast-path: skip gate if localStorage token is still valid.
+    // This survives refreshes and new tabs — preventing repeated OTP requests
+    // that trigger Supabase's CAPTCHA rate-limit challenge.
+    if (isLocalAuthValid()) return;
 
     // --- Build Gate DOM ---
     const gate = document.createElement('div');
@@ -138,7 +168,7 @@
     function getDigits(value) { return value.replace(/\D/g, ''); }
 
     function unlockSite() {
-        sessionStorage.setItem(AUTH_KEY, '1');
+        setLocalAuth(); // persist across refreshes and new tabs
         stepOTP.classList.add('auth-step-hidden');
         stepSuccess.classList.remove('auth-step-hidden');
         setTimeout(() => {
@@ -176,8 +206,8 @@
     (async function init() {
         const hasSession = await checkExistingSession();
         if (hasSession) {
-            // Already authenticated — skip gate
-            sessionStorage.setItem(AUTH_KEY, '1');
+            // Supabase session still valid — persist our flag and unlock
+            setLocalAuth();
             gate.remove();
             document.body.classList.remove('auth-locked');
             return;
