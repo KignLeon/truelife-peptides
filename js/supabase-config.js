@@ -20,8 +20,8 @@
    - Twilio credentials configured in Supabase dashboard
    ================================================ */
 
-const SUPABASE_URL = 'YOUR_SUPABASE_URL';
-const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+const SUPABASE_URL = 'https://aedhjhgxiblcinjarhjg.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFlZGhqaGd4aWJsY2luamFyaGpnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUwNjgyMjEsImV4cCI6MjA5MDY0NDIyMX0.2k8WOQwzxQWCOCap2UTxYlfrfWtt6jBnMnX1t2MPV3Q';
 
 // Initialize Supabase client (loaded via CDN in HTML)
 let _supabaseClient = null;
