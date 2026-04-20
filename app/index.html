@@ -1,0 +1,621 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>True Life Peptides | Premium USA Research Peptides</title>
+    <meta name="description" content="True Life Peptides — premium research-grade peptides manufactured and batch tested in the USA. GMP-compliant, third-party verified, COA on every order. Fast discreet shipping.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="True Life Peptides | Premium USA Research Peptides">
+    <meta property="og:description" content="GMP-compliant. Independently batch tested. COA on every order. USA-manufactured research peptides trusted by scientists nationwide.">
+    <meta property="og:image" content="https://res.cloudinary.com/ddnhp0hzd/image/upload/v1773092087/image_copy_a5anwg.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fragment+Mono&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://res.cloudinary.com/ddnhp0hzd/image/upload/v1773091965/image_copy_2_zsjsyn.png">
+    <link rel="stylesheet" href="../css/style.css">
+<style id="antigravity-scroll-lock-style">
+  html:root body.antigravity-scroll-lock {
+    overflow: hidden !important;
+  }
+</style><style>
+  body::-webkit-scrollbar {
+    display: none;
+  }
+  html::-webkit-scrollbar {
+    display: none;
+  }
+</style></head>
+
+<body class="auth-locked"><div id="authGate" class="auth-gate">
+        <div class="auth-gate-card">
+            <div class="auth-gate-logo">
+                <img src="https://res.cloudinary.com/ddnhp0hzd/image/upload/v1773092087/image_copy_a5anwg.png" alt="True Life Peptides" onerror="this.src='https://res.cloudinary.com/ddnhp0hzd/image/upload/v1773092087/image_copy_a5anwg.png'">
+            </div>
+            <h2 class="auth-gate-title">Verify your identity</h2>
+            <p class="auth-gate-subtitle">Enter your phone number to access True Life Peptides. A verification code will be sent via SMS.</p>
+
+            <!-- Step 1: Phone -->
+            <div class="auth-step auth-step-hidden" id="authStepPhone">
+                <div class="auth-input-group">
+                    <span class="auth-country-code">+1</span>
+                    <input type="tel" id="authPhone" class="auth-input" placeholder="(555) 123-4567" maxlength="14" autocomplete="tel">
+                </div>
+                <div class="auth-error" id="authPhoneError"></div>
+                <button class="auth-btn" id="authSendBtn">
+                    <span class="auth-btn-text">Send Verification Code</span>
+                    <span class="auth-btn-spinner"></span>
+                </button>
+            </div>
+
+            <!-- Step 2: OTP -->
+            <div class="auth-step auth-step-hidden" id="authStepOTP">
+                <p class="auth-otp-info">We sent a 6-digit code to <span id="authPhoneDisplay"></span></p>
+                <div class="auth-otp-inputs" id="authOtpInputs">
+                    <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" class="auth-otp-digit" data-index="0" autocomplete="one-time-code">
+                    <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" class="auth-otp-digit" data-index="1">
+                    <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" class="auth-otp-digit" data-index="2">
+                    <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" class="auth-otp-digit" data-index="3">
+                    <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" class="auth-otp-digit" data-index="4">
+                    <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" class="auth-otp-digit" data-index="5">
+                </div>
+                <div class="auth-error" id="authOtpError"></div>
+                <button class="auth-btn" id="authVerifyBtn">
+                    <span class="auth-btn-text">Verify & Enter</span>
+                    <span class="auth-btn-spinner"></span>
+                </button>
+                <button class="auth-resend" id="authResendBtn" disabled="">Resend code <span id="authResendTimer"></span></button>
+                <button class="auth-back" id="authBackBtn">← Change number</button>
+            </div>
+
+            <!-- Step 3: Success -->
+            <div class="auth-step auth-step-hidden" id="authStepSuccess">
+                <div class="auth-success-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                </div>
+                <p class="auth-success-text">Verified. Welcome to True Life Peptides.</p>
+            </div>
+
+            <!-- Step 4: Config Error -->
+            <div class="auth-step" id="authStepConfigError">
+                <div style="text-align:center;padding:20px 0;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="1.5" width="32" height="32" style="margin:0 auto 12px;display:block;">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"></path>
+                        <line x1="12" y1="9" x2="12" y2="13"></line>
+                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                    <p style="font-size:14px;color:#92400E;font-weight:600;margin-bottom:8px;">Authentication Not Configured</p>
+                    <p style="font-size:12px;color:rgba(120,53,15,0.7);line-height:1.6;">Supabase credentials are missing. Please configure <code>js/supabase-config.js</code> with your project URL and anon key.</p>
+                </div>
+            </div>
+
+            <p class="auth-disclaimer">By continuing, you confirm you are a qualified researcher and agree to use these compounds for research purposes only.</p>
+        </div>
+    </div>
+    <!-- DNA Strand Background -->
+    <div class="pp-molecule-overlay" aria-hidden="true"></div>
+
+    <!-- ======================== NAVBAR ======================== -->
+    <header class="navbar" id="navbar">
+        <div class="navbar-inner">
+            <a href="../" class="navbar-logo">
+                <img src="https://res.cloudinary.com/ddnhp0hzd/image/upload/v1773092087/image_copy_a5anwg.png" alt="True Life Peptides" class="nav-logo">
+                <span class="navbar-brand-text">True Life Peptides</span>
+            </a>
+            <nav class="navbar-links">
+                <a href="../" class="active">Home</a>
+                <a href="../products/">Products</a>
+                <div class="navbar-dropdown-wrap">
+                    <a href="../products/">Categories</a>
+                    <div class="navbar-dropdown">
+                        <a href="../products/#Recovery Compound">Recovery</a>
+                        <a href="../products/#Growth Compound">Growth</a>
+                        <a href="../products/#Metabolic Compound">Metabolic</a>
+                        <a href="../products/#Longevity Compound">Longevity</a>
+                        <a href="../products/#Antioxidant Compound">Antioxidant</a>
+                        <a href="../products/#Nootropic Compound">Nootropic</a>
+                    </div>
+                </div>
+                <a href="../about/">About</a>
+                <a href="../contact/">Contact</a>
+            </nav>
+            <div style="display:flex;align-items:center;gap:12px;">
+                <a href="../products/" class="navbar-cta">View Products</a>
+                <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="mobile-nav" id="mobileNav">
+        <a href="../">Home</a>
+        <a href="../products/">Products</a>
+        <a href="../about/">About</a>
+        <a href="../contact/">Contact</a>
+    </div>
+
+    <!-- ======================== TICKER ======================== -->
+    <div class="ticker">
+        <div class="ticker-track">
+            <div class="ticker-item"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"></circle><path d="M5 8l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.5"></path></svg> Manufactured in the USA</div>
+            <div class="ticker-item"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"></circle><path d="M5 8l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.5"></path></svg> Batch Produced, Batch Tested</div>
+            <div class="ticker-item"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"></circle><path d="M5 8l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.5"></path></svg> COA on Every Order</div>
+            <div class="ticker-item"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"></circle><path d="M5 8l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.5"></path></svg> Same-Day Shipping Before 2PM EST</div>
+            <div class="ticker-item"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"></circle><path d="M5 8l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.5"></path></svg> GMP-Compliant Facilities</div>
+            <div class="ticker-item"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"></circle><path d="M5 8l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.5"></path></svg> Manufactured in the USA</div>
+            <div class="ticker-item"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"></circle><path d="M5 8l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.5"></path></svg> Batch Produced, Batch Tested</div>
+            <div class="ticker-item"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"></circle><path d="M5 8l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.5"></path></svg> COA on Every Order</div>
+            <div class="ticker-item"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"></circle><path d="M5 8l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.5"></path></svg> Same-Day Shipping Before 2PM EST</div>
+        </div>
+    </div>
+
+    <!-- ======================== HERO ======================== -->
+    <section class="section" id="hero" style="padding:64px 0 52px;position:relative;z-index:1;">
+        <div style="max-width:var(--pp-max-w);margin:0 auto;padding:0 32px;display:grid;grid-template-columns:1fr 420px;gap:56px;align-items:center;">
+
+            <!-- Left: Hero text -->
+            <div class="reveal visible">
+                <div style="display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#1565C0;background:rgba(21,101,192,0.07);border:1px solid rgba(21,101,192,0.15);border-radius:20px;padding:6px 14px;margin-bottom:22px;">
+                    <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="7"></circle><path d="M5 8l2 2 4-4"></path></svg>
+                    USA-Manufactured & Third-Party Tested
+                </div>
+                <h1 style="font-size:54px;font-weight:700;letter-spacing:-2px;line-height:1.05;color:#0f1d3a;margin-bottom:20px;">Premium research<br>peptides, <span class="shimmer-text">trusted<br>by scientists.</span></h1>
+                <p style="font-size:16px;color:rgba(15,29,58,0.55);line-height:1.7;max-width:480px;margin-bottom:32px;">GMP-compliant synthesis. Independent HPLC & mass spectrometry verification. Full Certificate of Analysis on every order. No compromises.</p>
+                <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:40px;">
+                    <a href="../products/" class="btn-primary" style="font-size:14px;padding:13px 28px;">
+                        Browse Products
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+                    </a>
+                    <a href="../about/" class="btn-outline" style="font-size:14px;padding:13px 28px;">
+                        Our Standards
+                    </a>
+                </div>
+                <!-- Trust stats row -->
+                <div style="display:flex;align-items:center;gap:0;background:rgba(255,255,255,0.7);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.6);border-radius:14px;padding:16px 24px;max-width:480px;box-shadow:0 2px 18px rgba(21,101,192,0.07);">
+                    <div style="flex:1;text-align:center;">
+                        <div style="font-size:20px;font-weight:700;letter-spacing:-0.5px;color:#1565C0;">≥98%</div>
+                        <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:rgba(15,29,58,0.5);">Purity Min.</div>
+                    </div>
+                    <div style="width:1px;height:36px;background:rgba(21,101,192,0.1);"></div>
+                    <div style="flex:1;text-align:center;">
+                        <div style="font-size:20px;font-weight:700;letter-spacing:-0.5px;color:#1565C0;">20+</div>
+                        <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:rgba(15,29,58,0.5);">Compounds</div>
+                    </div>
+                    <div style="width:1px;height:36px;background:rgba(21,101,192,0.1);"></div>
+                    <div style="flex:1;text-align:center;">
+                        <div style="font-size:20px;font-weight:700;letter-spacing:-0.5px;color:#1565C0;">USA</div>
+                        <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:rgba(15,29,58,0.5);">Manufactured</div>
+                    </div>
+                    <div style="width:1px;height:36px;background:rgba(21,101,192,0.1);"></div>
+                    <div style="flex:1;text-align:center;">
+                        <div style="font-size:20px;font-weight:700;letter-spacing:-0.5px;color:#1565C0;">COA</div>
+                        <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:rgba(15,29,58,0.5);">Every Order</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Lab hero image -->
+            <div class="reveal visible" style="position:relative;">
+                <!-- Main image card -->
+                <div style="border-radius:24px;overflow:hidden;box-shadow:0 24px 64px rgba(21,101,192,0.18),0 8px 24px rgba(0,0,0,0.12);position:relative;">
+                    <img src="../assets/vials.png" alt="Research-grade pharmaceutical vials — True Life Peptides" style="width:100%;height:420px;object-fit:cover;object-position:center 40%;display:block;filter:brightness(0.92) contrast(1.08) saturate(1.05);" loading="eager">
+                    <!-- Blue tint overlay for brand consistency -->
+                    <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(13,71,161,0.15) 0%,rgba(21,101,192,0.05) 100%);pointer-events:none;"></div>
+                    <!-- Bottom badge overlay -->
+                    <div style="position:absolute;left:16px;right:16px;bottom:16px;background:rgba(255,255,255,0.9);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:14px;padding:13px 16px;display:flex;align-items:center;gap:12px;">
+                        <div style="width:36px;height:36px;border-radius:10px;background:#1565C0;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" width="18" height="18"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        </div>
+                        <div style="flex:1;min-width:0;">
+                            <div style="font-size:13px;font-weight:700;color:#0f1d3a;">GMP-manufactured · Third-party verified</div>
+                            <div style="font-size:11px;color:rgba(15,29,58,0.5);margin-top:1px;">Independent HPLC + MS on every batch. COA with every order.</div>
+                        </div>
+                        <div style="display:flex;align-items:center;gap:4px;flex-shrink:0;">
+                            <div style="width:8px;height:8px;border-radius:50%;background:#22c55e;animation:pulse 2s ease-in-out infinite;"></div>
+                            <span style="font-size:11px;font-weight:600;color:#16a34a;">In Stock</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Top right floating badge -->
+                <div style="position:absolute;top:-14px;right:-14px;background:#1565C0;color:white;border-radius:14px;padding:10px 16px;box-shadow:0 8px 24px rgba(21,101,192,0.35);z-index:2;">
+                    <div style="font-size:18px;font-weight:700;letter-spacing:-0.5px;">≥98%</div>
+                    <div style="font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;opacity:0.8;">Min. Purity</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================== CATEGORIES GRID ======================== -->
+    <section class="section reveal" style="padding:0 0 56px;position:relative;z-index:1;">
+        <div style="max-width:var(--pp-max-w);margin:0 auto;padding:0 32px;">
+            <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:28px;flex-wrap:wrap;">
+                <span class="pharma-section-label">Categories</span>
+                <h2 style="font-size:26px;font-weight:700;letter-spacing:-0.7px;color:#0f1d3a;flex:1;">Research compound categories</h2>
+                <a href="../products/" class="pharma-view-all">View all →</a>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;">
+                <!-- Recovery -->
+                <a href="../products/#Recovery Compound" class="home-cat-card">
+                    <div class="home-cat-top">
+                        <div class="home-cat-icon" style="background:rgba(239,68,68,0.08);color:#dc2626;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path></svg>
+                        </div>
+                        <span class="home-cat-arrow">→</span>
+                    </div>
+                    <span class="home-cat-name">Recovery</span>
+                    <span class="home-cat-desc">BPC 157, GHK-CU, Tirzepatide</span>
+                </a>
+                <!-- Growth -->
+                <a href="../products/#Growth Compound" class="home-cat-card">
+                    <div class="home-cat-top">
+                        <div class="home-cat-icon" style="background:rgba(21,101,192,0.08);color:#1565C0;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18"><path d="M18 20V10M12 20V4M6 20v-6"></path></svg>
+                        </div>
+                        <span class="home-cat-arrow">→</span>
+                    </div>
+                    <span class="home-cat-name">Growth</span>
+                    <span class="home-cat-desc">CJC-1295, TB 500, IGF-1 LR3</span>
+                </a>
+                <!-- Metabolic -->
+                <a href="../products/#Metabolic Compound" class="home-cat-card home-cat-card--accent">
+                    <div class="home-cat-top">
+                        <div class="home-cat-icon" style="background:rgba(255,255,255,0.15);color:white;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4"></path></svg>
+                        </div>
+                        <span class="home-cat-arrow" style="color:rgba(255,255,255,0.7);">→</span>
+                    </div>
+                    <span class="home-cat-name" style="color:white;">Metabolic</span>
+                    <span class="home-cat-desc" style="color:rgba(255,255,255,0.72);">GLP3-R, Ipamorelin</span>
+                </a>
+                <!-- Longevity -->
+                <a href="../products/#Longevity Compound" class="home-cat-card">
+                    <div class="home-cat-top">
+                        <div class="home-cat-icon" style="background:rgba(139,92,246,0.08);color:#7c3aed;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+                        </div>
+                        <span class="home-cat-arrow">→</span>
+                    </div>
+                    <span class="home-cat-name">Longevity</span>
+                    <span class="home-cat-desc">MOTS-C, Sermorelin</span>
+                </a>
+                <!-- Antioxidant -->
+                <a href="../products/#Antioxidant Compound" class="home-cat-card">
+                    <div class="home-cat-top">
+                        <div class="home-cat-icon" style="background:rgba(34,197,94,0.08);color:#16a34a;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18"><path d="M12 22V12M12 12s-4-3-4-7a4 4 0 018 0c0 4-4 7-4 7z"></path></svg>
+                        </div>
+                        <span class="home-cat-arrow">→</span>
+                    </div>
+                    <span class="home-cat-name">Antioxidant</span>
+                    <span class="home-cat-desc">NAD+</span>
+                </a>
+                <!-- Nootropic -->
+                <a href="../products/#Nootropic Compound" class="home-cat-card">
+                    <div class="home-cat-top">
+                        <div class="home-cat-icon" style="background:rgba(245,158,11,0.08);color:#d97706;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18"><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01"></path><circle cx="12" cy="12" r="10"></circle></svg>
+                        </div>
+                        <span class="home-cat-arrow">→</span>
+                    </div>
+                    <span class="home-cat-name">Nootropic</span>
+                    <span class="home-cat-desc">Selank, Semax</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================== FEATURED PRODUCTS ======================== -->
+    <section class="section reveal-stagger" style="padding:0 0 56px;position:relative;z-index:1;">
+        <div style="max-width:var(--pp-max-w);margin:0 auto;padding:0 32px;">
+            <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:28px;flex-wrap:wrap;">
+                <span class="pharma-section-label">Featured</span>
+                <h2 style="font-size:26px;font-weight:700;letter-spacing:-0.7px;color:#0f1d3a;flex:1;">Popular research compounds</h2>
+                <a href="../products/" class="pharma-view-all">Full catalog →</a>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+                <!-- BPC 157 -->
+                <div class="product-card-full">
+                    <span class="product-card-category">Recovery</span>
+                    <span class="product-card-name">BPC 157</span>
+                    <span class="product-card-price">5mg / 10mg</span>
+                    <a href="../products/" class="btn-primary" style="font-size:12px;padding:8px 14px;margin-top:4px;">
+                        Inquire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+                    </a>
+                    <div class="product-img-soon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="M21 15l-5-5L5 21"></path></svg>
+                        <span>Image Coming Soon</span>
+                    </div>
+                </div>
+                <!-- MOTS-C -->
+                <div class="product-card-full">
+                    <span class="product-card-category">Longevity</span>
+                    <span class="product-card-name">MOTS-C</span>
+                    <span class="product-card-price">10 / 20 / 30mg</span>
+                    <a href="../products/" class="btn-primary" style="font-size:12px;padding:8px 14px;margin-top:4px;">
+                        Inquire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+                    </a>
+                    <div class="product-img-soon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="M21 15l-5-5L5 21"></path></svg>
+                        <span>Image Coming Soon</span>
+                    </div>
+                </div>
+                <!-- NAD+ -->
+                <div class="product-card-full">
+                    <span class="product-card-category">Antioxidant</span>
+                    <span class="product-card-name">NAD+</span>
+                    <span class="product-card-price">100mg / 500mg</span>
+                    <a href="../products/" class="btn-primary" style="font-size:12px;padding:8px 14px;margin-top:4px;">
+                        Inquire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+                    </a>
+                    <div class="product-img-soon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="M21 15l-5-5L5 21"></path></svg>
+                        <span>Image Coming Soon</span>
+                    </div>
+                </div>
+                <!-- Tirzepatide -->
+                <div class="product-card-full">
+                    <span class="product-card-category">Metabolic</span>
+                    <span class="product-card-name">Tirzepatide</span>
+                    <span class="product-card-price">10mg / 20mg</span>
+                    <a href="../products/" class="btn-primary" style="font-size:12px;padding:8px 14px;margin-top:4px;">
+                        Inquire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+                    </a>
+                    <div class="product-img-soon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="M21 15l-5-5L5 21"></path></svg>
+                        <span>Image Coming Soon</span>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align:center;margin-top:24px;">
+                <a href="../products/" class="btn-outline" style="font-size:13px;padding:11px 28px;">View all 20 compounds →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================== WHY TLP ======================== -->
+    <section class="section reveal" style="padding:0 0 56px;position:relative;z-index:1;">
+        <div style="max-width:var(--pp-max-w);margin:0 auto;padding:0 32px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;">
+            <div>
+                <span class="pharma-section-label" style="margin-bottom:14px;display:inline-flex;">Why True Life Peptides</span>
+                <h2 style="font-size:32px;font-weight:700;letter-spacing:-0.9px;color:#0f1d3a;line-height:1.15;margin-bottom:16px;">Built on science.<br>Backed by documentation.</h2>
+                <p style="font-size:15px;color:rgba(15,29,58,0.55);line-height:1.7;margin-bottom:28px;">We remove the opacity from the research compound supply chain. Every step from synthesis to your lab is documented, independently verified, and traceable.</p>
+                <ul style="list-style:none;display:flex;flex-direction:column;gap:14px;margin-bottom:28px;">
+                    <li style="display:flex;align-items:flex-start;gap:12px;">
+                        <div style="width:22px;height:22px;border-radius:50%;background:rgba(21,101,192,0.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">
+                            <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="#1565C0" stroke-width="1.5"><path d="M3 8l3 3 7-7"></path></svg>
+                        </div>
+                        <div>
+                            <div style="font-size:14px;font-weight:600;color:#0f1d3a;">GMP-compliant US manufacturing</div>
+                            <div style="font-size:12px;color:rgba(15,29,58,0.5);margin-top:1px;">Advanced solid-phase peptide synthesis in domestic facilities. Zero overseas outsourcing.</div>
+                        </div>
+                    </li>
+                    <li style="display:flex;align-items:flex-start;gap:12px;">
+                        <div style="width:22px;height:22px;border-radius:50%;background:rgba(21,101,192,0.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">
+                            <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="#1565C0" stroke-width="1.5"><path d="M3 8l3 3 7-7"></path></svg>
+                        </div>
+                        <div>
+                            <div style="font-size:14px;font-weight:600;color:#0f1d3a;">Independent HPLC + mass spectrometry</div>
+                            <div style="font-size:12px;color:rgba(15,29,58,0.5);margin-top:1px;">Every batch independently verified by accredited third-party laboratories before release.</div>
+                        </div>
+                    </li>
+                    <li style="display:flex;align-items:flex-start;gap:12px;">
+                        <div style="width:22px;height:22px;border-radius:50%;background:rgba(21,101,192,0.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">
+                            <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="#1565C0" stroke-width="1.5"><path d="M3 8l3 3 7-7"></path></svg>
+                        </div>
+                        <div>
+                            <div style="font-size:14px;font-weight:600;color:#0f1d3a;">COA on every single order</div>
+                            <div style="font-size:12px;color:rgba(15,29,58,0.5);margin-top:1px;">Full chromatogram, identity confirmation, lot number, and lab accreditation data included.</div>
+                        </div>
+                    </li>
+                    <li style="display:flex;align-items:flex-start;gap:12px;">
+                        <div style="width:22px;height:22px;border-radius:50%;background:rgba(21,101,192,0.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">
+                            <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="#1565C0" stroke-width="1.5"><path d="M3 8l3 3 7-7"></path></svg>
+                        </div>
+                        <div>
+                            <div style="font-size:14px;font-weight:600;color:#0f1d3a;">Same-day shipping before 2PM EST</div>
+                            <div style="font-size:12px;color:rgba(15,29,58,0.5);margin-top:1px;">Temperature-controlled, discreet, fully insured packaging on every domestic shipment.</div>
+                        </div>
+                    </li>
+                </ul>
+                <a href="../about/" class="btn-primary" style="font-size:13px;padding:11px 24px;">Read our full standards</a>
+            </div>
+            <!-- Right: 2x2 stat cards -->
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+                <div style="background:rgba(255,255,255,0.78);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.65);border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:8px;transition:all 0.3s ease;">
+                    <div style="font-size:36px;font-weight:700;letter-spacing:-1px;color:#1565C0;">≥98%</div>
+                    <div style="font-size:13px;font-weight:600;color:#0f1d3a;">Minimum Purity</div>
+                    <div style="font-size:12px;color:rgba(15,29,58,0.5);line-height:1.4;">No batch released below research-grade purity threshold.</div>
+                </div>
+                <div style="background:#1565C0;border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:8px;">
+                    <div style="font-size:36px;font-weight:700;letter-spacing:-1px;color:white;">500+</div>
+                    <div style="font-size:13px;font-weight:600;color:white;">Batches Tested</div>
+                    <div style="font-size:12px;color:rgba(255,255,255,0.72);line-height:1.4;">Every production run independently verified before sale.</div>
+                </div>
+                <div style="background:rgba(255,255,255,0.78);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.65);border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:8px;">
+                    <div style="font-size:36px;font-weight:700;letter-spacing:-1px;color:#1565C0;">2PM</div>
+                    <div style="font-size:13px;font-weight:600;color:#0f1d3a;">Same-Day Cutoff</div>
+                    <div style="font-size:12px;color:rgba(15,29,58,0.5);line-height:1.4;">Order before 2PM EST — ships today, guaranteed.</div>
+                </div>
+                <div style="background:rgba(255,255,255,0.78);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.65);border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:8px;">
+                    <div style="font-size:36px;font-weight:700;letter-spacing:-1px;color:#1565C0;">20+</div>
+                    <div style="font-size:13px;font-weight:600;color:#0f1d3a;">Compounds</div>
+                    <div style="font-size:12px;color:rgba(15,29,58,0.5);line-height:1.4;">From recovery and growth to longevity and nootropics.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================== 3 TRUST PILLARS ======================== -->
+    <section class="section reveal-stagger" style="padding:0 0 56px;position:relative;z-index:1;">
+        <div style="max-width:var(--pp-max-w);margin:0 auto;padding:0 32px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+            <div class="feature-card glow-border" style="flex-direction:column;padding:28px 32px;">
+                <div class="feature-card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    </svg>
+                </div>
+                <div class="feature-card-text">
+                    <h4>GMP Manufacturing</h4>
+                    <p>Every compound synthesized in Good Manufacturing Practice compliant US facilities using pharmaceutical-grade reagents and documented QC systems.</p>
+                </div>
+            </div>
+            <div class="feature-card glow-border" style="flex-direction:column;padding:28px 32px;">
+                <div class="feature-card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M9 12l2 2 4-4"></path><circle cx="12" cy="12" r="10"></circle>
+                    </svg>
+                </div>
+                <div class="feature-card-text">
+                    <h4>Third-Party Lab Verified</h4>
+                    <p>Independent HPLC purity analysis and mass spectrometry identity confirmation by accredited US laboratories. Full COA documentation with every order.</p>
+                </div>
+            </div>
+            <div class="feature-card glow-border" style="flex-direction:column;padding:28px 32px;">
+                <div class="feature-card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle>
+                    </svg>
+                </div>
+                <div class="feature-card-text">
+                    <h4>Same-Day Shipping</h4>
+                    <p>Orders placed before 2PM EST ship the same business day. Temperature-controlled, discreet, insured packaging on every domestic order.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================== FAQ ======================== -->
+    <section class="section reveal" id="faq" style="padding:0 0 56px;position:relative;z-index:1;">
+        <div style="max-width:var(--pp-max-w);margin:0 auto;padding:0 32px;">
+            <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:28px;flex-wrap:wrap;">
+                <span class="pharma-section-label">Support</span>
+                <h2 style="font-size:26px;font-weight:700;letter-spacing:-0.7px;color:#0f1d3a;">Frequently asked questions</h2>
+            </div>
+            <div class="faq-section">
+                <div class="faq-item">
+                    <div class="faq-question">What are research peptides used for?</div>
+                    <div class="faq-answer">Peptides are short chains of amino acids used in laboratory research to study biological processes, cellular signaling, and molecular interactions. All products sold by True Life Peptides are intended for in vitro laboratory research use only by qualified professionals.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Are your peptides independently tested?</div>
+                    <div class="faq-answer">Yes. Every production batch is independently tested by accredited third-party US laboratories using HPLC purity analysis and mass spectrometry identity confirmation. A Certificate of Analysis (COA) with the full chromatogram and lot number is available for every batch.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How fast is shipping?</div>
+                    <div class="faq-answer">Orders placed before 2PM EST ship the same business day. Standard delivery takes 2–3 business days within the continental United States. All shipments are temperature-controlled, discreet, and fully insured.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Where are your products manufactured?</div>
+                    <div class="faq-answer">All compounds are synthesized in GMP-compliant facilities in the United States using advanced solid-phase peptide synthesis (SPPS). We never outsource production overseas.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Do you offer wholesale or institutional pricing?</div>
+                    <div class="faq-answer">Yes. We work with research institutions, licensed laboratories, and qualified distributors. Contact us directly at +1 (972) 919-0219 or through our contact page for volume pricing and wholesale account setup.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================== DISCLAIMER ======================== -->
+    <section class="section reveal" style="padding:0 0 48px;position:relative;z-index:1;">
+        <div style="max-width:var(--pp-max-w);margin:0 auto;padding:0 32px;">
+            <div style="display:flex;align-items:flex-start;gap:16px;background:rgba(255,245,235,0.85);backdrop-filter:blur(8px);border:1px solid rgba(245,158,11,0.2);border-radius:14px;padding:20px 24px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="1.5" width="20" height="20" style="flex-shrink:0;margin-top:2px;"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                <p style="font-size:13px;color:rgba(120,53,15,0.8);line-height:1.6;margin:0;"><strong style="color:#92400E;">For Research Use Only.</strong> All products sold by True Life Peptides are intended exclusively for in vitro laboratory research by qualified professionals. These compounds are not approved by the FDA for human or animal use, diagnostic, or therapeutic purposes. By purchasing, the buyer agrees to comply with all applicable federal, state, and local laws and regulations.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================== CTA ======================== -->
+    <section class="section reveal" style="padding:0 0 80px;position:relative;z-index:1;">
+        <div style="max-width:var(--pp-max-w);margin:0 auto;padding:0 32px;">
+            <div style="background:linear-gradient(135deg,#1565C0,#0D47A1);border-radius:24px;padding:56px 48px;text-align:center;position:relative;overflow:hidden;">
+                <div style="position:absolute;top:-40px;right:-40px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,0.04);pointer-events:none;"></div>
+                <div style="position:absolute;bottom:-50px;left:-30px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,0.04);pointer-events:none;"></div>
+                <div style="position:relative;z-index:1;">
+                    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.6);margin-bottom:14px;">Ready to order?</div>
+                    <h2 style="font-size:36px;font-weight:700;color:white;letter-spacing:-1px;margin-bottom:14px;">Start your research with<br>compounds you can verify.</h2>
+                    <p style="font-size:15px;color:rgba(255,255,255,0.7);max-width:480px;margin:0 auto 32px;line-height:1.65;">Browse our full catalog of USA-manufactured research peptides. Every compound backed by independent testing and full COA documentation.</p>
+                    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+                        <a href="../products/" style="display:inline-flex;align-items:center;gap:8px;background:white;color:#1565C0;padding:13px 28px;border-radius:10px;font-size:14px;font-weight:700;transition:all 0.2s ease;">
+                            Browse Products
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+                        </a>
+                        <a href="../contact/" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.12);color:white;border:1px solid rgba(255,255,255,0.3);padding:13px 28px;border-radius:10px;font-size:14px;font-weight:600;">
+                            Contact Us
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================== FOOTER ======================== -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="https://res.cloudinary.com/ddnhp0hzd/image/upload/v1773092087/image_copy_a5anwg.png" alt="True Life Peptides">
+                <p>True Life Peptides offers premium research-grade peptides manufactured and batch tested in the USA. All products are for laboratory research use only.</p>
+                <a href="tel:+19729190219" class="footer-phone">+1 (972) 919-0219</a>
+            </div>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Products</h4>
+                    <a href="../products/">All Products</a>
+                    <a href="../products/#Recovery Compound">Recovery</a>
+                    <a href="../products/#Growth Compound">Growth</a>
+                    <a href="../products/#Longevity Compound">Longevity</a>
+                    <a href="../products/#Antioxidant Compound">Antioxidant</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <a href="../about/">About Us</a>
+                    <a href="../about/#coa">COA Documentation</a>
+                    <a href="../contact/">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <a href="#faq">FAQ</a>
+                    <a href="../contact/">Get Help</a>
+                    <a href="../contact/">Shipping Info</a>
+                    <a href="tel:+19729190219">Text Us</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom-row" style="padding:20px 0 0;max-width:var(--pp-max-w);margin:24px auto 0;border-top:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+            <span class="footer-copyright">© 2026 True Life Peptides. All rights reserved. For research use only.</span>
+            <div class="footer-payments">
+                <span class="footer-payments-label">Accepted</span>
+                <span class="payment-icon" title="Visa"><img src="../assets/payment-icons/visa.svg" alt="Visa"></span>
+                <span class="payment-icon" title="Mastercard"><img src="../assets/payment-icons/mastercard.svg" alt="Mastercard"></span>
+                <span class="payment-icon" title="AmEx"><img src="../assets/payment-icons/amex.svg" alt="AmEx"></span>
+                <span class="payment-icon" title="PayPal"><img src="../assets/payment-icons/paypal.svg" alt="PayPal"></span>
+                <span class="payment-icon" title="Apple Pay"><img src="../assets/payment-icons/apple-pay.svg" alt="Apple Pay"></span>
+                <span class="payment-icon" title="Shop Pay"><img src="../assets/payment-icons/shop-pay.svg" alt="Shop Pay"></span>
+                <span class="payment-icon" title="Klarna"><img src="../assets/payment-icons/klarna.svg" alt="Klarna"></span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/supabase-config.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/script.js"></script>
+    <script>
+    // Navbar scroll shadow
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 20); });
+
+    // Mobile menu
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    if (menuToggle) {
+        menuToggle.addEventListener('click', () => {
+            mobileNav.classList.toggle('open');
+            menuToggle.classList.toggle('open');
+        });
+    }
+    </script>
+</body></html>
