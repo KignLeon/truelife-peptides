@@ -489,7 +489,9 @@
         <div class="admin-modal">
             <p class="admin-modal-title" id="adminModalTitle">Admin Access</p>
             <p class="admin-modal-sub">Enter your access code to continue.</p>
-            <input type="password" id="adminCodeInput" class="admin-code-input" placeholder="Access code" autocomplete="off" aria-label="Admin access code" maxlength="64">
+            <input type="password" id="adminCodeInput" class="admin-code-input" placeholder="Access code"
+                   autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false"
+                   inputmode="text" aria-label="Admin access code" maxlength="64">
             <button class="admin-submit-btn" id="adminSubmitBtn">Enter Site</button>
             <button class="admin-cancel" id="adminCancelBtn">Cancel</button>
             <p class="admin-error-msg" id="adminErrorMsg" role="alert" aria-live="polite"></p>
@@ -500,19 +502,44 @@
     (function () {
         'use strict';
 
-        // ── Admin Code Hash (SHA-256 — plaintext code never stored here) ──
-        // To change: compute sha256 of your new code and replace the value below.
-        // Generator: https://emn178.github.io/online-tools/sha256.html
-        const ADMIN_CODE_HASH = '07ca00bac818489984f18d30d8f39312705ec17668fdf2405cbf18f093293187';
+        // ─────────────────────────────────────────────────────────────────
+        //  ADMIN CONFIG
+        //  ADMIN_CODE_HASH  = SHA-256 of your plaintext code (never store plaintext)
+        //  URL_KEY_HASH     = SHA-256 of your ?key= URL parameter value
+        //  Both hashes can be the same value if you use one code for both.
+        //  Generator: https://emn178.github.io/online-tools/sha256.html
+        // ─────────────────────────────────────────────────────────────────
+        const ADMIN_CODE_HASH = 'aa403937578dcc92a189268d08a677a1d27b1909659146fb01ea31d229d2785c'; // SHA-256 of tlp2026
+        const URL_KEY_HASH    = 'aa403937578dcc92a189268d08a677a1d27b1909659146fb01ea31d229d2785c'; // SHA-256 of tlp2026
 
-        const REDIRECT_TARGET = './app/';
-        const STORAGE_KEY     = 'tlp_admin_bypass';
-        const BYPASS_TTL_MS   = 8 * 60 * 60 * 1000; // 8h
-        const TRIPLE_KEY      = 'a';
-        const TRIPLE_COUNT    = 3;
-        const TRIPLE_WINDOW   = 1800; // ms
+        const REDIRECT_TARGET   = './app/';
+        const STORAGE_KEY       = 'tlp_admin_bypass';
+        const BYPASS_TTL_MS     = 8 * 60 * 60 * 1000; // 8 hours
 
-        // ── Check existing bypass ──
+        // ── Secret trigger settings ──
+        const LOGO_TAP_COUNT    = 5;      // tap logo this many times
+        const LOGO_TAP_WINDOW   = 2500;   // ms window for taps
+        const LOGO_LONGPRESS_MS = 2000;   // hold duration for long-press
+        const TRIPLE_KEY        = 'a';    // desktop: press this key 3×
+        const TRIPLE_COUNT      = 3;
+        const TRIPLE_WINDOW     = 1800;   // ms
+
+        // ── SHA-256 via SubtleCrypto ──
+        async function sha256(str) {
+            const buf  = new TextEncoder().encode(str);
+            const hash = await crypto.subtle.digest('SHA-256', buf);
+            return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        // Constant-time string compare — prevents timing attacks
+        function timingSafeEqual(a, b) {
+            if (a.length !== b.length) return false;
+            let result = 0;
+            for (let i = 0; i < a.length; i++) result |= a.charCodeAt(i) ^ b.charCodeAt(i);
+            return result === 0;
+        }
+
+        // ── Bypass session helpers ──
         function hasBypass() {
             try {
                 const raw = localStorage.getItem(STORAGE_KEY);
@@ -526,68 +553,51 @@
             try { localStorage.setItem(STORAGE_KEY, JSON.stringify({ ts: Date.now() })); } catch {}
         }
 
-        if (hasBypass()) {
+        function grantAccess() {
+            setBypass();
             window.location.replace(REDIRECT_TARGET);
-            return;
         }
 
-        // ── SHA-256 via SubtleCrypto ──
-        async function sha256(str) {
-            const buf  = new TextEncoder().encode(str);
-            const hash = await crypto.subtle.digest('SHA-256', buf);
-            return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
-        }
+        // ── If already authenticated, skip straight through ──
+        if (hasBypass()) { window.location.replace(REDIRECT_TARGET); return; }
 
-        // ── Triple-key listener (press A three times within 1.8s) ──
-        let keyHits = 0;
-        let keyTimer = null;
-
-        document.addEventListener('keydown', function (e) {
-            // Only fire when not in an input field
-            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-            if (e.key.toLowerCase() !== TRIPLE_KEY) { keyHits = 0; clearTimeout(keyTimer); return; }
-
-            keyHits++;
-            clearTimeout(keyTimer);
-
-            if (keyHits >= TRIPLE_COUNT) {
-                keyHits = 0;
-                openAdminModal();
-            } else {
-                keyTimer = setTimeout(function () { keyHits = 0; }, TRIPLE_WINDOW);
-            }
-        });
-
-        // ── Logo 5x click (Option B fallback for mobile) ──
-        let logoClicks = 0;
-        let logoTimer  = null;
-        const logo = document.getElementById('csLogo');
-        if (logo) {
-            logo.addEventListener('click', function () {
-                logoClicks++;
-                clearTimeout(logoTimer);
-                if (logoClicks >= 5) {
-                    logoClicks = 0;
-                    openAdminModal();
-                } else {
-                    logoTimer = setTimeout(function () { logoClicks = 0; }, 2500);
+        // ═══════════════════════════════════════════════════════════════
+        //  URL KEY BYPASS  (?key=yourSecretKey)
+        //  Instant redirect — no modal — just append ?key=… to the URL
+        //  This is safe: only the hash is stored in code, never plaintext
+        // ═══════════════════════════════════════════════════════════════
+        (async function checkUrlKey() {
+            const params = new URLSearchParams(window.location.search);
+            const urlKey = params.get('key');
+            if (!urlKey) return;
+            try {
+                const hash = await sha256(urlKey);
+                if (timingSafeEqual(hash, URL_KEY_HASH)) {
+                    // Clean the key from the URL bar before redirecting
+                    const cleanUrl = window.location.pathname;
+                    window.history.replaceState({}, '', cleanUrl);
+                    grantAccess();
                 }
-            });
-        }
+            } catch {}
+            // Wrong key — fall through silently, page stays as Coming Soon
+        })();
 
-        // ── Admin modal control ──
-        const overlay       = document.getElementById('adminOverlay');
-        const codeInput     = document.getElementById('adminCodeInput');
-        const submitBtn     = document.getElementById('adminSubmitBtn');
-        const cancelBtn     = document.getElementById('adminCancelBtn');
-        const errorMsg      = document.getElementById('adminErrorMsg');
+        // ═══════════════════════════════════════════════════════════════
+        //  MODAL — Admin Code Entry
+        // ═══════════════════════════════════════════════════════════════
+        const overlay   = document.getElementById('adminOverlay');
+        const codeInput = document.getElementById('adminCodeInput');
+        const submitBtn = document.getElementById('adminSubmitBtn');
+        const cancelBtn = document.getElementById('adminCancelBtn');
+        const errorMsg  = document.getElementById('adminErrorMsg');
 
         function openAdminModal() {
             overlay.classList.add('open');
             errorMsg.textContent = '';
             codeInput.value = '';
             codeInput.classList.remove('error');
-            setTimeout(function () { codeInput.focus(); }, 80);
+            // Delay focus so iOS/Android keyboard opens reliably
+            setTimeout(function () { codeInput.focus(); }, 150);
         }
 
         function closeAdminModal() {
@@ -598,38 +608,23 @@
         }
 
         cancelBtn.addEventListener('click', closeAdminModal);
-
-        overlay.addEventListener('click', function (e) {
-            if (e.target === overlay) closeAdminModal();
-        });
-
+        overlay.addEventListener('click', function (e) { if (e.target === overlay) closeAdminModal(); });
         document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape' && overlay.classList.contains('open')) closeAdminModal();
         });
 
-        // ── Verify code ──
-        submitBtn.addEventListener('click', verifyCode);
-        codeInput.addEventListener('keydown', function (e) {
-            if (e.key === 'Enter') verifyCode();
-        });
-
+        // ── Verify entered code ──
         async function verifyCode() {
             const raw = codeInput.value.trim();
             if (!raw) return;
-
             submitBtn.disabled = true;
             submitBtn.textContent = 'Verifying…';
-            errorMsg.textContent  = '';
-
+            errorMsg.textContent = '';
             try {
                 const hash = await sha256(raw);
-
                 if (timingSafeEqual(hash, ADMIN_CODE_HASH)) {
-                    setBypass();
                     submitBtn.textContent = '✓ Access granted';
-                    setTimeout(function () {
-                        window.location.replace(REDIRECT_TARGET);
-                    }, 500);
+                    setTimeout(grantAccess, 500);
                 } else {
                     codeInput.classList.add('error');
                     errorMsg.textContent = 'Incorrect code. Please try again.';
@@ -637,51 +632,103 @@
                     setTimeout(function () { codeInput.classList.remove('error'); }, 400);
                     submitBtn.disabled = false;
                     submitBtn.textContent = 'Enter Site';
-                    codeInput.focus();
+                    setTimeout(function () { codeInput.focus(); }, 80);
                 }
-            } catch (err) {
+            } catch {
                 errorMsg.textContent = 'Verification error. Please retry.';
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'Enter Site';
             }
         }
 
-        // Constant-time string comparison to prevent timing attacks
-        function timingSafeEqual(a, b) {
-            if (a.length !== b.length) return false;
-            let result = 0;
-            for (let i = 0; i < a.length; i++) {
-                result |= a.charCodeAt(i) ^ b.charCodeAt(i);
-            }
-            return result === 0;
+        submitBtn.addEventListener('click', verifyCode);
+        codeInput.addEventListener('keydown', function (e) { if (e.key === 'Enter') verifyCode(); });
+
+        // ═══════════════════════════════════════════════════════════════
+        //  SECRET TRIGGERS — all mobile-compatible
+        // ═══════════════════════════════════════════════════════════════
+
+        // ── 1. DESKTOP: Triple-A keystroke ──
+        let keyHits = 0, keyTimer = null;
+        document.addEventListener('keydown', function (e) {
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+            if (e.key.toLowerCase() !== TRIPLE_KEY) { keyHits = 0; clearTimeout(keyTimer); return; }
+            keyHits++;
+            clearTimeout(keyTimer);
+            if (keyHits >= TRIPLE_COUNT) { keyHits = 0; openAdminModal(); }
+            else { keyTimer = setTimeout(function () { keyHits = 0; }, TRIPLE_WINDOW); }
+        });
+
+        // ── 2. MOBILE + DESKTOP: Logo 5× rapid tap ──
+        let logoTaps = 0, logoTapTimer = null;
+        const logo = document.getElementById('csLogo');
+        if (logo) {
+            // Prevent default on touchend so it doesn't also fire click (double-count)
+            logo.addEventListener('touchend', function (e) {
+                e.preventDefault();
+                logoTaps++;
+                clearTimeout(logoTapTimer);
+                if (logoTaps >= LOGO_TAP_COUNT) { logoTaps = 0; openAdminModal(); }
+                else { logoTapTimer = setTimeout(function () { logoTaps = 0; }, LOGO_TAP_WINDOW); }
+            }, { passive: false });
+
+            // Desktop click (touchend preventDefault stops this on touch, so no double-count)
+            logo.addEventListener('click', function () {
+                logoTaps++;
+                clearTimeout(logoTapTimer);
+                if (logoTaps >= LOGO_TAP_COUNT) { logoTaps = 0; openAdminModal(); }
+                else { logoTapTimer = setTimeout(function () { logoTaps = 0; }, LOGO_TAP_WINDOW); }
+            });
+
+            // ── 3. MOBILE: Long-press (hold 2s) on logo ──
+            let longPressTimer = null;
+            logo.addEventListener('touchstart', function (e) {
+                longPressTimer = setTimeout(function () {
+                    logoTaps = 0;
+                    clearTimeout(logoTapTimer);
+                    openAdminModal();
+                }, LOGO_LONGPRESS_MS);
+            }, { passive: true });
+
+            logo.addEventListener('touchend', function () { clearTimeout(longPressTimer); }, { passive: true });
+            logo.addEventListener('touchmove', function () { clearTimeout(longPressTimer); }, { passive: true });
+            // Also support mouse long-press on desktop
+            logo.addEventListener('mousedown', function () {
+                longPressTimer = setTimeout(function () {
+                    logoTaps = 0;
+                    clearTimeout(logoTapTimer);
+                    openAdminModal();
+                }, LOGO_LONGPRESS_MS);
+            });
+            logo.addEventListener('mouseup',   function () { clearTimeout(longPressTimer); });
+            logo.addEventListener('mouseleave', function () { clearTimeout(longPressTimer); });
         }
 
-        // ── Email form (UI only, no backend) ──
+        // ═══════════════════════════════════════════════════════════════
+        //  EMAIL FORM (UI only — no backend required)
+        // ═══════════════════════════════════════════════════════════════
         const emailForm  = document.getElementById('emailForm');
         const emailInput = document.getElementById('emailInput');
         const emailNote  = document.getElementById('emailNote');
-        const submitEmail = document.getElementById('emailSubmitBtn');
 
         if (emailForm) {
             emailForm.addEventListener('submit', function (e) {
                 e.preventDefault();
                 const val = emailInput.value.trim();
-                if (!val || !/^[^s@]+@[^s@]+.[^s@]+$/.test(val)) {
+                if (!val || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
                     emailInput.focus();
                     emailInput.style.borderColor = 'rgba(239,68,68,0.5)';
                     setTimeout(function () { emailInput.style.borderColor = ''; }, 1500);
                     return;
                 }
-                // Store locally (no backend)
                 try {
                     const list = JSON.parse(localStorage.getItem('tlp_waitlist') || '[]');
                     if (!list.includes(val)) list.push(val);
                     localStorage.setItem('tlp_waitlist', JSON.stringify(list));
                 } catch {}
-
-                emailForm.style.display    = 'none';
-                emailNote.style.display    = 'block';
-                emailNote.style.marginTop  = '0';
+                emailForm.style.display      = 'none';
+                emailNote.style.display      = 'block';
+                emailNote.style.marginTop    = '0';
                 emailNote.style.marginBottom = '52px';
             });
         }
