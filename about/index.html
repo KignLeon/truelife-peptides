@@ -44,6 +44,7 @@
                 </div>
                 <a href="./" class="active">About</a>
                 <a href="../contact/">Contact</a>
+                <a href="../blog/">Blog</a>
             </nav>
             <div style="display:flex;align-items:center;gap:12px;">
                 <a href="../products/" class="navbar-cta">View Products</a>
@@ -56,6 +57,7 @@
         <a href="../products/">Products</a>
         <a href="./" class="active">About</a>
         <a href="../contact/">Contact</a>
+        <a href="../blog/">Blog</a>
     </div>
 
     <!-- ======================== TICKER ======================== -->
@@ -98,8 +100,8 @@
                 <span class="stat-label">Batches Independently Tested</span>
             </div>
             <div class="about-stat">
-                <span class="stat-number">24h</span>
-                <span class="stat-label">Same-Day Shipping Cutoff</span>
+                <span class="stat-number">2PM</span>
+                <span class="stat-label">Same-Day Shipping Cutoff (EST)</span>
             </div>
             <div class="about-stat">
                 <span class="stat-number">USA</span>
@@ -407,9 +409,22 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="../js/supabase-config.js"></script>
-    <script src="../js/auth.js"></script>
     <script src="../js/script.js"></script>
+    <script>
+    // Mobile menu
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    if (menuToggle) {
+        menuToggle.addEventListener('click', () => {
+            mobileNav.classList.toggle('open');
+            menuToggle.classList.toggle('open');
+        });
+    }
+    // Navbar scroll
+    const navbar = document.getElementById('navbar');
+    if (navbar) {
+        window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 20); });
+    }
+    </script>
 </body>
 </html>

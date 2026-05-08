@@ -45,6 +45,7 @@
                 </div>
                 <a href="../about/">About</a>
                 <a href="../contact/">Contact</a>
+                <a href="../blog/">Blog</a>
             </nav>
             <div style="display:flex;align-items:center;gap:12px;">
                 <a href="../contact/" class="navbar-cta">Inquire Now</a>
@@ -57,6 +58,7 @@
         <a href="./" class="active">Products</a>
         <a href="../about/">About</a>
         <a href="../contact/">Contact</a>
+        <a href="../blog/">Blog</a>
     </div>
 
     <!-- ======================== TICKER ======================== -->
@@ -97,7 +99,8 @@
 
         <!-- Main Product Area -->
         <main class="page-main">
-            <h2>Explore our products</h2>
+            <h1 style="font-size:28px;font-weight:700;letter-spacing:-0.7px;color:var(--pp-text);margin-bottom:8px;">Research Peptide Catalog</h1>
+            <h2 style="font-size:18px;font-weight:400;color:var(--pp-text-muted);margin-bottom:4px;">Explore our products</h2>
             <p class="subtitle">All orders ship same day from our US facility. COA documentation on every order.</p>
             <input type="text" class="search-bar" placeholder="Search by product name or category" id="productSearch">
 
@@ -286,8 +289,8 @@
                 </div>
 
                 <!-- Tirzepatide (Tirz) -->
-                <div class="product-card-full" data-name="Tirzepatide Tirz" data-category="Recovery Compound">
-                    <span class="product-card-category">Recovery Compound</span>
+                <div class="product-card-full" data-name="Tirzepatide Tirz" data-category="Metabolic Compound">
+                    <span class="product-card-category">Metabolic Compound</span>
                     <span class="product-card-name" style="font-size:18px;margin:4px 0;">Tirzepatide (Tirz)</span>
                     <span class="product-card-price" style="font-size:13px;color:rgba(15,29,58,0.5);">10mg / 20mg per vial</span>
                     <a href="../contact/" class="btn-primary" style="font-size:12px;padding:8px 16px;margin:8px 0;">Inquire
@@ -419,41 +422,42 @@
         </div>
     </footer>
 
+    <script src="../js/woocommerce.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="../js/supabase-config.js"></script>
     <script src="../js/auth.js"></script>
     <script src="../js/script.js"></script>
     <script>
-    // === FILTER + SEARCH ===
+    // === PRODUCT GRID INIT ===
+    const searchInput  = document.getElementById('productSearch');
+    const emptyState   = document.getElementById('emptyState');
+    const productsGrid = document.getElementById('productsGrid');
     const sidebarLinks = document.querySelectorAll('.page-sidebar-links a');
-    const dropdownFilterLinks = document.querySelectorAll('.navbar-dropdown a[data-filter]');
-    const cards = document.querySelectorAll('#productsGrid .product-card-full');
-    const searchInput = document.getElementById('productSearch');
-    const emptyState = document.getElementById('emptyState');
-    let activeFilter = 'all';
+    let activeFilter   = 'all';
 
+    // Filter + search — works against current DOM (static or dynamic cards)
     function filterProducts() {
-        const query = searchInput.value.toLowerCase().trim();
+        const query = (searchInput ? searchInput.value : '').toLowerCase().trim();
+        const cards = productsGrid ? productsGrid.querySelectorAll('.product-card-full') : [];
         let visible = 0;
         cards.forEach(card => {
-            const name = card.dataset.name.toLowerCase();
-            const cat = card.dataset.category;
+            const name = (card.dataset.name || '').toLowerCase();
+            const cat  = card.dataset.category || '';
             const matchesFilter = activeFilter === 'all' || cat === activeFilter;
             const matchesSearch = !query || name.includes(query);
-            if (matchesFilter && matchesSearch) {
-                card.style.display = '';
-                visible++;
-            } else {
-                card.style.display = 'none';
-            }
+            const show = matchesFilter && matchesSearch;
+            card.style.display = show ? '' : 'none';
+            if (show) visible++;
         });
-        emptyState.style.display = visible === 0 ? 'block' : 'none';
-        document.getElementById('productsGrid').style.display = visible === 0 ? 'none' : '';
+        if (emptyState) emptyState.style.display = visible === 0 ? 'block' : 'none';
+        if (productsGrid) productsGrid.style.display = (visible === 0 && cards.length > 0) ? 'none' : '';
     }
 
     function setFilter(filter) {
         activeFilter = filter;
-        sidebarLinks.forEach(l => l.classList.toggle('active', l.dataset.filter === filter || (filter==='all' && l.dataset.filter==='all')));
+        sidebarLinks.forEach(l => l.classList.toggle('active',
+            l.dataset.filter === filter || (filter === 'all' && l.dataset.filter === 'all')
+        ));
         filterProducts();
     }
 
@@ -461,20 +465,53 @@
         link.addEventListener('click', e => { e.preventDefault(); setFilter(link.dataset.filter); });
     });
 
-    dropdownFilterLinks.forEach(link => {
-        link.addEventListener('click', e => { e.preventDefault(); setFilter(link.dataset.filter); window.scrollTo({top: 0, behavior: 'smooth'}); });
-    });
+    if (searchInput) {
+        searchInput.addEventListener('input', filterProducts);
+    }
 
-    searchInput.addEventListener('input', filterProducts);
+    // WooCommerce: attempt to replace static cards with live data
+    // If TLP.products is available (woocommerce.js loaded), try the API.
+    // On success, replaces grid HTML with live products then re-applies filter.
+    // On failure, silently falls back to existing static HTML cards.
+    async function initWooCommerce() {
+        if (typeof window.TLP === 'undefined' || !window.TLP.products) return;
+        try {
+            // Only replace if WooCommerce returns actual (non-static) data
+            const params = new URLSearchParams();
+            params.set('per_page', '50');
+            const res = await fetch(`/api/products?${params.toString()}`, {
+                headers: { 'Accept': 'application/json' },
+                signal: AbortSignal.timeout(8000),
+            });
+            if (!res.ok) throw new Error(`API ${res.status}`);
+            const products = await res.json();
+            if (!products || products.length === 0) throw new Error('No products returned');
 
-    // Check URL hash for pre-filter
-    const hash = decodeURIComponent(window.location.hash.replace('#',''));
-    if (hash) setFilter(hash);
-    else filterProducts();
+            // Replace grid with live WooCommerce cards
+            if (productsGrid) {
+                productsGrid.innerHTML = products.map(window.TLP._renderProductCard).join('');
+            }
+        } catch (err) {
+            // Silent fallback — static HTML cards remain in place
+            console.info('[TLP Products] Using static product cards:', err.message);
+        } finally {
+            // Apply hash filter or show all after any load path
+            const hash = decodeURIComponent(window.location.hash.replace('#', ''));
+            if (hash) setFilter(hash);
+            else filterProducts();
+        }
+    }
+
+    // Run init — if woocommerce.js hasn't loaded yet, wait for it
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initWooCommerce);
+    } else {
+        initWooCommerce();
+    }
 
     // Mobile menu
     const menuToggle = document.getElementById('menuToggle');
-    const mobileNav = document.getElementById('mobileNav');
+    const mobileNav  = document.getElementById('mobileNav');
     if (menuToggle) {
         menuToggle.addEventListener('click', () => {
             mobileNav.classList.toggle('open');
@@ -483,7 +520,9 @@
     }
     // Navbar scroll
     const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 20); });
+    if (navbar) {
+        window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 20); });
+    }
     </script>
 </body>
 </html>

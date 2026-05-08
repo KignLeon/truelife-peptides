@@ -43,6 +43,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.body.style.overflow = '';
             });
         });
+
+        // Safety unlock: if user navigates away while nav is open, release scroll lock
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'hidden' || !document.hidden) {
+                mobileNav.classList.remove('open');
+                menuToggle.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+        });
     }
 
     /* ========================

@@ -40,17 +40,17 @@
                 <div class="navbar-dropdown-wrap">
                     <a href="../products/">Categories</a>
                     <div class="navbar-dropdown">
-                        <a href="../products/#recovery">Recovery</a>
-                        <a href="../products/#growth">Growth</a>
-                        <a href="../products/#weight-management">Weight Management</a>
-                        <a href="../products/#skin-hair">Skin & Hair</a>
-                        <a href="../products/#immune">Immune</a>
-                        <a href="../products/#cognitive">Cognitive</a>
-                        <a href="../products/#cellular-health">Cellular Health</a>
+                        <a href="../products/#Recovery Compound">Recovery</a>
+                        <a href="../products/#Growth Compound">Growth</a>
+                        <a href="../products/#Metabolic Compound">Metabolic</a>
+                        <a href="../products/#Longevity Compound">Longevity</a>
+                        <a href="../products/#Antioxidant Compound">Antioxidant</a>
+                        <a href="../products/#Nootropic Compound">Nootropic</a>
                     </div>
                 </div>
                 <a href="../about/">About</a>
                 <a href="./" class="active">Contact</a>
+                <a href="../blog/">Blog</a>
             </nav>
             <div style="display:flex;align-items:center;gap:12px;">
                 <a href="../products/" class="navbar-cta">View Products</a>
@@ -63,6 +63,7 @@
         <a href="../products/">Products</a>
         <a href="../about/">About</a>
         <a href="./" class="active">Contact</a>
+        <a href="../blog/">Blog</a>
     </div>
 
     <!-- ======================== TICKER ======================== -->
@@ -84,7 +85,8 @@
         <div class="contact-layout">
             <!-- Left: Info -->
             <div class="contact-info">
-                <h2>Get in touch</h2>
+                <h1 style="font-size:36px;font-weight:700;letter-spacing:-0.9px;color:var(--pp-text);margin-bottom:12px;">Contact True Life Peptides</h1>
+                <h2 style="font-size:20px;font-weight:500;color:var(--pp-text-muted);margin-bottom:20px;">Get in touch</h2>
                 <p>Have a question about our products, need help with an order, or interested in wholesale pricing? Our team is ready to help.</p>
 
                 <div class="contact-detail">
@@ -131,27 +133,34 @@
             <!-- Right: Form -->
             <div class="contact-form-card">
                 <h3>Send us a message</h3>
-                <form id="contactForm" onsubmit="return false;">
+                <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
+                    <!-- Web3Forms access key — replace with your key from web3forms.com -->
+                    <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+                    <input type="hidden" name="subject" value="New inquiry from True Life Peptides">
+                    <input type="hidden" name="redirect" value="false">
                     <div class="form-group">
                         <label for="contactName">Full Name</label>
-                        <input type="text" id="contactName" class="form-input" placeholder="John Doe" required>
+                        <input type="text" id="contactName" name="name" class="form-input" placeholder="John Doe" required>
                     </div>
                     <div class="form-group">
                         <label for="contactEmail">Email</label>
-                        <input type="email" id="contactEmail" class="form-input" placeholder="john@example.com" required>
+                        <input type="email" id="contactEmail" name="email" class="form-input" placeholder="john@example.com" required>
                     </div>
                     <div class="form-group">
                         <label for="contactPhone">Phone (optional)</label>
-                        <input type="tel" id="contactPhone" class="form-input" placeholder="(555) 123-4567">
+                        <input type="tel" id="contactPhone" name="phone" class="form-input" placeholder="(555) 123-4567">
                     </div>
                     <div class="form-group">
                         <label for="contactMessage">Message</label>
-                        <textarea id="contactMessage" class="form-input" placeholder="How can we help you?" required></textarea>
+                        <textarea id="contactMessage" name="message" class="form-input" placeholder="How can we help you?" required></textarea>
                     </div>
+                    <!-- Honeypot spam protection -->
+                    <input type="checkbox" name="botcheck" style="display:none;">
                     <button type="submit" class="btn-primary" style="width:100%;justify-content:center;padding:14px 24px;font-size:15px;" id="contactSubmitBtn">
                         Send Message
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4z"/></svg>
                     </button>
+                    <p id="contactError" style="display:none;color:#dc2626;font-size:13px;margin-top:12px;text-align:center;">Something went wrong. Please try again or call us at <a href="tel:+19729190219" style="color:#dc2626;font-weight:600;">+1 (972) 919-0219</a>.</p>
                 </form>
                 <div class="form-success" id="contactSuccess">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
@@ -195,14 +204,13 @@
                 <div class="footer-col">
                     <h4>Products</h4>
                     <a href="../products/">All Products</a>
-                    <a href="../products/#recovery">Recovery</a>
-                    <a href="../products/#growth">Growth</a>
-                    <a href="../products/#weight-management">Weight Management</a>
+                    <a href="../products/#Recovery Compound">Recovery</a>
+                    <a href="../products/#Growth Compound">Growth</a>
+                    <a href="../products/#Metabolic Compound">Metabolic</a>
                 </div>
                 <div class="footer-col">
                     <h4>Company</h4>
                     <a href="../about/">About</a>
-                    <a href="../blog/">Blog</a>
                     <a href="../about/#coa">COA</a>
                     <a href="./">Contact</a>
                 </div>
@@ -229,22 +237,58 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="../js/supabase-config.js"></script>
-    <script src="../js/auth.js"></script>
     <script src="../js/script.js"></script>
     <script>
-        // Contact form handler
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
+    // Web3Forms contact form handler
+    const contactForm = document.getElementById('contactForm');
+    const contactSuccess = document.getElementById('contactSuccess');
+    const contactError = document.getElementById('contactError');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             const btn = document.getElementById('contactSubmitBtn');
-            btn.textContent = 'Sending...';
+            const originalText = btn.innerHTML;
+            btn.innerHTML = 'Sending…';
             btn.disabled = true;
-            setTimeout(() => {
-                document.getElementById('contactForm').style.display = 'none';
-                document.getElementById('contactSuccess').classList.add('visible');
-            }, 1200);
+            if (contactError) contactError.style.display = 'none';
+
+            try {
+                const data = new FormData(contactForm);
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: data
+                });
+                const result = await response.json();
+                if (result.success) {
+                    contactForm.style.display = 'none';
+                    contactSuccess.classList.add('visible');
+                } else {
+                    throw new Error(result.message || 'Submission failed');
+                }
+            } catch (err) {
+                console.error('[TLP Contact]', err);
+                if (contactError) contactError.style.display = 'block';
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
         });
+    }
+
+    // Mobile menu
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    if (menuToggle) {
+        menuToggle.addEventListener('click', () => {
+            mobileNav.classList.toggle('open');
+            menuToggle.classList.toggle('open');
+        });
+    }
+    // Navbar scroll
+    const navbar = document.getElementById('navbar');
+    if (navbar) {
+        window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 20); });
+    }
     </script>
 </body>
 

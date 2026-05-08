@@ -5,6 +5,7 @@ node_modules
 *.log
 ._*
 *.bak
+.env
 
 # Legacy Framer exports (not part of live site)
 directpeptides_com.html
