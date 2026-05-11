@@ -151,24 +151,50 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Check URL hash on load for deep-linking
-        const hash = window.location.hash.slice(1);
+        const hash = decodeURIComponent(window.location.hash.slice(1));
         if (hash) {
+            // Map both clean slugs and raw category names to filter values
             const hashMap = {
                 'recovery': 'Recovery Compound',
+                'recovery-compound': 'Recovery Compound',
+                'Recovery Compound': 'Recovery Compound',
                 'growth': 'Growth Compound',
-                'weight-management': 'Weight Management',
-                'skin-hair': 'Skin/Hair',
-                'immune': 'Immune',
-                'cognitive': 'Cognitive',
-                'tanning': 'Tanning',
-                'reproductive': 'Reproductive',
-                'metabolic': 'Metabolic',
-                'cellular-health': 'Cellular Health'
+                'growth-compound': 'Growth Compound',
+                'Growth Compound': 'Growth Compound',
+                'metabolic': 'Metabolic Compound',
+                'metabolic-compound': 'Metabolic Compound',
+                'Metabolic Compound': 'Metabolic Compound',
+                'longevity': 'Longevity Compound',
+                'longevity-compound': 'Longevity Compound',
+                'Longevity Compound': 'Longevity Compound',
+                'antioxidant': 'Antioxidant Compound',
+                'antioxidant-compound': 'Antioxidant Compound',
+                'Antioxidant Compound': 'Antioxidant Compound',
+                'nootropic': 'Nootropic Compound',
+                'nootropic-compound': 'Nootropic Compound',
+                'Nootropic Compound': 'Nootropic Compound',
+                'reconstitution': 'Reconstitution Solution',
+                'reconstitution-solution': 'Reconstitution Solution',
+                'Reconstitution Solution': 'Reconstitution Solution'
             };
             if (hashMap[hash]) {
                 filterByCategory(hashMap[hash]);
             }
         }
+
+        // Navbar dropdown links (on products page, these have data-filter)
+        const navDropdownLinks = document.querySelectorAll('.navbar-dropdown a[data-filter]');
+        navDropdownLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const filter = link.dataset.filter;
+                filterByCategory(filter);
+                const slug = filter.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+$/, '');
+                history.replaceState(null, '', '#' + slug);
+                // Scroll to products grid
+                if (productsGrid) productsGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
     }
 
     /* ========================
