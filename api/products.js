@@ -13,7 +13,7 @@
 
 export default async function handler(req, res) {
     // CORS — allow same origin + your frontend domain
-    res.setHeader('Access-Control-Allow-Origin', process.env.FRONTEND_URL || 'https://truelifepeptides.com');
+    res.setHeader('Access-Control-Allow-Origin', process.env.FRONTEND_URL || 'https://truelifepeptide.com');
     res.setHeader('Access-Control-Allow-Methods', 'GET');
     res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=600'); // 5min CDN cache
 

@@ -93,11 +93,14 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('https://res.cloudinary.com/ddnhp0hzd/image/upload/v1773092310/backgrounf_trulife_wbvsx5.png');
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    opacity: 0.08;
+    background: linear-gradient(
+        180deg,
+        rgba(21, 101, 192, 0.06) 0%,
+        rgba(255, 255, 255, 0.02) 40%,
+        rgba(255, 255, 255, 0) 50%,
+        rgba(255, 255, 255, 0.02) 60%,
+        rgba(21, 101, 192, 0.06) 100%
+    );
     pointer-events: none;
     z-index: 0;
 }
