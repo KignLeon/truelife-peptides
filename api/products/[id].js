@@ -5,7 +5,7 @@
  */
 
 export default async function handler(req, res) {
-    res.setHeader('Access-Control-Allow-Origin', process.env.FRONTEND_URL || '*');
+    res.setHeader('Access-Control-Allow-Origin', process.env.FRONTEND_URL || 'https://truelifepeptides.com');
     res.setHeader('Access-Control-Allow-Methods', 'GET');
     res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=600');
 
@@ -28,15 +28,15 @@ export default async function handler(req, res) {
     }
 
     try {
-        const params = new URLSearchParams({
-            consumer_key: WC_KEY,
-            consumer_secret: WC_SECRET,
-        });
+        const params = new URLSearchParams({});
 
         const wcUrl = `${WC_URL}/wp-json/wc/v3/products/${id}?${params.toString()}`;
 
         const response = await fetch(wcUrl, {
-            headers: { 'Accept': 'application/json' },
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': 'Basic ' + btoa(WC_KEY + ':' + WC_SECRET),
+            },
             signal: AbortSignal.timeout(6000),
         });
 

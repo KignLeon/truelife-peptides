@@ -13,7 +13,7 @@
 
 export default async function handler(req, res) {
     // CORS — allow same origin + your frontend domain
-    res.setHeader('Access-Control-Allow-Origin', process.env.FRONTEND_URL || '*');
+    res.setHeader('Access-Control-Allow-Origin', process.env.FRONTEND_URL || 'https://truelifepeptides.com');
     res.setHeader('Access-Control-Allow-Methods', 'GET');
     res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=600'); // 5min CDN cache
 
@@ -38,8 +38,6 @@ export default async function handler(req, res) {
 
         // Build WooCommerce API URL
         const params = new URLSearchParams({
-            consumer_key: WC_KEY,
-            consumer_secret: WC_SECRET,
             per_page: Math.min(parseInt(per_page, 10) || 20, 50).toString(),
             page: page,
             status: 'publish',
@@ -52,7 +50,10 @@ export default async function handler(req, res) {
         const wcUrl = `${WC_URL}/wp-json/wc/v3/products?${params.toString()}`;
 
         const response = await fetch(wcUrl, {
-            headers: { 'Accept': 'application/json' },
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': 'Basic ' + btoa(WC_KEY + ':' + WC_SECRET),
+            },
             signal: AbortSignal.timeout(8000), // 8s timeout
         });
 

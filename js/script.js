@@ -260,4 +260,58 @@ document.addEventListener('DOMContentLoaded', () => {
             popupOverlay.classList.add('active');
         });
     }
+
+    /* ========================
+       COOKIE CONSENT BANNER
+       ======================== */
+    const COOKIE_CONSENT_KEY = 'tlp_cookie_consent';
+    if (!localStorage.getItem(COOKIE_CONSENT_KEY)) {
+        const banner = document.createElement('div');
+        banner.className = 'cookie-banner';
+        banner.id = 'cookieBanner';
+        banner.innerHTML = `
+            <p>We use cookies to analyze site traffic and improve your experience. No personal data is sold.</p>
+            <div class="cookie-banner-actions">
+                <button class="cookie-btn cookie-btn-accept" id="cookieAccept">Accept</button>
+                <button class="cookie-btn cookie-btn-decline" id="cookieDecline">Decline</button>
+            </div>`;
+        document.body.appendChild(banner);
+        setTimeout(() => banner.classList.add('visible'), 1000);
+
+        document.getElementById('cookieAccept').addEventListener('click', () => {
+            localStorage.setItem(COOKIE_CONSENT_KEY, 'accepted');
+            if (window.TLP_Analytics) window.TLP_Analytics.grantConsent();
+            banner.classList.remove('visible');
+            setTimeout(() => banner.remove(), 400);
+        });
+        document.getElementById('cookieDecline').addEventListener('click', () => {
+            localStorage.setItem(COOKIE_CONSENT_KEY, 'declined');
+            if (window.TLP_Analytics) window.TLP_Analytics.revokeConsent();
+            banner.classList.remove('visible');
+            setTimeout(() => banner.remove(), 400);
+        });
+    }
+
+    /* ========================
+       CONTACT FORM RATE LIMIT
+       ======================== */
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        let lastSubmit = 0;
+        const COOLDOWN_MS = 30000; // 30 seconds between submissions
+        contactForm.addEventListener('submit', (e) => {
+            const now = Date.now();
+            if (now - lastSubmit < COOLDOWN_MS) {
+                e.preventDefault();
+                const errEl = document.getElementById('contactError');
+                if (errEl) {
+                    errEl.textContent = 'Please wait 30 seconds before submitting again.';
+                    errEl.style.display = 'block';
+                    setTimeout(() => { errEl.style.display = 'none'; }, 4000);
+                }
+                return;
+            }
+            lastSubmit = now;
+        });
+    }
 });
